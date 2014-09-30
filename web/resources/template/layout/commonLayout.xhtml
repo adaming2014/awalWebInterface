@@ -7,10 +7,10 @@
     <h:head>
         <title><ui:insert name="title" >AWAL SAV</ui:insert></title>
         <ui:insert name="stylesheetLibrary" >
-            <ui:include src="../fragment/stylesheetLibrary.xhtml" />
+            <ui:include src="../fragment/common/stylesheetLibrary.xhtml" />
         </ui:insert>
         <ui:insert name="stylesheet" >
-            <ui:include src="../fragment/stylesheet.xhtml" />
+            <ui:include src="../fragment/common/stylesheet.xhtml" />
         </ui:insert>
     </h:head>
 
@@ -18,25 +18,25 @@
         <div id="page">
             <div id="header">
                 <ui:insert name="header" >
-                    <ui:include src="../fragment/commonHeader.xhtml" />
+                    <ui:include src="../fragment/common/header.xhtml" />
                 </ui:insert>
             </div>
 
             <div id="content">
                 <ui:insert name="content" >
-                    <ui:include src="../fragment/commonContent.xhtml" />
+                    <ui:include src="../fragment/common/content.xhtml" />
                 </ui:insert>
             </div>
 
             <div id="footer">
                 <ui:insert name="footer" >
-                    <ui:include src="../fragment/commonFooter.xhtml" />
+                    <ui:include src="../fragment/common/footer.xhtml" />
                 </ui:insert>
             </div>
         </div>
 
         <ui:insert name="jsLibrary" >
-            <ui:include src="../fragment/jsLibrary.xhtml" />
+            <ui:include src="../fragment/common/jsLibrary.xhtml" />
         </ui:insert>
     </h:body>
 </html>

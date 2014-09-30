@@ -24,8 +24,10 @@
     <context-param>
         <param-name>org.omnifaces.CDN_RESOURCE_HANDLER_URLS</param-name>
         <param-value>
-            bootstrap/bootstrap.min.css=https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css,
-            bootstrap/bootstrap-theme.min.css=https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css
+            css:bootstrap/bootstrap.min.css=https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css,
+            css:bootstrap/bootstrap-theme.min.css=https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css,
+            js:bootstrap/bootstrap.min.js=https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js,
+            js:jquery/jquery.min.js=https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
         </param-value>
     </context-param>
 </web-app>

@@ -21,4 +21,11 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
+    <context-param>
+        <param-name>org.omnifaces.CDN_RESOURCE_HANDLER_URLS</param-name>
+        <param-value>
+            bootstrap/bootstrap.min.css=https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css,
+            bootstrap/bootstrap-theme.min.css=https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css
+        </param-value>
+    </context-param>
 </web-app>

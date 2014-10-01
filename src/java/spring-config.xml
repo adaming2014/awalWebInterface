@@ -4,62 +4,62 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     
-    <bean id ="clientController" class="fr.adaming.awal.controller.ClientController">
+    <bean id="clientController" class="fr.adaming.awal.controller.ClientController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.ClientDao"/>
         </property>
     </bean>
-    <bean id="adminController" class="fr.adaming.awal.controller.AdminController">
+    <bean id="adminController" class="fr.adaming.awal.controller.AdminController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.AdminDao"/>
         </property>
     </bean>
-    <bean id="deviceController" class="fr.adaming.awal.controller.DeviceController">
+    <bean id="deviceController" class="fr.adaming.awal.controller.DeviceController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.DeviceDao"/>
         </property>
     </bean>
-    <bean id="deviceInsuranceController" class="fr.adaming.awal.controller.DeviceInsuranceController">
+    <bean id="deviceInsuranceController" class="fr.adaming.awal.controller.DeviceInsuranceController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.DeviceinsuranceDao"/>
         </property>
     </bean>
-    <bean id="deviceRepairController" class="fr.adaming.awal.controller.DeviceRepairController">
+    <bean id="deviceRepairController" class="fr.adaming.awal.controller.DeviceRepairController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.DeviceRepairDao"/>
         </property>
     </bean>
-    <bean id="firmController" class="fr.adaming.awal.controller.FirmController">
+    <bean id="firmController" class="fr.adaming.awal.controller.FirmController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.FirmDao"/>
         </property>
     </bean>
-    <bean id="modelController" class="fr.adaming.awal.controller.ModelController">
+    <bean id="modelController" class="fr.adaming.awal.controller.ModelController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.ModelDao"/>
         </property>
     </bean>
-    <bean id="modelPackageController" class="fr.adaming.awal.controller.ModelPackageController">
+    <bean id="modelPackageController" class="fr.adaming.awal.controller.ModelPackageController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.ModelPackageDao"/>
         </property>
     </bean>
-    <bean id="repairerController" class="fr.adaming.awal.controller.RepairerController">
+    <bean id="repairerController" class="fr.adaming.awal.controller.RepairerController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.RepairerDao"/>
         </property>
     </bean>
-    <bean id="resellerController" class="fr.adaming.awal.controller.ResellerController">
+    <bean id="resellerController" class="fr.adaming.awal.controller.ResellerController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.ResellerDao"/>
         </property>
     </bean>
-    <bean id="userController" class="fr.adaming.awal.controller.UserController" lazy-init="true" >
+    <bean id="userController" class="fr.adaming.awal.controller.UserController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.UserDao"/>
         </property>
     </bean>
-    <bean id="addressController" class="fr.adaming.awal.controller.AddressController">
+    <bean id="addressController" class="fr.adaming.awal.controller.AddressController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.AddressDao"/>
         </property>

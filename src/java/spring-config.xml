@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <bean id ="clientDao" class="fr.adaming.awal.dao.ClientDao"/>
+    <bean id ="clientController" class="fr.adaming.awal.controller.ClientController">
+        <property name="dao"  ref="clientDao"/> 
+    </bean>
+    
+     <bean id="adminDao" class="fr.adaming.awal.dao.AdminDao"/>
+    <bean id="adminController" class="fr.adaming.awal.controller.AdminController">
+        <property name="dao" ref="adminDao" />
+    </bean>
+     <bean id="deviceDao" class="fr.adaming.awal.dao.DeviceDao"/>
+    <bean id="deviceController" class="fr.adaming.awal.controller.DeviceController">
+        <property name="dao" ref="deviceDao" />
+    </bean>
+    <bean id="deviceInsuranceDao" class="fr.adaming.awal.dao.DeviceinsuranceDao"/>
+    <bean id="deviceInsuranceController" class="fr.adaming.awal.controller.DeviceInsuranceController">
+        <property name="dao" ref="deviceInsuranceDao" />
+    </bean>
+    <bean id="deviceRepairDao" class="fr.adaming.awal.dao.Devicerepair"/>
+    <bean id="deviceRepairController" class="fr.adaming.awal.controller.DeviceRepairController">
+        <property name="dao" ref="deviceRepairDao" />
+    </bean>
+    <bean id="firmDao" class="fr.adaming.awal.dao.FirmDao"/>
+    <bean id="firmController" class="fr.adaming.awal.controller.FirmController">
+        <property name="dao" ref="firmDao" />
+    </bean>
+    <bean id="modelDao" class="fr.adaming.awal.dao.ModelDao"/>
+    <bean id="modelController" class="fr.adaming.awal.controller.ModelController">
+        <property name="dao" ref="modelDao" />
+    </bean>
+  
+    <bean id="modelPackageDao" class="fr.adaming.awal.dao.ModelPackageDao"/>
+    <bean id="modelPackageController" class="fr.adaming.awal.controller.ModelPackageController">
+        <property name="dao" ref="modelPackageDao" />
+    </bean>
+    <bean id="repairerDao" class="fr.adaming.awal.dao.RepairerDao"/>
+    <bean id="repairerController" class="fr.adaming.awal.controller.RepairerController">
+        <property name="dao" ref="repairerDao" />
+    </bean>
+    <bean id="resellerDao" class="fr.adaming.awal.dao.ResellerDao"/>
+    <bean id="resellerController" class="fr.adaming.awal.controller.ResellerController">
+        <property name="dao" ref="resellerDao" />
+    </bean>
+    <bean id="userDao" class="fr.adaming.awal.dao.UserDao"/>
+    <bean id="userController" class="fr.adaming.awal.controller.UserController">
+        <property name="dao" ref="userDao" />
+    </bean>
+    <bean id="addressDao" class="fr.adaming.awal.dao.AddressDao"/>
+    <bean id="addressController" class="fr.adaming.awal.controller.AddressController">
+        <property name="dao" ref="addressDao" />
+    </bean>
+    
+    
+    
+</beans>

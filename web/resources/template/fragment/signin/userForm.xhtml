@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://java.sun.com/jsf/passthrough">
+    <body>
+        <ui:composition>
+            <h:form>
+                <h:panelGrid columns="3">
+
+                    <h:outputLabel id="firstnameLabel" for="firstname" value="Firstname :"/>
+                    <h:inputText id="firstname" required="true" value="#{signinParameters.firstname}" a:placeholder="Enter firstname" />
+                    <h:message id="firstnameMessage" for="firstname" />
+
+                    <h:outputLabel id="lastnameLabel" for="lastname" value="Lastname :"/>
+                    <h:inputText id="lastname" required="true" value="#{signinParameters.lastname}" a:placeholder="Enter lastname" />
+                    <h:message id="lastnameMessage" for="lastname" />
+
+                    <h:outputLabel id="emailLabel" for="email" value="Email :"/>
+                    <h:inputText id="email" required="true" value="#{signinParameters.email}" a:type="email" a:placeholder="Enter email" />
+                    <h:message id="emailMessage" for="email" />
+
+                    <h:outputLabel id="passwordLabel" for="password" value="Password :"/>
+                    <h:inputSecret id="password" required="true" value="#{signinParameters.password}" a:placeholder="Enter password" />
+                    <h:message id="passwordMessage" for="password" />
+
+                    <h:outputLabel id="passwordVerifLabel" for="passwordVerif" value="Verif password :"/>
+                    <h:inputSecret id="passwordVerif" required="true" value="#{signinParameters.passwordVerif}" a:placeholder="Enter password" />
+                    <h:message id="passwordVerifMessage" for="passwordVerif" />
+                </h:panelGrid>
+
+                <h:commandButton action="#{signinManager.signin}" value="Signin" />
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

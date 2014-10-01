@@ -21,7 +21,6 @@ public class SigninParameters implements Serializable {
     private String lastname;
     private String email;
     private String password;
-    private String passwordVerif;
 
     /**
      * Creates a new instance of SiginParameters
@@ -59,13 +58,5 @@ public class SigninParameters implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPasswordVerif() {
-        return passwordVerif;
-    }
-
-    public void setPasswordVerif(String passwordVerif) {
-        this.passwordVerif = passwordVerif;
     }
 }

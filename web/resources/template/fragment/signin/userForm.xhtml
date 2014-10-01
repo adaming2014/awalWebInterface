@@ -26,12 +26,15 @@
                     <p:message id="emailMessage" for="email" />
 
                     <p:outputLabel id="passwordLabel" for="password" value="Password :"/>
-                    <p:password id="password" required="true" value="#{signinParameters.password}" a:placeholder="Enter password" />
+                    <p:password id="password" required="true" value="#{signinParameters.password}" a:placeholder="Enter password" >
+                        <f:validator validatorId="fr.adaming.awal.webinterface.validator.SamePasswordValidator" />
+                        <f:attribute name="passwordConfirm" value="#{passwordConfirm}" />
+                    </p:password>
                     <p:message id="passwordMessage" for="password" />
 
-                    <p:outputLabel id="passwordVerifLabel" for="passwordVerif" value="Verif password :"/>
-                    <p:password id="passwordVerif" required="true" value="#{signinParameters.passwordVerif}" a:placeholder="Enter password" />
-                    <p:message id="passwordVerifMessage" for="passwordVerif" />
+                    <p:outputLabel id="passwordConfirmLabel" for="passwordConfirm" value="Confirm password :"/>
+                    <p:password id="passwordConfirm" required="true" binding="#{passwordConfirm}" a:placeholder="Enter password" />
+                    <p:message id="passwordConfirmMessage" for="passwordConfirm" />
 
                     <p:outputLabel for="licenceAgree" value="Do you agree?" />
                     <p:selectBooleanCheckbox id="licenceAgree" requiredMessage="You must agree!">

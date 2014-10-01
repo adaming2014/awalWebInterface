@@ -20,11 +20,11 @@
 
     <h:body>
         <div id="page">
-            <div id="header">
+            <header id="header">
                 <ui:insert name="header" >
                     <ui:include src="../fragment/common/header.xhtml" />
                 </ui:insert>
-            </div>
+            </header>
 
             <div id="content">
                 <ui:insert name="content" >
@@ -32,11 +32,11 @@
                 </ui:insert>
             </div>
 
-            <div id="footer">
+            <footer id="footer">
                 <ui:insert name="footer" >
                     <ui:include src="../fragment/common/footer.xhtml" />
                 </ui:insert>
-            </div>
+            </footer>
         </div>
 
         <ui:insert name="jsLibrary" >

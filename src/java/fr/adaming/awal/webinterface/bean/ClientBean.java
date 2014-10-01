@@ -5,18 +5,19 @@
  */
 package fr.adaming.awal.webinterface.bean;
 
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
 
 /**
  *
  * @author INTI0217
  */
-@Named(value = "clientBean")
+@ManagedBean
 @SessionScoped
 public class ClientBean implements Serializable {
 
+//    private Controller
     /**
      * Creates a new instance of ClientBean
      */

@@ -20,7 +20,9 @@
                     <p:message id="lastnameMessage" for="lastname" />
 
                     <p:outputLabel id="emailLabel" for="email" value="Email :"/>
-                    <p:inputText id="email" required="true" value="#{signinParameters.email}" a:type="email" a:placeholder="Enter email" />
+                    <p:inputText id="email" required="true" value="#{signinParameters.email}" a:type="email" a:placeholder="Enter email" >
+                        <f:validator validatorId="fr.adaming.awal.webinterface.validator.UniqueEmailValidator" />
+                    </p:inputText>
                     <p:message id="emailMessage" for="email" />
 
                     <p:outputLabel id="passwordLabel" for="password" value="Password :"/>

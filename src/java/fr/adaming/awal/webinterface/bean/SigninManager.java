@@ -19,6 +19,9 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class SigninManager implements Serializable {
 
+    @ManagedProperty("#{authManager}")
+    AuthManager authManager;
+
     /**
      * Creates a new instance of SigninManager
      */
@@ -28,7 +31,15 @@ public class SigninManager implements Serializable {
     public void signin() {
         FacesContext context = FacesContext.getCurrentInstance();
         SigninParameters signinParameters = context.getApplication().evaluateExpressionGet(context, "#{signinParameters}", SigninParameters.class);
-        
+
         System.out.println(signinParameters);
+    }
+
+    public AuthManager getAuthManager() {
+        return authManager;
+    }
+
+    public void setAuthManager(AuthManager authManager) {
+        this.authManager = authManager;
     }
 }

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.adaming.awal.webinterface.bean;
+package fr.adaming.awal.webinterface.bean.manager;
 
+import fr.adaming.awal.webinterface.bean.form.UserParameters;
 import fr.adaming.awal.controller.interfaces.IClientController;
 import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.User;
@@ -24,7 +25,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @ManagedBean
 @SessionScoped
-public class SigninManager implements Serializable {
+public class UserManager implements Serializable {
     
     private static final String PAGE_INDEX = "index";
     
@@ -36,7 +37,7 @@ public class SigninManager implements Serializable {
     /**
      * Creates a new instance of SigninManager
      */
-    public SigninManager() {
+    public UserManager() {
     }
     
     @PostConstruct
@@ -46,7 +47,7 @@ public class SigninManager implements Serializable {
     
     public String signin() {
         FacesContext context = FacesContext.getCurrentInstance();
-        SigninParameters signinParameters = context.getApplication().evaluateExpressionGet(context, "#{signinParameters}", SigninParameters.class);
+        UserParameters signinParameters = context.getApplication().evaluateExpressionGet(context, "#{userParameters}", UserParameters.class);
         
         IClientController clientController = (IClientController) springContext.getBean("clientController");
         if (clientController == null) {

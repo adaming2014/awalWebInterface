@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.adaming.awal.webinterface.bean;
+package fr.adaming.awal.webinterface.bean.manager;
 
 import fr.adaming.awal.entity.Admin;
 import fr.adaming.awal.entity.Client;

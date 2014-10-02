@@ -3,29 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.adaming.awal.webinterface.bean;
+package fr.adaming.awal.webinterface.bean.form;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author INTI0221
  */
 @ManagedBean
-@ViewScoped
-public class SigninParameters implements Serializable {
+@RequestScoped
+public class UserParameters implements Serializable {
 
     private String firstname;
     private String lastname;
     private String email;
     private String password;
+    private String phone;
 
     /**
      * Creates a new instance of SiginParameters
      */
-    public SigninParameters() {
+    public UserParameters() {
     }
 
     public String getFirstname() {
@@ -58,5 +59,13 @@ public class SigninParameters implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

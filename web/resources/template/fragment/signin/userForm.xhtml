@@ -12,21 +12,21 @@
 
                 <p:panelGrid id="userFormPanel" columns="3">
                     <p:outputLabel id="firstnameLabel" for="firstname" value="Firstname :"/>
-                    <p:inputText id="firstname" required="true" value="#{signinParameters.firstname}" a:placeholder="Enter firstname" />
+                    <p:inputText id="firstname" required="true" value="#{userParameters.firstname}" a:placeholder="Enter firstname" />
                     <p:message id="firstnameMessage" for="firstname" />
 
                     <p:outputLabel id="lastnameLabel" for="lastname" value="Lastname :"/>
-                    <p:inputText id="lastname" required="true" value="#{signinParameters.lastname}" a:placeholder="Enter lastname" />
+                    <p:inputText id="lastname" required="true" value="#{userParameters.lastname}" a:placeholder="Enter lastname" />
                     <p:message id="lastnameMessage" for="lastname" />
 
                     <p:outputLabel id="emailLabel" for="email" value="Email :"/>
-                    <p:inputText id="email" required="true" value="#{signinParameters.email}" a:type="email" a:placeholder="Enter email" >
+                    <p:inputText id="email" required="true" value="#{userParameters.email}" a:type="email" a:placeholder="Enter email" >
                         <f:validator validatorId="fr.adaming.awal.webinterface.validator.UniqueEmailValidator" />
                     </p:inputText>
                     <p:message id="emailMessage" for="email" />
 
                     <p:outputLabel id="passwordLabel" for="password" value="Password :"/>
-                    <p:password id="password" required="true" value="#{signinParameters.password}" a:placeholder="Enter password" >
+                    <p:password id="password" required="true" value="#{userParameters.password}" a:placeholder="Enter password" >
                         <f:validator validatorId="fr.adaming.awal.webinterface.validator.SamePasswordValidator" />
                         <f:attribute name="passwordConfirm" value="#{passwordConfirm}" />
                     </p:password>
@@ -37,7 +37,7 @@
                     <p:message id="passwordConfirmMessage" for="passwordConfirm" />
                 </p:panelGrid>
 
-                <p:commandButton value="Signin" action="#{signinManager.signin}" ajax="false" />
+                <p:commandButton value="Signin" action="#{userManager.signin}" ajax="false" />
                 <p:commandButton value="Reset" update="userFormPanel" process="@this" >
                     <p:resetInput target="userFormPanel" />
                 </p:commandButton>

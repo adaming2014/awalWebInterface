@@ -35,12 +35,6 @@
                     <p:outputLabel id="passwordConfirmLabel" for="passwordConfirm" value="Confirm password :"/>
                     <p:password id="passwordConfirm" required="true" binding="#{passwordConfirm}" a:placeholder="Enter password" />
                     <p:message id="passwordConfirmMessage" for="passwordConfirm" />
-
-                    <p:outputLabel for="licenceAgree" value="Do you agree?" />
-                    <p:selectBooleanCheckbox id="licenceAgree" requiredMessage="You must agree!">
-                        <f:validator validatorId="omnifaces.RequiredCheckboxValidator" />
-                    </p:selectBooleanCheckbox>
-                    <h:message for="licenceAgree" />
                 </p:panelGrid>
 
                 <p:commandButton value="Signin" action="#{signinManager.signin}" ajax="false" />

@@ -11,27 +11,29 @@
                     <h:panelGrid columns="2" columnClasses="label, value" class="panel-title">
                         
                         <h:outputText value = "Nom : *" style="color: #000"/>
-                        <p:inputText  required="true" value="#{adminPackageDeviceMB.modelPackage.name}" label="Nom"/>
+                        <p:inputText  required="true" value="#{adminPackageInsurance.deviceinsurancemodel.name}" label="Nom"/>
                         <h:outputText value = "Description : *" style="color: #000" />
-                        <p:inputText  required="true" label="Description" value="#{adminPackageDeviceMB.modelPackage.description}"/>
+                        <p:inputText  required="true" label="Description" value="#{adminPackageInsurance.deviceinsurancemodel.description}"/>
                         <h:outputText value = "Prix : *" style="color: #000"/>
-                        <p:inputText  required="true" label="Prix" value="#{adminPackageDeviceMB.modelPackage.price}"/>
+                        <p:inputText  required="true" label="Prix" value="#{adminPackageInsurance.deviceinsurancemodel.price}"/>
+                        <h:outputText value = "Durée : *" style="color: #000"/>
+                        <p:inputText  required="true" label="Durée" value="#{adminPackageInsurance.deviceinsurancemodel.duration}"/>
                     </h:panelGrid>
                 </p:panel>
                 <p:panel header="Modéle applicable" class="panel"> 
                     <h:panelGrid columns="2" columnClasses="label, value" class="panel-title">
                         
                         <h:outputText value = "Poid : *" style="color: #000"/>
-                        <p:inputText  required="true" label="Poid" value="#{adminPackageDeviceMB.deviceModel.weigth}"/>
+                        <p:inputText  required="true" label="Poid" value="#{adminPackageInsurance.modele.weigth}"/>
                         <h:outputText value = "Dimentions : *" style="color: #000" />
-                        <p:inputText  required="true" label="Dimentions" value="#{adminPackageDeviceMB.deviceModel.dimension}"/>
+                        <p:inputText  required="true" label="Dimentions" value="#{adminPackageInsurance.modele.dimension}"/>
                         <h:outputText value = "Marque : *" style="color: #000"/>
-                        <p:inputText  required="true" label="Marque" value="#{adminPackageDeviceMB.deviceModel.brand}"/>
+                        <p:inputText  required="true" label="Marque" value="#{adminPackageInsurance.modele.brand}"/>
                         <h:outputText value = "Nom : *" style="color: #000"/>
-                        <p:inputText  required="true" label="Nom" value="#{adminPackageDeviceMB.deviceModel.name}"/>
+                        <p:inputText  required="true" label="Nom" value="#{adminPackageInsurance.modele.name}"/>
                         <h:outputText value = "Type : *" style="color: #000"/>
-                        <p:inputText  required="true" label="Type" value="#{adminPackageDeviceMB.deviceModel.type}"/>
-                        <p:commandButton value="Ajouter forfait" class="btn-link" actionListener="#{adminPackageDeviceMB.createNewPackageDevice()}"/>
+                        <p:inputText  required="true" label="Type" value="#{adminPackageInsurance.modele.type}"/>
+                        <p:commandButton value="Ajouter forfait" class="btn-link" actionListener="#{adminPackageInsurance.createNewPackageInsurance()}"/>
                     </h:panelGrid>
                 </p:panel>
             </h:form>

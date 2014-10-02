@@ -29,8 +29,8 @@ public class AdminPackageDeviceMB implements Serializable{
     private Modele deviceModel;
     private Modelpackage modelPackage;
     private ApplicationContext context;
-    private IModelPackageController modelPAckageController;
-    private IModelController modelController;
+    private ModelPackageController modelPAckageController;
+    private ModelController modelController;
     /**
      * Creates a new instance of AdminManagedBean
      */

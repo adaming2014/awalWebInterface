@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="../resources/template/layout/commonLayout.xhtml">
         <ui:define name="content">
-            <ui:include src="../resources/template/fragment/form/userForm.xhtml" />
+            <c:choose>
+                <c:when test="#{not authManager.auth}" >
+                    <ui:include src="../resources/template/fragment/form/userForm.xhtml" />
+                </c:when>
+                <c:otherwise>
+                    Already logged!
+                </c:otherwise>
+            </c:choose>
         </ui:define>
     </ui:composition>
 </html>

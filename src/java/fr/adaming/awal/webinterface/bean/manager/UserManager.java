@@ -27,7 +27,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @SessionScoped
 public class UserManager implements Serializable {
     
-    private static final String PAGE_INDEX = "index";
+    private static final String PAGE_INDEX_REDIRECT = "index_redirect";
     
     @ManagedProperty("#{authManager}")
     AuthManager authManager;
@@ -71,7 +71,7 @@ public class UserManager implements Serializable {
         
         authManager.setUser(client);
         
-        return PAGE_INDEX;
+        return PAGE_INDEX_REDIRECT;
     }
     
     public AuthManager getAuthManager() {

@@ -33,7 +33,7 @@
     <navigation-rule>
         <from-view-id>/auth/signin.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>index</from-outcome>
+            <from-outcome>index_redirect</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
             <redirect />
         </navigation-case>

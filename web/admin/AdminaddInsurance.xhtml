@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
+        <ui:define name="content">
+            
+            <h:form class="form-group">
+                <p:panel header="Ajouter un forfait d'assurance" class="panel"> 
+                    <h:panelGrid columns="2" columnClasses="label, value" class="panel-title">
+                        
+                        <h:outputText value = "Nom : *" style="color: #000"/>
+                        <p:inputText  required="true" value="#{adminPackageDeviceMB.modelPackage.name}" label="Nom"/>
+                        <h:outputText value = "Description : *" style="color: #000" />
+                        <p:inputText  required="true" label="Description" value="#{adminPackageDeviceMB.modelPackage.description}"/>
+                        <h:outputText value = "Prix : *" style="color: #000"/>
+                        <p:inputText  required="true" label="Prix" value="#{adminPackageDeviceMB.modelPackage.price}"/>
+                    </h:panelGrid>
+                </p:panel>
+                <p:panel header="Modéle applicable" class="panel"> 
+                    <h:panelGrid columns="2" columnClasses="label, value" class="panel-title">
+                        
+                        <h:outputText value = "Poid : *" style="color: #000"/>
+                        <p:inputText  required="true" label="Poid" value="#{adminPackageDeviceMB.deviceModel.weigth}"/>
+                        <h:outputText value = "Dimentions : *" style="color: #000" />
+                        <p:inputText  required="true" label="Dimentions" value="#{adminPackageDeviceMB.deviceModel.dimension}"/>
+                        <h:outputText value = "Marque : *" style="color: #000"/>
+                        <p:inputText  required="true" label="Marque" value="#{adminPackageDeviceMB.deviceModel.brand}"/>
+                        <h:outputText value = "Nom : *" style="color: #000"/>
+                        <p:inputText  required="true" label="Nom" value="#{adminPackageDeviceMB.deviceModel.name}"/>
+                        <h:outputText value = "Type : *" style="color: #000"/>
+                        <p:inputText  required="true" label="Type" value="#{adminPackageDeviceMB.deviceModel.type}"/>
+                        <p:commandButton value="Ajouter forfait" class="btn-link" actionListener="#{adminPackageDeviceMB.createNewPackageDevice()}"/>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+</html>
+
+
+
+
+
+

@@ -64,4 +64,9 @@
             <bean class="fr.adaming.awal.dao.AddressDao"/>
         </property>
     </bean>
+     <bean id="deviceInsuranceModelController" class="fr.adaming.awal.controller.DeviceInsuranceController" lazy-init="true">
+        <property name="dao">
+            <bean class="fr.adaming.awal.dao.DeviceInsuranceModeleDao"/>
+        </property>
+    </bean>
 </beans>

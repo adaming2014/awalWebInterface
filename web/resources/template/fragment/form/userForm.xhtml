@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition>
+            <h:form>
+                <p:messages globalOnly="true"></p:messages>
+
+                <p:panelGrid id="userFormPanel" columns="3">
+                    <ui:include src="field/fieldsUser.xhtml" />
+                </p:panelGrid>
+
+                <p:commandButton value="Signin" action="#{userManager.signin}" update="@form" />
+                <p:commandButton value="Reset" update="userFormPanel" process="@this" >
+                    <p:resetInput target="userFormPanel" />
+                </p:commandButton>
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

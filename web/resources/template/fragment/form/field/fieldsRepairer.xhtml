@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition>
+            <p:outputLabel id="repairerAvailableLabel" for="repairerAvailable" value="Status :" />
+            <p:selectOneMenu id="repairerAvailable" value="#{repairerParameters.available}">
+                <f:selectItem itemLabel="Available" itemValue="AVAILABLE" />
+                <f:selectItem itemLabel="Not available" itemValue="NOT_AVAILABLE" />
+                <f:validator validatorId="fr.adaming.awal.webinterface.validator.RepairerAvailableValueValidator" />
+            </p:selectOneMenu>
+            <p:message id="repairerAvailableMessage" for="repairerAvailable" />
+        </ui:composition>
+    </body>
+</html>

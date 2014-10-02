@@ -10,16 +10,20 @@
     <h:body>
        
      <h:form>
+      <p:messages globalOnly="true"></p:messages>
+
          <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
             <p:outputLabel >J'ai déjà un compte</p:outputLabel>
             <p:outputLabel>Se Connecter</p:outputLabel>
 
-            <p:outputLabel id="mail" value="Adresse Mail"/>
+            <p:outputLabel id="mailLabel" for="mail" value="Adresse Mail"/>
             <p:inputText id="mail" required="true" value="#{userParameters.email}" a:type="email" a:placeholder="Enter mail"></p:inputText>
-            
-            <p:outputLabel id="password" value="Mot de Passe"/>
+            <p:message id="mailMessage" for="mail" />
+
+            <p:outputLabel id="passwordLabel" for="password" value="Mot de Passe"/>
             <p:inputText id="password" required="true" value="#{userParameters.password}" a:placeholder="Enter password"></p:inputText>
-            
+            <p:message id="passwordMessage" for="password" />
+
             <p:link id="lostPassword" outcome="motdepasseoublie">
                 <h:outputText value="Mot de pase oublié ?" />
             </p:link>
@@ -31,10 +35,11 @@
             <p:outputLabel>Nouveau Client sur Alpha ? </p:outputLabel>
             <p:outputLabel>S'inscrire</p:outputLabel>
             
-            <p:outputLabel id="mail" value="Adresse Mail"/>
+            <p:outputLabel id="mailLabel" for="mail" value="Adresse Mail"/>
             <p:inputText id="mail"  required="true" value="#{userParameters.email}" a:type="email" a:placeholder="Enter mail">
                 <f:validator validatorId="fr.adaming.awal.webinterface.validator.UniqueEmailValidator" />
             </p:inputText>
+            <p:message id="mailMessage" for="mail" />
 
             <p:commandButton value="S'inscrire" />
 

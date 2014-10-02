@@ -2,14 +2,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <head>
+    <h:head>
         <title>Récapitulatif commande</title>
-    </head>
+        
+        <style>
+            
+            .ui-icon-myBasket{
+            background-image: url("#{resource['images/basket24.png']}") !important;
+            }
+            .ui-icon-ok{
+            background-image: url("#{resource['images/ok48.png']}") !important;
+            }
+            
+        </style>
+        
+    </h:head>
     <h:body>
         <h:form>
+            <p:outputLabel>Vous venez d'ajouter ce forfait</p:outputLabel>
             
+            <p:graphicImage>
+                
+            </p:graphicImage>
+                                   
+            <p:panelGrid columns="3"> 
+                <p:outputLabel>Description</p:outputLabel>
+                <p:outputLabel>Quantité</p:outputLabel>
+                <p:outputLabel>Prix</p:outputLabel>
+            
+                <p:outputLabel>
+                    <h:outputText value="#{DeviceRepair.description}"/>
+                </p:outputLabel>
+            
+                <p:outputLabel>
+                    <h:outputText value="#{DeviceRepair.quantity}"/>
+                </p:outputLabel>
+            
+                <p:outputLabel>
+                    <h:outputText value="#{DeviceRepair.price}"/>
+                </p:outputLabel>
+            </p:panelGrid>
+
+            <p:panelGrid columns="1" style="panels">
+                 
+                <p:outputLabel>Les Alpha Members ont aussi commandé</p:outputLabel>
+                
+            <!--<p:link id="warrantyPub" outcome="warrantyPage">-->
+                <p:graphicImage library="images" name="pub_extension_garantie.png"/>
+            <!--</p:link>-->
+            </p:panelGrid>           
+
+            <p:commandButton value="Retour sur le site" icon="ui-icon-myBasket" iconPos="right"/>
+       
+            <p:commandButton value="Commander" icon="ui-icon-ok" iconPos="left" />
+
         </h:form>
 
     </h:body>

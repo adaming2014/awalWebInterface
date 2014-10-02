@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition>
+            <p:outputLabel id="addressCityLabel" for="addressCity" value="City :" />
+            <p:inputText id="addressCity" value="#{addressParameters.city}" />
+            <p:message id="addressCityMessage" for="addressCity" />
+
+            <p:outputLabel id="addressStreetLabel" for="addressStreet" value="Street :" />
+            <p:inputText id="addressStreet" value="#{addressParameters.street}" />
+            <p:message id="addressStreetMessage" for="addressStreet" />
+
+            <p:outputLabel id="addressPostcodeLabel" for="addressPostcode" value="Postcode :" />
+            <p:inputText id="addressPostcode" value="#{addressParameters.postcode}" />
+            <p:message id="addressPostcodeMessage" for="addressPostcode" />
+        </ui:composition>
+    </body>
+</html>

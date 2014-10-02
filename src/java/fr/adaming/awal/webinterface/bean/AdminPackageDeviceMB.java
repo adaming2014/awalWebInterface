@@ -7,6 +7,7 @@ package fr.adaming.awal.webinterface.bean;
 
 import fr.adaming.awal.controller.ModelController;
 import fr.adaming.awal.controller.ModelPackageController;
+import fr.adaming.awal.controller.interfaces.IModelController;
 import fr.adaming.awal.controller.interfaces.IModelPackageController;
 import fr.adaming.awal.entity.Modele;
 import fr.adaming.awal.entity.Modelpackage;
@@ -27,13 +28,16 @@ public class AdminPackageDeviceMB implements Serializable{
 
     private Modele deviceModel;
     private Modelpackage modelPackage;
-    private ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
-    private ModelPackageController modelPAckageController = (ModelPackageController) context.getBean("modelPackageController");
-    private ModelController modelController = (ModelController) context.getBean("modelController");
+    private ApplicationContext context;
+    private IModelPackageController modelPAckageController;
+    private IModelController modelController;
     /**
      * Creates a new instance of AdminManagedBean
      */
     public AdminPackageDeviceMB() {
+        context = new ClassPathXmlApplicationContext("spring-config.xml");
+        modelPAckageController = (ModelPackageController) context.getBean("modelPackageController");
+        modelController = (ModelController) context.getBean("modelController");
         deviceModel = new Modele();
         modelPackage = new Modelpackage();
     }

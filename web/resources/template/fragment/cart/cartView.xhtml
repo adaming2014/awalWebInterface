@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Récapitulatif commande</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panelGrid columns="1">
+            
+            <p:outputLabel>Votre commande</p:outputLabel>
+                    
+            <p:panelGrid columns="3">
+
+            <p:outputLabel>Vos forfaits réparation</p:outputLabel>
+            <p:outputLabel>Prix</p:outputLabel>
+            <p:outputLabel>Quantité</p:outputLabel>
+
+            </p:panelGrid>
+            
+            <p:outputLabel>Vos forfaits extension de garantie</p:outputLabel>
+                                  
+            <p:outputLabel>Sous Total (<h:outputText value="#{Cart.nbArticles}"/> Articles) : 
+                           EUR <h:outputText value="#{Cart.totalPrice}"/>
+            </p:outputLabel>
+ 
+            <p:commandButton value="Continuer à chercher un forfait" icon="/resources/images/previous48.png" />
+
+            <p:commandButton value="Passer la commande" iconPos="right" icon="/resources/images/next48.png" />
+
+          </p:panelGrid>
+        </h:form>
+
+    </h:body>
+</html>

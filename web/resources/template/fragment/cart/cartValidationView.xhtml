@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Validation Commande</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panelGrid columns="1">
+            
+            <!--Partie description de la page-->
+            <p:outputLabel>Vérification et Validation de votre commande</p:outputLabel>
+            
+            <p:panelGrid columns="2">    
+               <p:outputLabel>En validant votre commande, vous acceptez l'intégralité de nos conditions générales
+                  de vente ainsi que notre politique de gestion de vos informations personnelles
+               </p:outputLabel>
+                    
+               <p:link id="sellConditionsDetails" outcome="sellConditionsDetails">
+                  <h:outputText value="Détails" />
+               </p:link>
+                
+            </p:panelGrid>
+            
+           
+            <!--Partie vérification infos user-->
+            <p:outputLabel>Adresse de livraison</p:outputLabel>
+            <p:link id="sellConditionsDetails" outcome="infoAccount">
+                    <h:outputText value="Modifier ?" />
+            </p:link>
+
+            <p:outputLabel id="lastname" value="Nom"/>
+            <h:outputText value="#{Client.lastname}"/>
+            <p:outputLabel id="fistname" value="Prénom"/>
+            <h:outputText value="#{Client.firstname}"/>
+            <p:outputLabel id="address" value="Adresse"/>
+            <h:outputText value="#{Client.address}"/>
+            <p:outputLabel id="city" value="Ville"/>
+            <h:outputText value="#{Client.city}"/>
+            <p:outputLabel id="postcode" value="CP"/>
+            <h:outputText value="#{Client.postcode}"/>
+            <p:outputLabel id="phone" value="Tel"/>
+            <h:outputText value="#{Client.phone}"/>
+            
+            <p:outputLabel>Mode de paiement</p:outputLabel>
+            <p:link id="sellConditionsDetails" outcome="infoAccount">
+                    <h:outputText value="Modifier ?" />
+            </p:link>
+            <h:outputText value="#{Client.numberCard}"/>
+            <p:graphicImage library="images" name="visa48.png"/>
+            
+            <p:outputLabel>Adresse de facturation</p:outputLabel>
+            <p:link id="sellConditionsDetails" outcome="infoAccount">
+                    <h:outputText value="Modifier ?" />
+            </p:link>
+            <p:outputLabel>Identique à l'adresse de livraison</p:outputLabel>
+                          
+
+            <!--Partie Montant total-->
+            
+            <p:outputLabel>
+                Articles (<h:outputText value="#{Cart.nbArticles}"/>)
+            </p:outputLabel>
+            
+            <p:outputLabel>
+                Forfait(s) Réparation EUR <h:outputText value="#{Cart.subTotalRepair}"/>
+            </p:outputLabel>
+           
+            <p:outputLabel>
+                Forfait(s) Garantie EUR <h:outputText value="#{Cart.subTotalWarranty}"/>
+            </p:outputLabel>
+            
+            <p:outputLabel>
+                Montant Total EUR <h:outputText value="#{Cart.totalPrice}"/>
+            </p:outputLabel>
+            
+            <p:commandButton value="Confirmer Commande" icon="/resources/images/ok48.png" />
+            
+            
+            <!--Partie récapitulatif produit-->
+            <p:outputLabel>
+                Date de livraison estimée : <h:outputText value="#{DeviceRepair.estimateReceptionDate}"/>
+            </p:outputLabel>
+
+          </p:panelGrid>
+        </h:form>
+
+    </h:body>
+</html>

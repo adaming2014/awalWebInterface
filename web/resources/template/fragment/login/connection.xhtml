@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <h:head>
         <title>Se Connnecter</title>
@@ -10,47 +11,45 @@
     <h:body>
        
      <h:form>
-            <p:outputLabel>J'ai déjà un compte</p:outputLabel>
-            <br/>
+         <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+            <p:outputLabel >J'ai déjà un compte</p:outputLabel>
             <p:outputLabel>Se Connecter</p:outputLabel>
-            <br/>
-            <p:outputLabel>Adresse mail</p:outputLabel>
-            <br/>
-            <p:inputText label="mail" ></p:inputText>
-            <br/>
+
+            <p:outputLabel id="mail" value="Adresse Mail"/>
+            <p:inputText id="mail" required="true" value="#{loginParameters.mail}" a:type="email" a:placeholder="Enter mail"></p:inputText>
             
-            <p:outputLabel>Mot de passe</p:outputLabel>
-            <br/>
-            <p:inputText label="password" ></p:inputText>
-            <br/>
+            <p:outputLabel id="password" value="Mot de Passe"/>
+            <p:inputText id="password" required="true" value="#{loginParameters.password}" a:placeholder="Enter password"></p:inputText>
             
-            <a href="lostpassword.xhtml" name="lostpassword">Mot de passe oublié ?</a>
-  
-            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
-                <h:outputText value="Rester connecté" />
-            </h:panelGrid>
-            
+            <p:link id="lostPassword" outcome="motdepasseoublie">
+                <h:outputText value="Mot de pase oublié ?" />
+            </p:link>
+           
+            <p:selectBooleanCheckbox itemLabel="Rester connecté"/>
+
             <p:commandButton value="Valider" icon="/resources/images/ok48.png" />
-            <br/>
+           
             <p:outputLabel>Nouveau Client sur Alpha ? </p:outputLabel>
-            <br/>
             <p:outputLabel>S'inscrire</p:outputLabel>
-            <br/>
-            <p:outputLabel>Adresse mail</p:outputLabel>
-            <br/>
-            <p:inputText label="mail" ></p:inputText>
-            <br/>
+            
+            <p:outputLabel id="mail" value="Adresse Mail"/>
+            <p:inputText id="mail"  required="true" value="#{loginParameters.mail}" a:type="email" a:placeholder="Enter mail">
+                <f:validator validatorId="fr.adaming.awal.webinterface.validator.UniqueEmailValidator" />
+            </p:inputText>
+
             <p:commandButton value="S'inscrire" />
-            <br/>
-            <img name="cadenas" alt="paiement sécurisé" src="resources/images/cadenas64.png"/>          
+
+            <p:graphicImage library="images" name="cadenas64.png"/>          
             <p:outputLabel>Paiement sécurisé</p:outputLabel>
-            <br/>
-            <img name="truck" alt="livraison rapide" src="resources/images/camion64.png"/>          
+
+            <p:graphicImage library="images" name="camion64.png"/>          
             <p:outputLabel>Envoi rapide colissimo</p:outputLabel>
-            <br/>
-            <p:graphicImage name="headphone" alt="service clientèle" value="resources/images/microcasque64.png" />          
+
+            <p:graphicImage library="images" name="microcasque64.png"/>          
             <p:outputLabel>Service client à votre écoute</p:outputLabel>
+                        
+         </h:panelGrid>
+
         </h:form>
 
     </h:body>

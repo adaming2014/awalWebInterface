@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -16,10 +15,10 @@
             <p:outputLabel>Se Connecter</p:outputLabel>
 
             <p:outputLabel id="mail" value="Adresse Mail"/>
-            <p:inputText id="mail" required="true" value="#{loginParameters.mail}" a:type="email" a:placeholder="Enter mail"></p:inputText>
+            <p:inputText id="mail" required="true" value="#{userParameters.email}" a:type="email" a:placeholder="Enter mail"></p:inputText>
             
             <p:outputLabel id="password" value="Mot de Passe"/>
-            <p:inputText id="password" required="true" value="#{loginParameters.password}" a:placeholder="Enter password"></p:inputText>
+            <p:inputText id="password" required="true" value="#{userParameters.password}" a:placeholder="Enter password"></p:inputText>
             
             <p:link id="lostPassword" outcome="motdepasseoublie">
                 <h:outputText value="Mot de pase oublié ?" />
@@ -33,7 +32,7 @@
             <p:outputLabel>S'inscrire</p:outputLabel>
             
             <p:outputLabel id="mail" value="Adresse Mail"/>
-            <p:inputText id="mail"  required="true" value="#{loginParameters.mail}" a:type="email" a:placeholder="Enter mail">
+            <p:inputText id="mail"  required="true" value="#{userParameters.email}" a:type="email" a:placeholder="Enter mail">
                 <f:validator validatorId="fr.adaming.awal.webinterface.validator.UniqueEmailValidator" />
             </p:inputText>
 

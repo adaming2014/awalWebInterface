@@ -10,6 +10,7 @@ import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.Repairer;
 import fr.adaming.awal.entity.Reseller;
 import fr.adaming.awal.entity.interfaces.IUser;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -19,7 +20,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class AuthManager {
+public class AuthManager implements Serializable {
 
     private IUser user;
 

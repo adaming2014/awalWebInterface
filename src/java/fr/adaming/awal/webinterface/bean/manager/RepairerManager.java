@@ -8,7 +8,9 @@ package fr.adaming.awal.webinterface.bean.manager;
 import fr.adaming.awal.controller.interfaces.IRepairerController;
 import fr.adaming.awal.entity.Firm;
 import fr.adaming.awal.entity.Repairer;
+import fr.adaming.awal.entity.User;
 import fr.adaming.awal.webinterface.bean.form.RepairerParameters;
+import fr.adaming.awal.webinterface.bean.form.UserParameters;
 import fr.adaming.awal.webinterface.util.FacesMessageUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -77,12 +79,22 @@ public class RepairerManager implements Serializable {
 
     public void resetFields() {
         FacesContext context = FacesContext.getCurrentInstance();
-        RepairerParameters parameters = context.getApplication().evaluateExpressionGet(context, "#{repairerParameters}", RepairerParameters.class
-        );
+        RepairerParameters repairerParameters = context.getApplication().evaluateExpressionGet(context, "#{repairerParameters}", RepairerParameters.class);
+        UserParameters userParameters  = context.getApplication().evaluateExpressionGet(context, "#{userParameters}", UserParameters.class);
+        if (repairerParameters == null || userParameters == null) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_BEAN_NOT_FOUND);
+            return;
+        }
 
         Repairer repairer = authManager.getRepairer();
+        User user = repairer.getUser();
 
-        parameters.setAvailable(repairer.getAvailable());
-        parameters.setFirm(repairer.getFirm());
+        userParameters.setEmail(user.getMail());
+        userParameters.setFirstname(user.getFirstname());
+        userParameters.setLastname(user.getLastname());
+        userParameters.setPhone(user.getPhone());
+                
+        repairerParameters.setAvailable(repairer.getAvailable());
+        repairerParameters.setFirm(repairer.getFirm());
     }
 }

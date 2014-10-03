@@ -16,4 +16,5 @@ public class FacesMessageUtil {
     public static final FacesMessage MESSAGE_INTERNAL_ERROR = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Internal error", "Internal error");
     public static final FacesMessage MESSAGE_CONTROLER_NOT_FOUND = MESSAGE_INTERNAL_ERROR;
     public static final FacesMessage MESSAGE_DATABASE_ERROR = MESSAGE_INTERNAL_ERROR;
+    public static final FacesMessage MESSAGE_BEAN_NOT_FOUND = MESSAGE_INTERNAL_ERROR;
 }

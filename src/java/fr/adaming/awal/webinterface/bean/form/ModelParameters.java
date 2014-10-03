@@ -6,16 +6,16 @@
 package fr.adaming.awal.webinterface.bean.form;
 
 import java.io.Serializable;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author INTI0217
  */
 @ManagedBean
-@javax.faces.bean.RequestScoped
+@RequestScoped
 public class ModelParameters implements Serializable{
 
     private double weigth;

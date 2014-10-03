@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <p:dataTable value="#{deviceManager.devicesByClient}" var="device">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Name"/>
+                </f:facet>
+                <h:outputText value="#{device.modele.name}"/>
+            </p:column>          
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Type"/>
+                </f:facet>
+                <h:outputText value="#{device.modele.type}"/>
+            </p:column>  
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Weigth"/>
+                </f:facet>
+                <h:outputText value="#{device.modele.weigth}"/>
+            </p:column>  
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Dimension"/>
+                </f:facet>
+                <h:outputText value="#{device.modele.dimension}"/>
+            </p:column>  
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Dimension"/>
+                </f:facet>
+                <h:outputText value="#{device.description}"/>
+            </p:column>  
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="add Package"/>
+                </f:facet>
+                <p:commandButton value="Package" ajax="false" />
+            </p:column>  
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="add Insurance"/>
+                </f:facet>
+                <p:commandButton value="Insurance" ajax="false" />
+            </p:column>  
+
+        </p:dataTable>
+    </h:body>
+</html>
+

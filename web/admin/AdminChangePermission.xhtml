@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
+        <ui:define name="content">
+            <br/>
+            <h:form>
+                <p:panel header="Modification de permission" >
+                <h:panelGrid columns="2" style="margin-bottom: 100px" cellpadding="5" columnClasses="label, value">
+                    <p:outputLabel for="utilisateurs" value="Utilisateurs :   " style="color: #000"/>
+                    <p:selectOneListbox id="utilisateurs" value="#{adminChangePermission.u.idUser}">
+                        <f:selectItems var="usersVar" value="#{adminChangePermission.allUsers}" itemLabel="#{usersVar.lastname}" itemValue="#{usersVar.idUser}" />
+                    </p:selectOneListbox>
+                       
+                
+                </h:panelGrid>
+                    <h:panelGrid columns="2" style="margin-bottom: 100px" cellpadding="5" columnClasses="label, value">
+                    <p:outputLabel for="droits" value="Droits   :    " style="color: #000"/>
+                    <p:selectOneRadio id="droits" value="#{adminChangePermission.droitChoisi}" >
+                   <!-- <f:selectItems var="droitsVar" value="#{adminChangePermission.intililiseDroits}" itemLabel="#{droitsVar}" itemValue="#{droitsVar}" /> -->
+                    
+                        <f:selectItem itemLabel="Administrateur" itemValue="Administrateur" />
+                        <f:selectItem itemLabel="Revendeur" itemValue="Revendeur" />
+                        <f:selectItem itemLabel="Client" itemValue="Client" />
+                        <f:selectItem itemLabel="Réparateur" itemValue="Réparateur" />
+                </p:selectOneRadio>
+                <p:commandButton value="Execute" actionListener="#{adminChangePermission.changePermission()}" />
+                </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+    
+</html>

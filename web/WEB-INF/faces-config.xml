@@ -15,6 +15,14 @@
             <from-outcome>addPackage</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>addInsurance</from-outcome>
+            <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>changePermission</from-outcome>
+            <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/admin/adminAddPackage.xhtml</from-view-id>
@@ -22,12 +30,13 @@
             <from-outcome>addPackage</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>/admin/AdminaddInsurance.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>addPackage</from-outcome>
+            <from-outcome>addInsurance</from-outcome>
             <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>changePermission</from-outcome>
+            <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -39,46 +48,73 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/firm/add.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>index_redirect</from-outcome>
-            <to-view-id>/index.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>/device/add.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>testtest</from-outcome>
-            <to-view-id>/client/client.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>
+
+        <navigation-rule>
+            <from-view-id>/firm/add.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>index_redirect</from-outcome>
+                <to-view-id>/index.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/device/add.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>testtest</from-outcome>
+                <to-view-id>/client/client.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>
     
-    <navigation-rule>
-        <from-view-id>/client/client.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>add</from-outcome>
-            <to-view-id>/device/add.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/client/client.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>add</from-outcome>
+                <to-view-id>/device/add.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
 
-    <navigation-rule>
-        <from-view-id>/client/client.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>addInsurance</from-outcome>
-            <to-view-id>/device/insurance/add.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>
+            <navigation-case>
+                <from-outcome>addInsurance</from-outcome>
+                <to-view-id>/device/insurance/add.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
 
-    <navigation-rule>
-        <from-view-id>/client/client.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>addPackage</from-outcome>
-            <to-view-id>/device/package/add.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>        
+            <navigation-case>
+                <from-outcome>addPackage</from-outcome>
+                <to-view-id>/device/package/add.xhtml</to-view-id>
+                <redirect />
+            </navigation-case>
+        </navigation-rule>        
+
+        <navigation-rule>
+            <from-view-id>/admin/AdminaddInsurance.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>addPackage</from-outcome>
+                <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>addInsurance</from-outcome>
+                <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>changePermission</from-outcome>
+                <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>
+            <from-view-id>/admin/AdminChangePermission.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>addInsurance</from-outcome>
+                <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>addPackage</from-outcome>
+                <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>changePermission</from-outcome>
+                <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
+            </navigation-case>
+        </navigation-rule>
 </faces-config>

@@ -5,7 +5,15 @@
  */
 package fr.adaming.awal.webinterface.bean;
 
+import fr.adaming.awal.controller.AdminController;
+import fr.adaming.awal.controller.ClientController;
+import fr.adaming.awal.controller.RepairerController;
+import fr.adaming.awal.controller.ResellerController;
 import fr.adaming.awal.controller.UserController;
+import fr.adaming.awal.entity.Admin;
+import fr.adaming.awal.entity.Client;
+import fr.adaming.awal.entity.Repairer;
+import fr.adaming.awal.entity.Reseller;
 import fr.adaming.awal.entity.User;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,29 +32,92 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class AdminChangePermission implements Serializable{
     private ApplicationContext context;
     private UserController userControlller;
-    private User u ;
+    private AdminController adminController;
+    private RepairerController repairerController;
+    private ResellerController resellerController;
+    private ClientController clientController;
+    private User u;
+    private String droitChoisi = "";
+    private List<User> users ;
+    private final List<String> listesDroits ;
     /**
      * Creates a new instance of AdminChangePermission
      */
     public AdminChangePermission() {
+        
+        this.listesDroits = new ArrayList<>();
         u = new User();
         context = new ClassPathXmlApplicationContext("spring-config.xml");
         userControlller = (UserController) context.getBean("userController");
-    }
-    public List<String> getAllUsersFirsName(){
-        List<String> usersLogins = new ArrayList<>();
-        for(User user : userControlller.getAll()){
-            usersLogins.add(user.getFirstname());
-        }
-        return usersLogins;
+        adminController = (AdminController) context.getBean("adminController");
+        repairerController = (RepairerController) context.getBean("repairerController");
+        resellerController = (ResellerController) context.getBean("resellerController");
+        clientController = (ClientController) context.getBean("clientController");
     }
 
+    public List<User> getAllUsers(){
+        return userControlller.getAll();
+    }
+
+
+  
+    public void testeur(){
+        System.out.println(droitChoisi);
+    }
     public User getU() {
         return u;
     }
 
     public void setU(User u) {
         this.u = u;
+    }
+
+    public String getDroitChoisi() {
+        return droitChoisi;
+    }
+
+    public void setDroitChoisi(String droitChoisi) {
+        this.droitChoisi = droitChoisi;
+    }
+    public void changePermission(){
+        
+        if(droitChoisi.equals("Administrateur")){
+            Admin admin = new Admin();
+            User userTmp = userControlller.getById(u.getIdUser());
+            admin.setUser(userTmp);
+            userControlller.delete(u);
+            userControlller.create(userTmp);
+            adminController.create(admin);
+            //adminController.update(admin);
+            
+        }
+        if(droitChoisi.equals("Réparateur")){
+            Repairer repairer = new Repairer();
+            User userTmp = userControlller.getById(u.getIdUser());
+            repairer.setUser(userTmp);
+            userControlller.delete(u);
+            userControlller.create(userTmp);
+            repairerController.create(repairer);
+            
+        }
+        if(droitChoisi.equals("Revendeur")){
+            Reseller reseller = new Reseller();
+            User userTmp = userControlller.getById(u.getIdUser());
+            reseller.setUser(userTmp);
+            userControlller.delete(u);
+            userControlller.create(userTmp);
+            resellerController.create(reseller);
+        }
+         if(droitChoisi.equals("Client")){
+             Client client = new Client();
+             User userTmp = userControlller.getById(u.getIdUser());
+             client.setUser(userTmp);
+            userControlller.delete(u);
+            userControlller.create(userTmp);
+            clientController.create(client);
+         }
+        
+        
     }
     
     

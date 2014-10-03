@@ -3,7 +3,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
 
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
           
@@ -11,12 +12,15 @@
         <ui:composition>
                     <h:form >
 
-                        <p:tabMenu >
+                        <p:tabMenu activeIndex="#{param.i}">
                             <p:menuitem value="Ajouter forfait réparation"  icon="ui-icon-star" outcome="addPackage">
-
+                                <f:param name="i" value="0"/>
                             </p:menuitem>
-                            <p:menuitem value="Ajouter assurance"  icon="ui-icon-search">
-
+                            <p:menuitem value="Ajouter assurance"  icon="ui-icon-search" outcome="addInsurance" >
+                                <f:param name="i" value="1"/>
+                            </p:menuitem>
+                            <p:menuitem value="Changer droits"  icon="ui-icon-star"  outcome="changePermission">
+                                <f:param name="i" value="2"/>
                             </p:menuitem>
                             
                         </p:tabMenu>

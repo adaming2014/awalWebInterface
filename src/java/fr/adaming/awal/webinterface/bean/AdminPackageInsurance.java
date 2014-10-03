@@ -30,9 +30,8 @@ public class AdminPackageInsurance implements Serializable{
     private ApplicationContext context;
     private DeviceinsurancemodelController deviceInsuranceModelController;
     private ModelController modelController;
-    /**
-     * Creates a new instance of AdminPackageInsurance
-     */
+
+    
     
     public AdminPackageInsurance() {
                 context = new ClassPathXmlApplicationContext("spring-config.xml");

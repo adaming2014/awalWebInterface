@@ -8,13 +8,13 @@
             <h:form>
                 <p:messages globalOnly="true"></p:messages>
 
-                <p:panelGrid id="firmFormPanel" columns="3">
+                <p:panelGrid columns="3">
                     <ui:include src="field/fieldsFirm.xhtml" />
                 </p:panelGrid>
 
                 <p:commandButton value="Add" action="#{firmManager.add}" update="@form" />
-                <p:commandButton value="Reset" update="firmFormPanel" process="@this" >
-                    <p:resetInput target="firmFormPanel" />
+                <p:commandButton value="Reset" update="@form" process="@this" >
+                    <p:resetInput target="@form" />
                 </p:commandButton>
             </h:form>
         </ui:composition>

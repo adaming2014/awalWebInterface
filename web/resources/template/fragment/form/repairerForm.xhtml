@@ -7,11 +7,15 @@
         <ui:composition>
             <h:form id="repairerForm">
                 <p:messages globalOnly="true" />
+
                 <p:panelGrid columns="3">
                     <ui:include src="field/fieldsRepairer.xhtml" />
                 </p:panelGrid>
 
-                <p:commandButton id="repairerUpdateButton" action="#{repairerManager.update}" value="Update" update="@form" />
+                <p:commandButton value="Update" action="#{repairerManager.update}" update="@form" />
+                <p:commandButton value="Reset" update="@form" process="@this" >
+                    <p:resetInput target="@form" />
+                </p:commandButton>
             </h:form>
         </ui:composition>
     </body>

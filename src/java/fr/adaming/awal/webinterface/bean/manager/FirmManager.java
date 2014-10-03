@@ -11,6 +11,8 @@ import fr.adaming.awal.entity.Firm;
 import fr.adaming.awal.webinterface.bean.form.FirmParameters;
 import fr.adaming.awal.webinterface.util.FacesMessageUtil;
 import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -73,6 +75,19 @@ public class FirmManager implements Serializable {
         }
 
         return PAGE_INDEX_REDIRECT;
+    }
+
+    public List<Firm> getAll(String firmName) {
+        IFirmController controller = (IFirmController) springContext.getBean("firmController");
+        if (controller == null) {
+            FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtil.MESSAGE_CONTROLER_NOT_FOUND);
+            return null;
+        }
+        
+        String firmNameLowerCase = firmName.toLowerCase();
+
+        List<Firm> firms = controller.getAll();
+        return firms.stream().filter((firm) -> firm.getName().toLowerCase().startsWith(firmNameLowerCase)).collect(Collectors.toList());
     }
 
     public AuthManager getAuthManager() {

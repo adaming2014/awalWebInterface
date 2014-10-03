@@ -34,4 +34,11 @@ public class RepairerParameters {
         this.available = available;
     }
 
+    public Firm getFirm() {
+        return firm;
+    }
+
+    public void setFirm(Firm firm) {
+        this.firm = firm;
+    }
 }

@@ -13,9 +13,7 @@
                 </p:panelGrid>
 
                 <p:commandButton value="Update" action="#{repairerManager.update}" update="@form" />
-                <p:commandButton value="Reset" update="@form" process="@this" >
-                    <p:resetInput target="@form" />
-                </p:commandButton>
+                <p:commandButton value="Reset" action="#{repairerManager.resetFields}" update="@form" />
             </h:form>
         </ui:composition>
     </body>

@@ -12,6 +12,10 @@
                 <f:validator validatorId="fr.adaming.awal.webinterface.validator.RepairerAvailableValueValidator" />
             </p:selectOneMenu>
             <p:message id="repairerAvailableMessage" for="repairerAvailable" />
+
+            <p:outputLabel id="repairerFirmLabel" for="repairerFirm" value="Firm :" />
+            <p:autoComplete id="repairerFirm" value="#{repairerParameters.firm}" dropdown="true" completeMethod="#{firmManager.getAll}" converter="firmConverter" var="firm" itemLabel="#{firm.name}" itemValue="#{theme}" forceSelection="true" />
+            <p:message id="repairerFirmMessage" for="repairerFirm" />
         </ui:composition>
     </body>
 </html>

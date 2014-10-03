@@ -6,10 +6,10 @@
         <ui:define name="content">
             <c:choose>
                 <c:when test="#{true or authManager.auth and authManager.repairer}" >
-                    <ui:include src="../resources/template/fragment/form/repairerForm.xhtml" />
+                    <ui:include src="../resources/template/fragment/form/repairerUpdateForm.xhtml" />
                 </c:when>
                 <c:otherwise>
-                    You are not a repairer!
+                    You are not logged!
                 </c:otherwise>
             </c:choose>
         </ui:define>

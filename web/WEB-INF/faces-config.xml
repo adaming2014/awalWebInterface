@@ -47,10 +47,10 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/resources/template/fragment/device/deviceClient.xhtml</from-view-id>
+        <from-view-id>/device/add.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>testtest</from-outcome>
-            <to-view-id>/client.xhtml</to-view-id>
+            <to-view-id>/client/client.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
@@ -63,4 +63,22 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/client/client.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addInsurance</from-outcome>
+            <to-view-id>/device/insurance/add.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/client/client.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addPackage</from-outcome>
+            <to-view-id>/device/package/add.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>        
 </faces-config>

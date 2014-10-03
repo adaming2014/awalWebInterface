@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition>
+            <p:outputLabel id="firmNameLabel" for="firmName" value="Name :" />
+            <p:inputText id="firmName" value="#{firmParameters.name}" required="true" />
+            <p:message id="firmNameMessage" for="firmName" />
+
+            <ui:include src="fieldsAddress.xhtml" />
+
+            <p:outputLabel id="firmPhoneLabel" for="firmPhone" value="Phone :" />
+            <p:inputText id="firmPhone" value="#{firmParameters.phone}" required="true" />
+            <p:message id="firmPhoneMessage" for="firmPhone" />
+
+            <p:outputLabel id="firmLogoLabel" for="firmLogo" value="Logo :" />
+            <p:inputText id="firmLogo" value="#{firmParameters.logo}" />
+            <p:message id="firmLogoMessage" for="firmLogo" />
+
+            <p:outputLabel id="firmThemeLabel" for="firmTheme" value="Theme :" />
+            <p:inputText id="firmTheme" value="#{firmParameters.theme}" />
+            <p:message id="firmThemeMessage" for="firmTheme" />
+        </ui:composition>
+    </body>
+</html>

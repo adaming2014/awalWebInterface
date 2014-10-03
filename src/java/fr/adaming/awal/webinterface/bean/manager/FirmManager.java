@@ -5,14 +5,13 @@
  */
 package fr.adaming.awal.webinterface.bean.manager;
 
-import fr.adaming.awal.webinterface.bean.form.UserParameters;
-import fr.adaming.awal.controller.interfaces.IClientController;
-import fr.adaming.awal.entity.Client;
-import fr.adaming.awal.entity.User;
+import fr.adaming.awal.controller.interfaces.IFirmController;
+import fr.adaming.awal.entity.Address;
+import fr.adaming.awal.entity.Firm;
+import fr.adaming.awal.webinterface.bean.form.FirmParameters;
 import fr.adaming.awal.webinterface.util.FacesMessageUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -26,59 +25,60 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @ManagedBean
 @SessionScoped
-public class UserManager implements Serializable {
-    
+public class FirmManager implements Serializable {
+
     private static final String PAGE_INDEX_REDIRECT = "index_redirect";
-    
+
     @ManagedProperty("#{authManager}")
     AuthManager authManager;
-    
+
     ApplicationContext springContext;
 
     /**
      * Creates a new instance of SigninManager
      */
-    public UserManager() {
+    public FirmManager() {
     }
-    
+
     @PostConstruct
     public void init() {
         springContext = new ClassPathXmlApplicationContext("spring-config.xml");
     }
-    
-    public String signin() {
+
+    public String add() {
         FacesContext context = FacesContext.getCurrentInstance();
-        UserParameters signinParameters = context.getApplication().evaluateExpressionGet(context, "#{userParameters}", UserParameters.class);
-        
-        IClientController clientController = (IClientController) springContext.getBean("clientController");
-        if (clientController == null) {
+        FirmParameters parameters = context.getApplication().evaluateExpressionGet(context, "#{firmParameters}", FirmParameters.class);
+
+        IFirmController controller = (IFirmController) springContext.getBean("firmController");
+        if (controller == null) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_CONTROLER_NOT_FOUND);
             return null;
         }
-        
-        User user = new User();
-        user.setFirstname(signinParameters.getFirstname());
-        user.setLastname(signinParameters.getLastname());
-        user.setMail(signinParameters.getEmail());
-        user.setPassword(signinParameters.getPassword());
-        
-        Client client = new Client();
-        client.setUser(user);
-        
-        if (!clientController.create(client)) {
+
+        Address address = new Address();
+        address.setCity(parameters.getAddress().getCity());
+        address.setPostcode(parameters.getAddress().getPostcode());
+        address.setStreet(parameters.getAddress().getStreet());
+
+        Firm firm = new Firm();
+        firm.setName(parameters.getName());
+        firm.setAddress(address);
+        firm.setPhone(parameters.getPhone());
+        firm.setLogoPath(parameters.getLogo());
+        firm.setCssPath(parameters.getTheme());
+
+        if (!controller.create(firm)) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
             return null;
         }
-        
-        authManager.setUser(client);
-        
+
         return PAGE_INDEX_REDIRECT;
     }
-    
+
     public AuthManager getAuthManager() {
         return authManager;
     }
-    
+
     public void setAuthManager(AuthManager authManager) {
         this.authManager = authManager;
     }

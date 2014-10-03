@@ -23,7 +23,7 @@ import javax.faces.bean.SessionScoped;
 public class AuthManager implements Serializable {
 
     private IUser user;
-
+    
     /**
      * Creates a new instance of AuthManager
      */

@@ -2,59 +2,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
     <h:head>
         <title>Se Connnecter</title>
     </h:head>
     <h:body>
-       
-     <h:form>
-      <p:messages globalOnly="true"></p:messages>
+        <ui:composition>
+            <h:form>
+                <p:messages ></p:messages>
 
-         <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
-            <p:outputLabel >J'ai déjà un compte</p:outputLabel>
-            <p:outputLabel>Se Connecter</p:outputLabel>
+                <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+                    <p:outputLabel >J'ai déjà un compte</p:outputLabel>
+                    <p:outputLabel>Se Connecter</p:outputLabel>
 
-            <p:outputLabel id="mailLabel" for="mail" value="Adresse Mail"/>
-            <p:inputText id="mail" required="true" value="#{userParameters.email}" a:type="email" a:placeholder="Enter mail"></p:inputText>
-            <p:message id="mailMessage" for="mail" />
+                    <p:outputLabel id="mailLabel" for="mail" value="Adresse Mail"/>
+                    <p:inputText id="mail" required="true" value="#{userParameters.email}"></p:inputText>
+                    <p:message id="mailMessage" for="mail" />
 
-            <p:outputLabel id="passwordLabel" for="password" value="Mot de Passe"/>
-            <p:inputText id="password" required="true" value="#{userParameters.password}" a:placeholder="Enter password"></p:inputText>
-            <p:message id="passwordMessage" for="password" />
+                    <p:outputLabel id="passwordLabel" for="password" value="Mot de Passe"/>
 
-            <p:link id="lostPassword" outcome="motdepasseoublie">
-                <h:outputText value="Mot de pase oublié ?" />
-            </p:link>
-           
-            <p:selectBooleanCheckbox itemLabel="Rester connecté"/>
+                    <p:password id="password" label="Mot de passe" required="true" value="#{userParameters.password}">
+                    </p:password>
 
-            <p:commandButton value="Valider" icon="/resources/images/ok48.png" />
-           
-            <p:outputLabel>Nouveau Client sur Alpha ? </p:outputLabel>
-            <p:outputLabel>S'inscrire</p:outputLabel>
-            
-            <p:outputLabel id="mailLabel" for="mail" value="Adresse Mail"/>
-            <p:inputText id="mail"  required="true" value="#{userParameters.email}" a:type="email" a:placeholder="Enter mail">
-                <f:validator validatorId="fr.adaming.awal.webinterface.validator.UniqueEmailValidator" />
-            </p:inputText>
-            <p:message id="mailMessage" for="mail" />
+                    <p:commandLink id="lostPassword" action="#{loginManager.lostPWD()}">
+                        <h:outputText value="Mot de pase oublié ?" />
+                    </p:commandLink>
 
-            <p:commandButton value="S'inscrire" />
+                    <p:selectBooleanCheckbox itemLabel="Rester connecté"/>
 
-            <p:graphicImage library="images" name="cadenas64.png"/>          
-            <p:outputLabel>Paiement sécurisé</p:outputLabel>
+                    <p:commandButton value="Valider" action="#{loginManager.login()}" icon="/resources/images/ok48.png" update="@form" />
 
-            <p:graphicImage library="images" name="camion64.png"/>          
-            <p:outputLabel>Envoi rapide colissimo</p:outputLabel>
+                    <p:outputLabel>Nouveau Client sur Alpha ? </p:outputLabel>
+                    <p:outputLabel>S'inscrire</p:outputLabel>
 
-            <p:graphicImage library="images" name="microcasque64.png"/>          
-            <p:outputLabel>Service client à votre écoute</p:outputLabel>
-                        
-         </h:panelGrid>
+                    <!--            <p:outputLabel id="mailLabelnew" for="mail" value="Adresse Mail"/>
+                                <p:inputText id="mailnew"  required="true" value="#{userParameters.email}" >
+                                    <f:validator validatorId="fr.adaming.awal.webinterface.validator.UniqueEmailValidator" />
+                                </p:inputText>
+                                <p:message id="mailMessageExiste" for="mail" />-->
 
-        </h:form>
+                    <p:button value="S'inscrire" outcome="index"/>
+
+                    <p:graphicImage library="images" name="cadenas64.png"/>          
+                    <p:outputLabel>Paiement sécurisé</p:outputLabel>
+
+                    <p:graphicImage library="images" name="camion64.png"/>          
+                    <p:outputLabel>Envoi rapide colissimo</p:outputLabel>
+
+                    <p:graphicImage library="images" name="microcasque64.png"/>          
+                    <p:outputLabel>Service client à votre écoute</p:outputLabel>
+
+                </h:panelGrid>
+
+            </h:form>
+
+        </ui:composition>
 
     </h:body>
 </html>

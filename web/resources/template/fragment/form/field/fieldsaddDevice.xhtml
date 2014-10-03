@@ -5,39 +5,45 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:body>
-        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+        <h:form>
+            <h:panelGrid style="margin: 20px" columns="2" id="matchGrid" cellpadding="5">
+                <p:outputLabel for="modele" value="Modele : "/>
 
-        <h:panelGrid columns="2" id="matchGrid" cellpadding="5">
+                <p:selectOneMenu id="modele" value="#{deviceManager.device.modele}" converter="modeleConverter">
+                    <f:selectItems var="modele" value="#{modelManager.all}" itemLabel="name:#{modele.name} -- brand:#{modele.brand} -- type:#{modele.type} -- dimension:#{modele.dimension}" itemValue="#{modele}" /> 
+                </p:selectOneMenu>
 
-            <p:outputLabel for="name" value="Name : "/>
-            <p:selectOneMenu id="name" value="#{modelParameters.name}">
-                <f:selectItems var="modele" value="#{modelManager.all}" itemLabel="#{modele.name}" itemValue="#{modele.name}" /> 
-            </p:selectOneMenu>
+                <p:outputLabel for="description" value="Description : "/>
+                <p:inputText id="description" value="#{deviceParameters.description}" label="Description :" required="true" placeholder="Enter description"/> 
 
-            <p:outputLabel for="brand" value="Brand : "/>
-            <p:selectOneMenu id="brand" value="#{modelParameters.brand}">
-                <f:selectItems var="modele" value="#{modelManager.all}" itemLabel="#{modele.brand}" itemValue="#{modele.brand}" /> 
-            </p:selectOneMenu>
+                <p:commandButton style="margin: 20px" action="#{deviceManager.add}" value="Add device" ajax="false"/>
+            </h:panelGrid>            
+        </h:form>
 
-            <p:outputLabel for="type" value="Type : "/>
-            <p:selectOneMenu id="type" value="#{modelParameters.type}">
-                <f:selectItems var="modele" value="#{modelManager.all}" itemLabel="#{modele.type}" itemValue="#{modele.brand}" /> 
-            </p:selectOneMenu>
+        <h:form>
+            <h:panelGrid style="margin: 20px" columns="2" id="matchGrid" cellpadding="5">
 
-            <p:outputLabel for="dimension" value="Dimension : "/>
-            <p:selectOneMenu id="dimension" value="#{modelParameters.dimension}">
-                <f:selectItems var="modele" value="#{modelManager.all}" itemLabel="#{modele.dimension}" itemValue="#{modele.dimension}" /> 
-            </p:selectOneMenu>
+                <p:outputLabel for="name" value="Name : "/>
+                <p:inputText id="name" value="#{modelParameters.name}" label="Name :" required="true" placeholder="Enter name"/> 
 
-            <p:outputLabel for="weigth" value="Weigth : "/>
-            <p:inputText id="weigth" value="#{modelParameters.weigth}" label="Weigth :" required="true" placeholder="Enter weigth"/> 
+                <p:outputLabel for="brand" value="Brand : "/>
+                <p:inputText id="brand" value="#{modelParameters.brand}" label="Brand :" required="true" placeholder="Enter brand"/> 
 
-            <p:outputLabel for="description" value="Description : "/>
-            <p:inputText id="description" value="#{deviceParameters.description}" label="Description :" required="true" placeholder="Enter description"/> 
+                <p:outputLabel for="type" value="Type : "/>
+                <p:inputText id="type" value="#{modelParameters.type}" label="Type :" required="true" placeholder="Enter type"/> 
 
-            <p:commandButton action="#{deviceManager.add}" value="Add device" ajax="false"/>
+                <p:outputLabel for="dimension" value="Dimension : "/>
+                <p:inputText id="dimension" value="#{modelParameters.dimension}" label="Dimension :" required="true" placeholder="L*L*H"/> 
 
-        </h:panelGrid>
+                <p:outputLabel for="weigth" value="Weigth : "/>
+                <p:inputText id="weigth" value="#{modelParameters.weigth}" label="Weigth :" required="true"/> 
+
+                <p:outputLabel for="description" value="Description : "/>
+                <p:inputText id="description" value="#{deviceParameters.description}" label="Description :" required="true" placeholder="Enter description"/> 
+
+                <p:commandButton style="margin: 20px" action="#{deviceManager.addother()}" value="Add other device" ajax="false"/>
+            </h:panelGrid>            
+        </h:form>
     </h:body>
 </html>
 

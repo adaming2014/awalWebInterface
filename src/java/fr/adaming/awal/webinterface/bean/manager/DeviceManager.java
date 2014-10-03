@@ -31,52 +31,56 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class DeviceManager implements Serializable {
 
     ApplicationContext springContext;
+    private Device device;
 
     @PostConstruct
     public void init() {
         springContext = new ClassPathXmlApplicationContext("spring-config.xml");
+        device = new Device();
     }
 
     public String add() {
-        System.out.println("add Device Manager");
         FacesContext context = FacesContext.getCurrentInstance();
         DeviceParameters deviceParameters = context.getApplication().evaluateExpressionGet(context, "#{deviceParameters}", DeviceParameters.class);
-        ModelParameters modelParameters = context.getApplication().evaluateExpressionGet(context, "#{modelParameters}", ModelParameters.class);
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
-        IModelController modelController = (IModelController) springContext.getBean("modelController");
         ClientController clientController = (ClientController) springContext.getBean("clientController");
 
-        Modele modele = null;
-        Device device = new Device();
-        
-        for (Modele modele1 : modelController.getAll()) {
-            if (modelParameters.getName().equals(modele1.getName())) {
-                device.setModele(modele1);
-            } else {
-                modele = new Modele();
-                modele.setName(modelParameters.getName());
-                modele.setBrand(modelParameters.getBrand());
-                modele.setType(modelParameters.getType());
-                modele.setDimension(modelParameters.getDimension());
-                modele.setWeigth(Double.parseDouble(modelParameters.getWeigth()));
-                if(!modelController.create(modele)){
-                    System.out.println("error to create model");
-                }
-                
-                device.setModele(modele);
-            }
-        }
-        
         device.setDescription(deviceParameters.getDescription());
-
         device.setClient(clientController.getClientByMail("bian.loic@gmail.com"));
-
         if (!deviceController.create(device)) {
             System.out.println("error to create device");
             return null;
         }
-        
-        return "testtest";
+        return "add";
+    }
+
+    public String addother() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        DeviceParameters deviceParameters = context.getApplication().evaluateExpressionGet(context, "#{deviceParameters}", DeviceParameters.class);
+        IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
+        ModelParameters modelParameters = context.getApplication().evaluateExpressionGet(context, "#{modelParameters}", ModelParameters.class);
+        IModelController modelController = (IModelController) springContext.getBean("modelController");
+
+        Modele modele = new Modele();
+        for (Modele modele1 : modelController.getAll()) {
+            if (!modelParameters.getName().equals(modele1.getName())) {
+                modele.setName(modelParameters.getName());
+                modele.setBrand(modelParameters.getBrand());
+                modele.setDimension(modelParameters.getDimension());
+                modele.setWeigth(Double.parseDouble(modelParameters.getWeigth()));
+                modele.setType(modelParameters.getType());
+                if (!modelController.create(modele)) {
+                    System.out.println("error to create modele");
+                    return null;
+                }
+            }
+        }
+        device.setDescription(deviceParameters.getDescription());
+        if (!deviceController.create(device)) {
+            System.out.println("error to create device");
+            return null;
+        }
+        return "addother";
     }
 
     public List<Device> getDevicesByClient() {
@@ -91,6 +95,14 @@ public class DeviceManager implements Serializable {
     public List<Device> getAll() {
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
         return deviceController.getAll();
+    }
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
     }
 
 }

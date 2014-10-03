@@ -36,7 +36,12 @@ public class ModelManager implements Serializable{
         IModelController modelController = (IModelController) springContext.getBean("modelController");
         return modelController.getAll();
     }
-
+    
+    public Modele getById(int id){
+        IModelController modelController = (IModelController) springContext.getBean("modelController");
+        return modelController.getById(id);
+    }
+    
     public Modele getModele() {
         return modele;
     }

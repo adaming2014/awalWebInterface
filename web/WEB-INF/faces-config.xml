@@ -59,7 +59,7 @@
     <navigation-rule>
         <from-view-id>/device/add.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>testtest</from-outcome>
+            <from-outcome>add</from-outcome>
             <to-view-id>/client/client.xhtml</to-view-id>
             <redirect />
         </navigation-case>

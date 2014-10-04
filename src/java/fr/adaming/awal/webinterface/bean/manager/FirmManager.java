@@ -8,6 +8,7 @@ package fr.adaming.awal.webinterface.bean.manager;
 import fr.adaming.awal.controller.interfaces.IFirmController;
 import fr.adaming.awal.entity.Address;
 import fr.adaming.awal.entity.Firm;
+import fr.adaming.awal.webinterface.bean.form.AddressParameters;
 import fr.adaming.awal.webinterface.bean.form.FirmParameters;
 import fr.adaming.awal.webinterface.util.FacesMessageUtil;
 import java.io.Serializable;
@@ -32,9 +33,11 @@ public class FirmManager implements Serializable {
     private static final String PAGE_INDEX_REDIRECT = "index_redirect";
 
     @ManagedProperty("#{authManager}")
-    AuthManager authManager;
+    private AuthManager authManager;
 
-    ApplicationContext springContext;
+    private int firmId;
+
+    private ApplicationContext springContext;
 
     /**
      * Creates a new instance of SigninManager
@@ -52,10 +55,6 @@ public class FirmManager implements Serializable {
         FirmParameters parameters = context.getApplication().evaluateExpressionGet(context, "#{firmParameters}", FirmParameters.class);
 
         IFirmController controller = (IFirmController) springContext.getBean("firmController");
-        if (controller == null) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_CONTROLER_NOT_FOUND);
-            return null;
-        }
 
         Address address = new Address();
         address.setCity(parameters.getAddress().getCity());
@@ -77,13 +76,93 @@ public class FirmManager implements Serializable {
         return PAGE_INDEX_REDIRECT;
     }
 
+    public void update() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        FirmParameters parameters = context.getApplication().evaluateExpressionGet(context, "#{firmParameters}", FirmParameters.class);
+        AddressParameters parametersAddress = parameters.getAddress();
+
+        IFirmController controller = (IFirmController) springContext.getBean("firmController");
+
+        Firm firm = controller.getById(firmId);
+        if (firm == null) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
+            return;
+        }
+
+        Address firmAddress = firm.getAddress();
+        if (firmAddress == null) {
+            firmAddress = new Address();
+        }
+
+        // Backup
+        String oldCity = firmAddress.getCity();
+        String oldStreet = firmAddress.getStreet();
+        String oldPostcode = firmAddress.getPostcode();
+
+        String oldName = firm.getName();
+        String oldPhone = firm.getPhone();
+        String oldCssPath = firm.getCssPath();
+        String oldLogoPath = firm.getLogoPath();
+
+        // Update fields
+        firmAddress.setCity(parametersAddress.getCity());
+        firmAddress.setStreet(parametersAddress.getStreet());
+        firmAddress.setPostcode(parametersAddress.getPostcode());
+
+        firm.setAddress(firmAddress);
+        firm.setName(parameters.getName());
+        firm.setPhone(parameters.getPhone());
+        firm.setCssPath(parameters.getTheme());
+        firm.setLogoPath(parameters.getLogo());
+
+        // Persist
+        if (!controller.update(firm)) {
+            firmAddress.setCity(oldCity);
+            firmAddress.setStreet(oldStreet);
+            firmAddress.setPostcode(oldPostcode);
+
+            firm.setAddress(firmAddress);
+            firm.setName(oldName);
+            firm.setPhone(oldPhone);
+            firm.setCssPath(oldCssPath);
+            firm.setLogoPath(oldLogoPath);
+
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
+            return;
+        }
+
+        context.addMessage(null, FacesMessageUtil.INFO_FIRM_UPDATED);
+    }
+
+    public void reset() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        FirmParameters parameters = context.getApplication().evaluateExpressionGet(context, "#{firmParameters}", FirmParameters.class);
+
+        IFirmController controller = (IFirmController) springContext.getBean("firmController");
+
+        Firm firm = controller.getById(firmId);
+        if (firm == null) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
+            return;
+        }
+
+        parameters.setName(firm.getName());
+        parameters.setLogo(firm.getLogoPath());
+        parameters.setTheme(firm.getCssPath());
+        parameters.setPhone(firm.getPhone());
+
+        Address firmAddress = firm.getAddress();
+
+        if (firmAddress != null) {
+            parameters.getAddress().setCity(firmAddress.getCity());
+            parameters.getAddress().setStreet(firmAddress.getStreet());
+            parameters.getAddress().setPostcode(firmAddress.getPostcode());
+        }
+    }
+
     public List<Firm> getAll(String firmName) {
         IFirmController controller = (IFirmController) springContext.getBean("firmController");
-        if (controller == null) {
-            FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtil.MESSAGE_CONTROLER_NOT_FOUND);
-            return null;
-        }
-        
+
         String firmNameLowerCase = firmName.toLowerCase();
 
         List<Firm> firms = controller.getAll();
@@ -97,4 +176,13 @@ public class FirmManager implements Serializable {
     public void setAuthManager(AuthManager authManager) {
         this.authManager = authManager;
     }
+
+    public int getFirmId() {
+        return firmId;
+    }
+
+    public void setFirmId(int firmId) {
+        this.firmId = firmId;
+    }
+
 }

@@ -5,6 +5,7 @@
       xmlns:p="http://primefaces.org/ui">
     <body>
         <ui:composition>
+            #{firmManager.reset()}
             <h:form>
                 <p:messages globalOnly="true"></p:messages>
 
@@ -12,8 +13,8 @@
                     <ui:include src="field/fieldsFirm.xhtml" />
                 </p:panelGrid>
 
-                <p:commandButton value="Add" action="#{firmManager.add}" update="@form" />
-                <p:commandButton value="Reset" update="@form" process="@this" >
+                <p:commandButton value="Update" action="#{firmManager.update}" update="@form" />
+                <p:commandButton value="Reset" action="#{firmManager.reset}" process="@this" update="@form">
                     <p:resetInput target="@form" />
                 </p:commandButton>
             </h:form>

@@ -11,16 +11,12 @@ import fr.adaming.awal.entity.Firm;
 import fr.adaming.awal.webinterface.bean.form.AddressParameters;
 import fr.adaming.awal.webinterface.bean.form.FirmParameters;
 import fr.adaming.awal.webinterface.util.FacesMessageUtil;
-import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -28,7 +24,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @ManagedBean
 @SessionScoped
-public class FirmManager implements Serializable {
+public class FirmManager extends GenericManager {
 
     private static final String PAGE_INDEX_REDIRECT = "index_redirect";
 
@@ -37,22 +33,15 @@ public class FirmManager implements Serializable {
 
     private int firmId;
 
-    private ApplicationContext springContext;
-
     /**
      * Creates a new instance of SigninManager
      */
     public FirmManager() {
     }
 
-    @PostConstruct
-    public void init() {
-        springContext = new ClassPathXmlApplicationContext("spring-config.xml");
-    }
-
     public String add() {
         FacesContext context = FacesContext.getCurrentInstance();
-        FirmParameters parameters = context.getApplication().evaluateExpressionGet(context, "#{firmParameters}", FirmParameters.class);
+        FirmParameters parameters = getManagedBean(context, "firmParameters", FirmParameters.class);
 
         IFirmController controller = (IFirmController) springContext.getBean("firmController");
 
@@ -78,7 +67,7 @@ public class FirmManager implements Serializable {
 
     public void update() {
         FacesContext context = FacesContext.getCurrentInstance();
-        FirmParameters parameters = context.getApplication().evaluateExpressionGet(context, "#{firmParameters}", FirmParameters.class);
+        FirmParameters parameters = getManagedBean(context, "firmParameters", FirmParameters.class);
         AddressParameters parametersAddress = parameters.getAddress();
 
         IFirmController controller = (IFirmController) springContext.getBean("firmController");
@@ -94,16 +83,6 @@ public class FirmManager implements Serializable {
             firmAddress = new Address();
         }
 
-        // Backup
-        String oldCity = firmAddress.getCity();
-        String oldStreet = firmAddress.getStreet();
-        String oldPostcode = firmAddress.getPostcode();
-
-        String oldName = firm.getName();
-        String oldPhone = firm.getPhone();
-        String oldCssPath = firm.getCssPath();
-        String oldLogoPath = firm.getLogoPath();
-
         // Update fields
         firmAddress.setCity(parametersAddress.getCity());
         firmAddress.setStreet(parametersAddress.getStreet());
@@ -117,16 +96,6 @@ public class FirmManager implements Serializable {
 
         // Persist
         if (!controller.update(firm)) {
-            firmAddress.setCity(oldCity);
-            firmAddress.setStreet(oldStreet);
-            firmAddress.setPostcode(oldPostcode);
-
-            firm.setAddress(firmAddress);
-            firm.setName(oldName);
-            firm.setPhone(oldPhone);
-            firm.setCssPath(oldCssPath);
-            firm.setLogoPath(oldLogoPath);
-
             context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
             return;
         }
@@ -136,7 +105,7 @@ public class FirmManager implements Serializable {
 
     public void reset() {
         FacesContext context = FacesContext.getCurrentInstance();
-        FirmParameters parameters = context.getApplication().evaluateExpressionGet(context, "#{firmParameters}", FirmParameters.class);
+        FirmParameters parameters = getManagedBean(context, "firmParameters", FirmParameters.class);
 
         IFirmController controller = (IFirmController) springContext.getBean("firmController");
 
@@ -161,12 +130,17 @@ public class FirmManager implements Serializable {
     }
 
     public List<Firm> getAll(String firmName) {
-        IFirmController controller = (IFirmController) springContext.getBean("firmController");
+        List<Firm> firms = getAll();
 
         String firmNameLowerCase = firmName.toLowerCase();
 
-        List<Firm> firms = controller.getAll();
         return firms.stream().filter((firm) -> firm.getName().toLowerCase().startsWith(firmNameLowerCase)).collect(Collectors.toList());
+    }
+
+    public List<Firm> getAll() {
+        IFirmController controller = (IFirmController) springContext.getBean("firmController");
+
+        return controller.getAll();
     }
 
     public AuthManager getAuthManager() {

@@ -51,10 +51,6 @@ public class UserManager implements Serializable {
         UserParameters signinParameters = context.getApplication().evaluateExpressionGet(context, "#{userParameters}", UserParameters.class);
         
         IClientController clientController = (IClientController) springContext.getBean("clientController");
-        if (clientController == null) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_CONTROLER_NOT_FOUND);
-            return null;
-        }
         
         User user = new User();
         user.setFirstname(signinParameters.getFirstname());

@@ -52,10 +52,6 @@ public class RepairerManager implements Serializable {
         RepairerParameters parameters = context.getApplication().evaluateExpressionGet(context, "#{repairerParameters}", RepairerParameters.class);
 
         IRepairerController controller = (IRepairerController) springContext.getBean("repairerController");
-        if (controller == null) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_CONTROLER_NOT_FOUND);
-            return null;
-        }
 
         Repairer repairer = authManager.getRepairer();
 
@@ -66,7 +62,7 @@ public class RepairerManager implements Serializable {
         repairer.setFirm(parameters.getFirm());
 
         if (!controller.update(repairer)) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_CONTROLER_NOT_FOUND);
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
 
             repairer.setAvailable(oldAvailable);
             repairer.setFirm(oldFirm);

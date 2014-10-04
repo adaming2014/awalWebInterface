@@ -100,9 +100,18 @@ public class DeviceManager implements Serializable {
     public Device getDevice() {
         return device;
     }
-
+    
     public void setDevice(Device device) {
         this.device = device;
     }
+    
+    public void delete(int id){
+        IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
+        deviceController.delete(id);
+    }
 
+    public Device getById(int id){
+        IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
+        return deviceController.getById(id);
+    }
 }

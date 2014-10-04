@@ -5,8 +5,8 @@
  */
 package fr.adaming.awal.webinterface.converter;
 
-import fr.adaming.awal.entity.Modele;
-import fr.adaming.awal.webinterface.bean.manager.ModelManager;
+import fr.adaming.awal.entity.Device;
+import fr.adaming.awal.webinterface.bean.manager.DeviceManager;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -16,19 +16,17 @@ import javax.faces.convert.FacesConverter;
  *
  * @author INTI0217
  */
-@FacesConverter("modeleConverter")
-public class ModeleConverter implements Converter {
+@FacesConverter("deviceConverter")
+public class DeviceConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        Modele modele = ((ModelManager) findBean(context, "modelManager")).getById(Integer.valueOf(value));
-        return modele;
+        return ((DeviceManager) findBean(context, "deviceManager")).getById(Integer.valueOf(value));
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        String model = ((Modele) value).getIdModele().toString();
-        return model;
+        return ((Device) value).getIdDevice().toString();
     }
 
     @SuppressWarnings("unchecked")

@@ -36,17 +36,25 @@
 
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Dimension"/>
+                    <h:outputText value="Description"/>
                 </f:facet>
                 <h:outputText value="#{device.description}"/>
             </p:column>  
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Delete"/>
+                </f:facet>
 
+                <p:commandButton action="#{deviceManager.delete(device.idDevice)}" value="Delete" ajax="false"/>
+            </p:column>  
+            
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="add Package"/>
                 </f:facet>
-                
-                <p:button outcome="addPackage" value="Package"/>
+
+                <p:commandButton action="#{modelPackageManager.setIddevice(device.idDevice)}" value="Package" ajax="false"/>
             </p:column>  
 
             <p:column>

@@ -5,11 +5,14 @@
  */
 package fr.adaming.awal.webinterface.bean.manager;
 
+import fr.adaming.awal.controller.ClientController;
 import fr.adaming.awal.controller.interfaces.IDeviceRepairController;
 import fr.adaming.awal.entity.Devicerepair;
 import fr.adaming.awal.entity.Modelpackage;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import org.springframework.context.ApplicationContext;
@@ -45,6 +48,12 @@ public class DeviceRepairManager implements Serializable {
             return null;
         }
         return "addDeviceRepair";
+    }
+
+    public List<Devicerepair> getDevicesRepairByClient() {
+        IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
+        ClientController clientController = (ClientController) springContext.getBean("clientController");
+        return deviceController.getDevicesRepairByClient(clientController.getClientByMail("bian.loic@gmail.com"));
     }
 
     public Modelpackage getModelPackage() {

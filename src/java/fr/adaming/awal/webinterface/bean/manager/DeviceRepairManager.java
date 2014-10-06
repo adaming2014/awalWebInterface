@@ -7,10 +7,10 @@ package fr.adaming.awal.webinterface.bean.manager;
 
 import fr.adaming.awal.controller.ClientController;
 import fr.adaming.awal.controller.interfaces.IDeviceRepairController;
+import fr.adaming.awal.entity.Device;
 import fr.adaming.awal.entity.Devicerepair;
 import fr.adaming.awal.entity.Modelpackage;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -29,6 +29,7 @@ public class DeviceRepairManager implements Serializable {
     ApplicationContext springContext;
     private Modelpackage modelPackage;
     private Devicerepair deviceRepair;
+    private Device device;
 
     /**
      * Creates a new instance of DeviceRepairManager
@@ -40,7 +41,14 @@ public class DeviceRepairManager implements Serializable {
 
     public String add() {
         IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
-//        deviceRepair.setState("CREATE");
+        for (Devicerepair devicerepair : deviceController.getAll()) {
+            if((devicerepair.getDevice().getIdDevice().equals(device.getIdDevice())) && (devicerepair.getModelpackage().equals(modelPackage))){
+                System.out.println("forfait utilisé");
+                return "addDeviceRepair";
+            }
+        }
+        deviceRepair.setDevice(device);
+        deviceRepair.setState("CREATE");
         deviceRepair.setModelpackage(modelPackage);
         deviceRepair.setDateCreation(new Date());
         deviceRepair.setPrice(Integer.valueOf(modelPackage.getPrice()));
@@ -70,6 +78,14 @@ public class DeviceRepairManager implements Serializable {
 
     public void setDeviceRepair(Devicerepair deviceRepair) {
         this.deviceRepair = deviceRepair;
+    }
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
     }
 
 }

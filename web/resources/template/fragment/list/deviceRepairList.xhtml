@@ -68,8 +68,14 @@
                 <h:outputText value="#{deviceRepair.dateClosed}" >
                     <f:convertDateTime pattern="d-M-yyyy" />
                 </h:outputText>
-            </p:column>  
+            </p:column> 
 
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Shipment"/>
+                </f:facet>
+                <p:button value="pdf"/>
+            </p:column>  
         </p:dataTable>
     </h:body>
 </html>

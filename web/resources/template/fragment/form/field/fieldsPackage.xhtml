@@ -9,7 +9,7 @@
             <h:form>
                 <h:panelGrid style="margin: 20px" columns="2" id="matchGrid" cellpadding="5">
                     <p:outputLabel for="device" value="Device : "/>
-                    <p:selectOneMenu id="device" value="#{deviceRepairManager.deviceRepair.device}" converter="deviceConverter">
+                    <p:selectOneMenu id="device" value="#{deviceRepairManager.device}" converter="deviceConverter">
                         <f:selectItem itemLabel="#{modelPackageManager.device.description} -- #{modelPackageManager.device.modele.type} -- #{modelPackageManager.device.modele.weigth} -- #{modelPackageManager.device.modele.dimension}" itemValue="#{modelPackageManager.device}" /> 
                     </p:selectOneMenu>
 

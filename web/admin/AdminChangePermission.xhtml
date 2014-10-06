@@ -19,14 +19,14 @@
                     <h:panelGrid columns="2" style="margin-bottom: 100px" cellpadding="5" columnClasses="label, value">
                     <p:outputLabel for="droits" value="Droits   :    " style="color: #000"/>
                     <p:selectOneRadio id="droits" value="#{adminChangePermission.droitChoisi}" >
-                   <!-- <f:selectItems var="droitsVar" value="#{adminChangePermission.intililiseDroits}" itemLabel="#{droitsVar}" itemValue="#{droitsVar}" /> -->
+                   
                     
-                        <f:selectItem itemLabel="Administrateur" itemValue="Administrateur" />
+                        <f:selectItem itemLabel="Administrateur" itemValue="Administrateur" /><br/>
                         <f:selectItem itemLabel="Revendeur" itemValue="Revendeur" />
                         <f:selectItem itemLabel="Client" itemValue="Client" />
                         <f:selectItem itemLabel="Réparateur" itemValue="Réparateur" />
                 </p:selectOneRadio>
-                <p:commandButton value="Execute" actionListener="#{adminChangePermission.changePermission()}" />
+                <p:commandButton value="Execute" action="#{adminChangePermission.changePermission()}" />
                 </h:panelGrid>
                 </p:panel>
             </h:form>

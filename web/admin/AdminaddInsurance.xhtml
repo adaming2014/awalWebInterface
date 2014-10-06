@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
         <ui:define name="content">
             
-            <h:form class="form-group">
+            <h:form class="form-group" id="forminsurance">
                 <p:panel header="Ajouter un forfait d'assurance" class="panel"> 
-                    <h:panelGrid columns="2" columnClasses="label, value" class="panel-title">
+                    <h:panelGrid columns="2" columnClasses="label, value" class="panel-title" id="panelinsurance">
                         
                         <h:outputText value = "Nom : *" style="color: #000"/>
                         <p:inputText  required="true" value="#{adminPackageInsurance.deviceinsurancemodel.name}" label="Nom"/>
@@ -18,10 +19,22 @@
                         <p:inputText  required="true" label="Prix" value="#{adminPackageInsurance.deviceinsurancemodel.price}"/>
                         <h:outputText value = "Durée : *" style="color: #000"/>
                         <p:inputText  required="true" label="Durée" value="#{adminPackageInsurance.deviceinsurancemodel.duration}"/>
+                       
                     </h:panelGrid>
                 </p:panel>
                 <p:panel header="Modéle applicable" class="panel"> 
-                    <h:panelGrid columns="2" columnClasses="label, value" class="panel-title">
+                    <p:selectOneRadio  onchange="azerty2()" id="radio">
+                        <f:selectItem itemLabel="Nouveau"  itemValue="Nouveau"   id="newinsurance"/>
+                        <f:selectItem itemLabel="Lister les modéles" itemValue="Lister les modéles" id="listinsurance" />
+                    </p:selectOneRadio>
+                    <h:panelGrid columns="2" columnClasses="label, value" class="panel-title" id="listeinsurance">
+                        <p:selectOneMenu value="#{adminPackageInsurance.modele.idModele}">
+                        <f:selectItem itemLabel="--------" itemValue="" />
+                        <f:selectItems var="modelsVar" value="#{adminPackageInsurance.allModels}" itemLabel=" Nom : #{modelsVar.name}  -- Marque : #{modelsVar.brand} --Dimenstions : #{modelsVar.dimension}" itemValue="#{modelsVar.idModele}" />
+                        </p:selectOneMenu>
+                        <p:commandButton value="Ajouter forfait" class="btn-link" action="#{adminPackageInsurance.createNewPackageInsuranceFromExist}" update="@form" process="listeinsurance panelinsurance"/>
+                    </h:panelGrid> 
+                        <h:panelGrid columns="2" columnClasses="label, value" class="panel-title" id="nouvelinsurance">
                         
                         <h:outputText value = "Poid : *" style="color: #000"/>
                         <p:inputText  required="true" label="Poid" value="#{adminPackageInsurance.modele.weigth}"/>
@@ -33,7 +46,7 @@
                         <p:inputText  required="true" label="Nom" value="#{adminPackageInsurance.modele.name}"/>
                         <h:outputText value = "Type : *" style="color: #000"/>
                         <p:inputText  required="true" label="Type" value="#{adminPackageInsurance.modele.type}"/>
-                        <p:commandButton value="Ajouter forfait" class="btn-link" actionListener="#{adminPackageInsurance.createNewPackageInsurance()}"/>
+                        <p:commandButton value="Ajouter forfait" class="btn-link" action="#{adminPackageInsurance.createNewPackageInsurance}" update="@form" process="nouvelinsurance panelinsurance"/>
                     </h:panelGrid>
                 </p:panel>
             </h:form>

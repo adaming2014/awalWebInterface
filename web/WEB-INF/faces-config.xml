@@ -16,7 +16,7 @@
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>addInsurance</from-outcome>
+            <from-outcome>addInsurances</from-outcome>
             <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
@@ -31,7 +31,7 @@
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>addInsurance</from-outcome>
+            <from-outcome>addInsurances</from-outcome>
             <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
@@ -59,6 +59,7 @@
     <navigation-rule>
         <from-view-id>/device/add.xhtml</from-view-id>
         <navigation-case>
+
             <from-outcome>add</from-outcome>
             <to-view-id>/client/client.xhtml</to-view-id>
             <redirect />
@@ -69,11 +70,18 @@
         <from-view-id>/device/package/add.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>addDeviceRepair</from-outcome>
+
+            <from-outcome>testtest</from-outcome>
+
             <to-view-id>/client/client.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
+
        
+
+    
+
     <navigation-rule>
         <from-view-id>/client/client.xhtml</from-view-id>
         <navigation-case>
@@ -102,7 +110,7 @@
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>addInsurance</from-outcome>
+            <from-outcome>addInsurances</from-outcome>
             <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
@@ -113,7 +121,7 @@
     <navigation-rule>
         <from-view-id>/admin/AdminChangePermission.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>addInsurance</from-outcome>
+            <from-outcome>addInsurances</from-outcome>
             <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
@@ -125,6 +133,7 @@
             <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
         
     <navigation-rule>
         <from-view-id>/connection/connect.xhtml</from-view-id>
@@ -145,4 +154,5 @@
         </navigation-case>
     </navigation-rule>   
     
+
 </faces-config>

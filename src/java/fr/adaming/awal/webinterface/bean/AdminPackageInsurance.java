@@ -12,6 +12,7 @@ import fr.adaming.awal.controller.interfaces.IModelController;
 import fr.adaming.awal.entity.Deviceinsurancemodel;
 import fr.adaming.awal.entity.Modele;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import org.springframework.context.ApplicationContext;
@@ -56,9 +57,16 @@ public class AdminPackageInsurance implements Serializable{
     public void setModele(Modele modele) {
         this.modele = modele;
     }
+    public List<Modele> getAllModels(){
+        return modelController.getAll();
+    }
     public void createNewPackageInsurance(){
         modelController.create(modele);
         deviceinsurancemodel.setModele(modele);
+        deviceInsuranceModelController.create(deviceinsurancemodel);
+    }
+    public void createNewPackageInsuranceFromExist(){
+        deviceinsurancemodel.setModele(modelController.getById(modele.getIdModele()));
         deviceInsuranceModelController.create(deviceinsurancemodel);
     }
     

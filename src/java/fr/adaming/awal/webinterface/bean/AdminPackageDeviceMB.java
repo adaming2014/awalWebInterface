@@ -12,11 +12,13 @@ import fr.adaming.awal.controller.interfaces.IModelPackageController;
 import fr.adaming.awal.entity.Modele;
 import fr.adaming.awal.entity.Modelpackage;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.SessionScoped;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 /**
  *
@@ -27,6 +29,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class AdminPackageDeviceMB implements Serializable{
 
     private Modele deviceModel;
+    
     private Modelpackage modelPackage;
     private ApplicationContext context;
     private ModelPackageController modelPAckageController;
@@ -57,12 +60,27 @@ public class AdminPackageDeviceMB implements Serializable{
     public void setModelPackage(Modelpackage modelPackage) {
         this.modelPackage = modelPackage;
     }
+    public List<Modele> getAllModels(){
+        return modelController.getAll();
+    }
+
+
+
+
+    
     public void createNewPackageDevice(){
+        
         modelController.create(deviceModel);
         modelPackage.setModele(deviceModel);
         modelPAckageController.create(modelPackage);
         
     }
+    public void createNewPackageDeviceFromExist(){
+        System.out.println("model id = " + deviceModel.getIdModele());
+        modelPackage.setModele(modelController.getById(deviceModel.getIdModele()));
+        modelPAckageController.create(modelPackage);
+    }
+
     
     
     

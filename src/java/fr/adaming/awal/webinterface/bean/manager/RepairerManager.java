@@ -53,7 +53,7 @@ public class RepairerManager implements Serializable {
 
         IRepairerController controller = (IRepairerController) springContext.getBean("repairerController");
 
-        Repairer repairer = authManager.getRepairer();
+        Repairer repairer = controller.getById(authManager.getRepairerId());
 
         String oldAvailable = repairer.getAvailable();
         Firm oldFirm = repairer.getFirm();
@@ -76,20 +76,22 @@ public class RepairerManager implements Serializable {
     public void resetFields() {
         FacesContext context = FacesContext.getCurrentInstance();
         RepairerParameters repairerParameters = context.getApplication().evaluateExpressionGet(context, "#{repairerParameters}", RepairerParameters.class);
-        UserParameters userParameters  = context.getApplication().evaluateExpressionGet(context, "#{userParameters}", UserParameters.class);
+        UserParameters userParameters = context.getApplication().evaluateExpressionGet(context, "#{userParameters}", UserParameters.class);
         if (repairerParameters == null || userParameters == null) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_BEAN_NOT_FOUND);
             return;
         }
 
-        Repairer repairer = authManager.getRepairer();
+        IRepairerController controller = (IRepairerController) springContext.getBean("repairerController");
+
+        Repairer repairer = controller.getById(authManager.getRepairerId());
         User user = repairer.getUser();
 
         userParameters.setEmail(user.getMail());
         userParameters.setFirstname(user.getFirstname());
         userParameters.setLastname(user.getLastname());
         userParameters.setPhone(user.getPhone());
-                
+
         repairerParameters.setAvailable(repairer.getAvailable());
         repairerParameters.setFirm(repairer.getFirm());
     }

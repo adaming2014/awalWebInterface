@@ -8,9 +8,9 @@
             <h:form enctype="multipart/form-data">
                 <p:messages globalOnly="true"></p:messages>
 
-                <p:panelGrid columns="3">
+                <h:panelGrid columns="3">
                     <ui:include src="field/fieldsFirm.xhtml" />
-                </p:panelGrid>
+                </h:panelGrid>
 
                 <p:commandButton value="Add" action="#{firmManager.add}" ajax="false" />
                 <p:commandButton value="Reset" update="@form" process="@this" >

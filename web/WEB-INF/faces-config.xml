@@ -107,9 +107,14 @@
         </navigation-case>
     </navigation-rule>
 
-       
-
-    
+    <navigation-rule>
+        <from-view-id>/device/insurance/add.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addDeviceInsurance</from-outcome>
+            <to-view-id>/client/client.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>         
 
     <navigation-rule>
         <from-view-id>/client/client.xhtml</from-view-id>

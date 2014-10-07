@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <p:dataTable value="#{deviceInsuranceManager.all}" var="deviceInsurance"> 
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Name"/>
+                </f:facet>
+                <h:outputText value="#{deviceInsurance.deviceinsurancemodel.name}"/>
+            </p:column>  
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Modele"/>
+                </f:facet>
+                <h:outputText value="#{deviceInsurance.deviceinsurancemodel.modele.name}"/>
+            </p:column>          
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Price"/>
+                </f:facet>
+                <h:outputText value="#{deviceInsurance.deviceinsurancemodel.price}"/>
+            </p:column>  
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Begin Date"/>
+                </f:facet>
+                <h:outputText value="#{deviceInsurance.beginDate}" >
+                    <f:convertDateTime pattern="d-M-yyyy" />
+                </h:outputText>
+            </p:column>  
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Duration"/>
+                </f:facet>
+                <h:outputText value="#{deviceInsurance.deviceinsurancemodel.duration} month"/>
+            </p:column> 
+        </p:dataTable>
+    </h:body>
+</html>
+

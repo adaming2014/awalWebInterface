@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition>
+            <h:form>
+                <p:dataTable value="#{deviceRepairManager.devicesRepairByClient}" var="deviceRepair" id="tbl">
+                    <p:column>                 
+                        <h:outputText style="font-weight:bold; display: block;" value=" Firm Address "/>
+                        <h:outputText style="display: block;" value=" #{deviceRepair.repairer.firm.name}"/>
+                        <h:outputText style="display: block;" value=" City : #{deviceRepair.repairer.firm.address.city}"/>
+                        <h:outputText style="display: block;" value=" Street : #{deviceRepair.repairer.firm.address.street}"/>
+                        <h:outputText style="display: block;" value=" PostCode : #{deviceRepair.repairer.firm.address.postcode}"/>
+                        
+                        <h:outputText style="font-weight:bold; display: block; padding-top: 20px;" value=" Client Address "/>
+                        <h:outputText style="display: block;" value=" #{deviceRepair.device.client.user.firstname} #{deviceRepair.device.client.user.lastname}"/>
+                        <h:outputText style="display: block;" value=" City : #{deviceRepair.device.client.address.city}"/>
+                        <h:outputText style="display: block;" value=" Street : #{deviceRepair.device.client.address.street}"/>
+                        <h:outputText style="display: block;" value=" PostCode : #{deviceRepair.device.client.address.postcode}"/>
+                    </p:column>                       
+                </p:dataTable>     
+
+                <h:commandLink>
+                    <p:outputLabel value="pdf"/> 
+                    <p:dataExporter type="pdf" target="tbl" fileName="cars"/>
+                </h:commandLink>
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

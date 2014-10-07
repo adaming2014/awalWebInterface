@@ -74,8 +74,9 @@
                 <f:facet name="header">
                     <h:outputText value="Shipment"/>
                 </f:facet>
-                <p:button value="pdf"/>
+                <p:commandButton action="#{pDFDeviceRepair.setIdDeviceRepair(deviceRepair.idDeviceRepair)}" value="pdf" ajax="false"/>
             </p:column>  
+            
         </p:dataTable>
     </h:body>
 </html>

@@ -60,7 +60,7 @@
                 <f:facet name="header">
                     <h:outputText value="add Insurance"/>
                 </f:facet>
-                <p:button outcome="addInsurance" value="Insurance"/>
+                <p:commandButton action="#{deviceInsuranceModeleManager.setIddevice(device.iddevice)}" value="Insurance" ajax="false"/>
             </p:column>  
 
         </p:dataTable>

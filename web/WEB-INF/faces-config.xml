@@ -122,6 +122,11 @@
             <to-view-id>/device/package/add.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>pdf</from-outcome>
+            <to-view-id>/device/pdf/pdf.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule>        
 
     <navigation-rule>
@@ -181,7 +186,11 @@
             <to-view-id>/connection/lostPWD.xhtml</to-view-id>
             <redirect />
         </navigation-case>
-
+        <navigation-case>
+            <from-outcome>client</from-outcome>
+            <to-view-id>/client/client/pdf.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule>   
 
     <navigation-rule>
@@ -192,7 +201,7 @@
         </navigation-case>
     </navigation-rule>   
     
-     <navigation-rule>
+    <navigation-rule>
         <navigation-case>
             <from-outcome>welcome</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>

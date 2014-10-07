@@ -4,7 +4,9 @@
       >
     <body>
         <ui:composition>
-            <h1>This is default content</h1>
+             <ui:define name="content">
+                 <ui:include src="../../../../index.xhtml" />
+             </ui:define>
         </ui:composition>
     </body>
 </html>

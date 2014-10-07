@@ -35,6 +35,8 @@ public class FirmManager extends GenericManager {
     @ManagedProperty("#{authManager}")
     private AuthManager authManager;
 
+    private int firmId;
+
     private final String image_path;
     private final String css_path;
 
@@ -87,20 +89,6 @@ public class FirmManager extends GenericManager {
 
         IFirmController controller = (IFirmController) springContext.getBean("firmController");
 
-        String firmIdParam = context.getExternalContext().getRequestParameterMap().get("id");
-        if (firmIdParam == null) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
-            return;
-        }
-
-        int firmId;
-        try {
-            firmId = Integer.parseInt(firmIdParam);
-        } catch (NumberFormatException ex) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
-            return;
-        }
-
         Firm firm = controller.getById(firmId);
         if (firm == null) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
@@ -138,28 +126,12 @@ public class FirmManager extends GenericManager {
 
         IFirmController controller = (IFirmController) springContext.getBean("firmController");
 
-        String firmIdParam = context.getExternalContext().getRequestParameterMap().get("id");
-        System.out.println("PARAM : " + firmIdParam);
-        if (firmIdParam == null) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
-            return;
-        }
-
-        int firmId;
-        try {
-            firmId = Integer.parseInt(firmIdParam);
-        } catch (NumberFormatException ex) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
-            return;
-        }
-
         Firm firm = controller.getById(firmId);
         if (firm == null) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
             return;
         }
 
-        parameters.setId(firm.getId());
         parameters.setName(firm.getName());
         parameters.setPhone(firm.getPhone());
 
@@ -172,8 +144,25 @@ public class FirmManager extends GenericManager {
         }
     }
 
-    public void delete() {
-//        System.out.println(String.valueOf(firmId));
+    public String delete() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        FirmParameters parameters = getManagedBean(context, "firmParameters", FirmParameters.class);
+
+        IFirmController controller = (IFirmController) springContext.getBean("firmController");
+
+        Firm firm = controller.getById(firmId);
+        if (firm == null) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
+            return null;
+        }
+
+        boolean result = controller.delete(firm);
+        if (!result) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
+            return null;
+        }
+
+        return PAGE_FIRM_LIST_REDIRECT;
     }
 
     public List<Firm> getAll(String firmName) {
@@ -196,6 +185,14 @@ public class FirmManager extends GenericManager {
 
     public void setAuthManager(AuthManager authManager) {
         this.authManager = authManager;
+    }
+
+    public int getFirmId() {
+        return firmId;
+    }
+
+    public void setFirmId(int firmId) {
+        this.firmId = firmId;
     }
 
 }

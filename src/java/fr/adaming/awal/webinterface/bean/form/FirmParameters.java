@@ -18,7 +18,6 @@ import org.primefaces.model.UploadedFile;
 @RequestScoped
 public class FirmParameters {
 
-    private int id;
     private String name;
     private String phone;
     private UploadedFile logo;
@@ -31,14 +30,6 @@ public class FirmParameters {
      * Creates a new instance of FirmParameters
      */
     public FirmParameters() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

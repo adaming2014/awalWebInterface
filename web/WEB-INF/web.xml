@@ -6,7 +6,7 @@
     </context-param>
     <context-param>
         <param-name>primefaces.UPLOADER</param-name>
-        <param-value>native</param-value>
+        <param-value>commons</param-value>
     </context-param>
     <context-param>
         <description>Location to store uploaded firm logo</description>
@@ -50,4 +50,14 @@
             js:jquery/jquery.min.js=https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
         </param-value>
     </context-param>
+    <filter>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name> 
+        <dispatcher>REQUEST</dispatcher>              
+        <dispatcher>FORWARD</dispatcher>              
+    </filter-mapping>
 </web-app>

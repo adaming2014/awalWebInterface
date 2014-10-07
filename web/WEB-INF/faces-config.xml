@@ -66,6 +66,15 @@
     </navigation-rule>
     
     <navigation-rule>
+        <from-view-id>/firm/delete.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>firm_list_redirect</from-outcome>
+            <to-view-id>/firm/list.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
         <from-view-id>/firm/list.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>update</from-outcome>

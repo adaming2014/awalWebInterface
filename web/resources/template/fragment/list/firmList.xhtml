@@ -53,11 +53,11 @@
                     <h:outputText value="add Package"/>
                 </f:facet>
 
-                <p:button outcome="update" value="Edit" >
-                    <f:param name="id" value="#{firm.id}" />
+                <p:button outcome="pretty:firmUpdate" value="Edit" >
+                    <f:param name="firmId" value="#{firm.id}" />
                 </p:button>
-                <p:button outcome="delete" value="Delete" >
-                    <f:param name="id" value="#{firm.id}" />
+                <p:button outcome="pretty:firmDelete" value="Delete" >
+                    <f:param name="firmId" value="#{firm.id}" />
                 </p:button>
             </p:column>  
 

@@ -5,10 +5,8 @@
  */
 package fr.adaming.awal.webinterface.bean.manager;
 
-import fr.adaming.awal.controller.ClientController;
 import fr.adaming.awal.controller.interfaces.IDeviceRepairController;
 import fr.adaming.awal.controller.interfaces.IRepairerController;
-import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.Device;
 import fr.adaming.awal.entity.Devicerepair;
 import fr.adaming.awal.entity.Modelpackage;
@@ -19,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -44,22 +43,22 @@ public class DeviceRepairManager implements Serializable {
     }
 
     public String add() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        AuthManager authManager = context.getApplication().evaluateExpressionGet(context, "#{authManager}", AuthManager.class);
         Repairer repairer = null;
         IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
         IRepairerController repairerController = (IRepairerController) springContext.getBean("repairerController");
-        ClientController clientController = (ClientController) springContext.getBean("clientController");
-        Client client = clientController.getClientByMail("bian.loic@gmail.com");
         for (Devicerepair devicerepair : deviceController.getAll()) {
             if ((devicerepair.getDevice().getIdDevice().equals(device.getIdDevice())) && (devicerepair.getModelpackage().equals(modelPackage))) {
                 return "addDeviceRepair";
             }
         }
         for (Repairer repairer1 : repairerController.getAll()) {
-            
+
             if (repairer1.getAvailable().equals(RepairerUtil.AVAILABLE)) {
-                if (repairer1.getFirm().getAddress().getPostcode().equals(client.getAddress().getPostcode())) {
+                if (repairer1.getFirm().getAddress().getPostcode().equals(authManager.getClient().getAddress().getPostcode())) {
                     repairer = repairer1;
-                    
+
                 }
             }
         }
@@ -72,14 +71,15 @@ public class DeviceRepairManager implements Serializable {
         if (!deviceController.create(deviceRepair)) {
             return null;
         }
-        
+
         return "addDeviceRepair";
     }
 
     public List<Devicerepair> getDevicesRepairByClient() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        AuthManager authManager = context.getApplication().evaluateExpressionGet(context, "#{authManager}", AuthManager.class);
         IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
-        ClientController clientController = (ClientController) springContext.getBean("clientController");
-        return deviceController.getDevicesRepairByClient(clientController.getClientByMail("bian.loic@gmail.com"));
+        return deviceController.getDevicesRepairByClient(authManager.getClient());
     }
 
     public Modelpackage getModelPackage() {

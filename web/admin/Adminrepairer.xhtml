@@ -6,19 +6,45 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
         <ui:define name="content">
+            <br/><br/>
             <h:form>
                 <br/><br/>
-                <p:dataTable value="#{adminChangePermission.allUsers}" var="users">
-                    <f:facet name="header">
-                        <p:outputLabel value="Test" />
-                        <p:column>
-                            
+                <center><h3>Liste des réparateurs</h3></center>
+                <legend></legend>
+                 <h:commandLink>
+                    <h:graphicImage library="images/logo"  name="pdficone.png"/>
+                    <p:dataExporter target="listrepairer"  type="pdf" fileName="listes"  />
+                </h:commandLink>
+                <p:dataTable value="#{adminRepairer.allRepairers}" var="repairer" id="listrepairer">
+                   
+                    
+                        <p:column headerText="nom">
+                            <h:outputText value="#{repairer.user.firstname}" />
                         </p:column>
-                    </f:facet>
+                        <p:column headerText="prénom">
+                            <h:outputText value="#{repairer.user.lastname}" />
+                        </p:column>
+                        <p:column headerText="mail">
+                            <h:outputText value="#{repairer.user.mail}" />
+                        </p:column>
+                         <p:column headerText="Téléphone">
+                             <h:outputText value="#{repairer.user.phone}" />
+                        </p:column>
+                        <p:column headerText="Entreprise">
+                            <h:outputText value="#{repairer.firm.name}" />
+                        </p:column>
+                        
+                        <p:column headerText="Disponibilité">
+                            <h:outputText value="#{repairer.available}" />
+                        </p:column>
+
+                   
                 
                 </p:dataTable>
+               
+                
             </h:form>
-            
+            <br/><br/><br/><br/>
         </ui:define>
     </ui:composition>
 </html>

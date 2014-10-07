@@ -8,7 +8,15 @@
     <h:head>
         <script type="text/javascript">
             
-            
+        function initialiseAddPackage(){
+               document.getElementById('form:nouvel').style.visibility = 'hidden';
+               document.getElementById('form:liste').style.visibility = 'hidden';
+               
+        }  
+        function initialiseAddInsurance(){
+            document.getElementById('forminsurance:nouvelinsurance').style.visibility = 'hidden';
+            document.getElementById('forminsurance:listeinsurance').style.visibility = 'hidden';
+        }
             
         function azerty(){
           
@@ -71,7 +79,7 @@
             </header>
 
             <div id="content">
-                <ui:insert name="content" >
+                <ui:insert name="content">
                     <ui:include src="../fragment/common/content.xhtml" />
                 </ui:insert>
             </div>

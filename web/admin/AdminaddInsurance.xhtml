@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
         <ui:define name="content">
-            
+            <h:body onload="initialiseAddInsurance()">
             <h:form class="form-group" id="forminsurance">
                 <p:panel header="Ajouter un forfait d'assurance" class="panel"> 
                     <h:panelGrid columns="2" columnClasses="label, value" class="panel-title" id="panelinsurance">
@@ -50,7 +50,7 @@
                     </h:panelGrid>
                 </p:panel>
             </h:form>
-            
+            </h:body>
         </ui:define>
     </ui:composition>
 </html>

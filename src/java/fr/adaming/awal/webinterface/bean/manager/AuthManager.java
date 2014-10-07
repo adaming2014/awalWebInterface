@@ -29,6 +29,7 @@ public class AuthManager extends GenericManager {
     private IUser user;
     private static final String PAGE_INDEX = "index";
     private static final String PAGE_CLIENT = "client";
+    private static final String PAGE_ADMIN = "admin";
     private static final String PAGE_SIGNIN = "signin";
     private static final String PAGE_PWD = "lostpassword";
     private static final String PAGE_DISCONNECT = "disconnect";
@@ -87,7 +88,7 @@ public class AuthManager extends GenericManager {
             if (((Admin) admin).getUser().equals(userTmp)) {
                 // auth admin
                 this.setUser((Admin) admin);
-                return PAGE_INDEX;
+                return PAGE_ADMIN;
             }
         }
 

@@ -3,11 +3,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" >
     <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
         <ui:define name="content">
-            <h:form class="form-group" id="form" >
-                <p:panel header="Ajouter un forfait réparation" class="panel" > 
+            <h:body onload="initialiseAddPackage()">
+                <h:form class="form-group" id="form" >
+                
+                <p:panel header="Ajouter un forfait réparation" class="panel"> 
                     <h:panelGrid columns="2" columnClasses="label, value" class="panel-title" id="panelforfait">
                         
                         <h:outputText value = "Nom : *" style="color: #000"/>
@@ -21,7 +23,7 @@
 
 
                 
-                <p:panel header="Modéle applicable" class="panel"  > 
+                <p:panel header="Modéle applicable" class="panel" > 
                     
                     <p:selectOneRadio  onchange="azerty()" id="radiopack">
                         <f:selectItem itemLabel="Nouveau"  itemValue="Nouveau"   id="newpack"/>
@@ -52,8 +54,9 @@
                     </h:panelGrid>
                     
                </p:panel> 
+                    
             </h:form>
-            
+            </h:body>
         </ui:define>
     </ui:composition>
     

@@ -26,9 +26,7 @@
                     <p:password id="password" label="Mot de passe" required="true" value="#{userParameters.password}">
                     </p:password>
 
-                    <p:commandLink id="lostPassword" action="#{authManager.lostPWD()}">
-                        <h:outputText value="Mot de pase oublié ?" />
-                    </p:commandLink>
+                    <p:link id="lostPassword" outcome="lostpassword" value="Mot de pase oublié ?" />
 
                     <p:selectBooleanCheckbox itemLabel="Rester connecté"/>
 

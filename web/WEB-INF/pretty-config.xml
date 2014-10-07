@@ -1,33 +1,37 @@
-<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
-    
-    <url-mapping id="firmAdd"> 
-        <pattern value="/firm/add" /> 
+
+    <url-mapping id="firmAdd">
+        <pattern value="/firm/add" />
         <view-id value="/faces/firm/add.xhtml" />
     </url-mapping>
-    
-    <url-mapping id="firmUpdate"> 
-        <pattern value="/firm/update/#{/\\d+/ firmId : firmManager.firmId}" /> 
+
+    <url-mapping id="firmUpdate">
+        <pattern value="/firm/update/#{/\\d+/ firmId : firmManager.firmId}" />
         <view-id value="/faces/firm/update.xhtml" />
         <action onPostback="false">#{firmManager.reset}</action>
     </url-mapping>
-    
-    <url-mapping id="firmDelete"> 
-        <pattern value="/firm/delete/#{/\\d+/ firmId : firmManager.firmId}" /> 
+
+    <url-mapping id="firmDelete">
+        <pattern value="/firm/delete/#{/\\d+/ firmId : firmManager.firmId}" />
         <view-id value="/faces/firm/delete.xhtml" />
         <action onPostback="false">#{firmManager.reset}</action>
     </url-mapping>
-    
-    <url-mapping id="firmList"> 
-        <pattern value="/firm/list" /> 
+
+    <url-mapping id="firmList">
+        <pattern value="/firm/list" />
         <view-id value="/faces/firm/list.xhtml" />
     </url-mapping>
-     
-    <url-mapping id="authSignin"> 
-        <pattern value="/auth/signin" /> 
+
+    <url-mapping id="authSignin">
+        <pattern value="/auth/signin" />
         <view-id value="/faces/auth/signin.xhtml" />
     </url-mapping>
 
+    <url-mapping id="accountUpdate">
+        <pattern value="/account/update" />
+        <view-id value="#{router.getAccountUpdatePage}" />
+    </url-mapping>
 </pretty-config>

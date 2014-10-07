@@ -11,6 +11,7 @@ import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.Repairer;
 import fr.adaming.awal.entity.Reseller;
 import fr.adaming.awal.entity.User;
+import fr.adaming.awal.entity.interfaces.IUser;
 import fr.adaming.awal.webinterface.bean.form.UserParameters;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -32,6 +33,8 @@ public class LoginManager implements Serializable {
     private static final String PAGE_INDEX = "index";
     private static final String PAGE_SIGNIN = "signin";
     private static final String PAGE_PWD = "lostpassword";
+    private static final String PAGE_DISCONNECT = "disconnect";
+
     AuthManager authManager;
 
     ApplicationContext springContext;
@@ -44,63 +47,5 @@ public class LoginManager implements Serializable {
         springContext = new ClassPathXmlApplicationContext("spring-config.xml");
     }
 
-    public String login() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        UserParameters loginParameters = context.getApplication().evaluateExpressionGet(context, "#{userParameters}", UserParameters.class);
-
-        IUserController userController = (IUserController)springContext.getBean("userController");
-        if (userController == null) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Internal error", "Internal error"));
-            return null;
-        }
-
-        User user = userController.getByEmail(loginParameters.getEmail());
-        if (user == null) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Utilisateur inexistant", "Utilisateur inexistant"));
-            return null;
-        }
-
-        if (!user.getPassword().equals(loginParameters.getPassword())) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Mauvais mot de passe", "Mauvais mot de passe"));
-            return null;
-        }
-
-        for (Object client : user.getClients()) {
-            if (((Client) client).getUser().equals(user)) {
-                // auth client
-                return PAGE_INDEX;
-            }
-        }
-        for (Object repairer : user.getRepairers()) {
-            if (((Repairer) repairer).getUser().equals(user)) {
-                // auth repairer
-                return PAGE_INDEX;
-            }
-        }
-        for (Object reseller : user.getResellers()) {
-            if (((Reseller) reseller).getUser().equals(user)) {
-                // auth reseller
-                return PAGE_INDEX;
-            }
-        }
-        for (Object admin : user.getAdmins()) {
-            if (((Admin) admin).getUser().equals(user)) {
-                // auth admin
-                return PAGE_INDEX;
-            }
-        }
-        
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal error", "Fatal error"));
-        return null;
-                
-
-    }
-
-    public String signup() {
-        return PAGE_SIGNIN;
-    }
-
-    public String lostPWD() {
-        return PAGE_PWD;
-    }
+   
 }

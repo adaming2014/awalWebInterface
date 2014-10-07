@@ -18,7 +18,7 @@
                     <p:outputLabel>Se Connecter</p:outputLabel>
 
                     <p:outputLabel id="mailLabel" for="mail" value="Adresse Mail"/>
-                    <p:inputText id="mail" required="true" value="#{userParameters.email}"></p:inputText>
+                    <p:inputText id="mail" required="true" value="#{userParameters.email}" />
                     <p:message id="mailMessage" for="mail" />
 
                     <p:outputLabel id="passwordLabel" for="password" value="Mot de Passe"/>
@@ -26,24 +26,18 @@
                     <p:password id="password" label="Mot de passe" required="true" value="#{userParameters.password}">
                     </p:password>
 
-                    <p:commandLink id="lostPassword" action="#{loginManager.lostPWD()}">
+                    <p:commandLink id="lostPassword" action="#{authManager.lostPWD()}">
                         <h:outputText value="Mot de pase oublié ?" />
                     </p:commandLink>
 
                     <p:selectBooleanCheckbox itemLabel="Rester connecté"/>
 
-                    <p:commandButton value="Valider" action="#{loginManager.login()}" icon="/resources/images/ok48.png" update="@form" />
+                    <p:commandButton value="Se Connecter" action="#{authManager.login()}"  update="@form" />
 
                     <p:outputLabel>Nouveau Client sur Alpha ? </p:outputLabel>
                     <p:outputLabel>S'inscrire</p:outputLabel>
 
-                    <!--            <p:outputLabel id="mailLabelnew" for="mail" value="Adresse Mail"/>
-                                <p:inputText id="mailnew"  required="true" value="#{userParameters.email}" >
-                                    <f:validator validatorId="fr.adaming.awal.webinterface.validator.UniqueEmailValidator" />
-                                </p:inputText>
-                                <p:message id="mailMessageExiste" for="mail" />-->
-
-                    <p:button value="S'inscrire" outcome="index"/>
+                    <p:button value="S'inscrire" outcome="signin"/>
 
                     <p:graphicImage library="images" name="cadenas64.png"/>          
                     <p:outputLabel>Paiement sécurisé</p:outputLabel>

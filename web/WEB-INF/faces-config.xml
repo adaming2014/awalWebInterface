@@ -153,6 +153,21 @@
             <redirect />
         </navigation-case>
     </navigation-rule>   
-    
 
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>connect</from-outcome>
+            <to-view-id>/connection/connect.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>   
+    
+     <navigation-rule>
+        <navigation-case>
+            <from-outcome>welcome</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>   
+    
 </faces-config>

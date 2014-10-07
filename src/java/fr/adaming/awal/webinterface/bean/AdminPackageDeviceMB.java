@@ -7,8 +7,6 @@ package fr.adaming.awal.webinterface.bean;
 
 import fr.adaming.awal.controller.ModelController;
 import fr.adaming.awal.controller.ModelPackageController;
-import fr.adaming.awal.controller.interfaces.IModelController;
-import fr.adaming.awal.controller.interfaces.IModelPackageController;
 import fr.adaming.awal.entity.Modele;
 import fr.adaming.awal.entity.Modelpackage;
 import java.io.Serializable;
@@ -18,7 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.xhtmlrenderer.pdf.ITextRenderer;
+
 
 /**
  *

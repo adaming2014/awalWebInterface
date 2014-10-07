@@ -38,14 +38,13 @@ public class AdminChangePermission implements Serializable{
     private ClientController clientController;
     private User u;
     private String droitChoisi = "";
-    private List<User> users ;
-    private final List<String> listesDroits ;
+
     /**
      * Creates a new instance of AdminChangePermission
      */
     public AdminChangePermission() {
         
-        this.listesDroits = new ArrayList<>();
+        
         u = new User();
         context = new ClassPathXmlApplicationContext("spring-config.xml");
         userControlller = (UserController) context.getBean("userController");
@@ -61,9 +60,7 @@ public class AdminChangePermission implements Serializable{
 
 
   
-    public void testeur(){
-        System.out.println(droitChoisi);
-    }
+
     public User getU() {
         return u;
     }

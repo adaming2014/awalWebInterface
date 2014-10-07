@@ -7,21 +7,21 @@
 
     <body>
         <ui:composition>
-                    <h:form >
-
-                        <p:tabMenu activeIndex="#{param.i}">
-                            <p:menuitem value="Ajouter forfait réparation"  icon="ui-icon-star" outcome="addPackage">
-                                <f:param name="i" value="0"/>
-                            </p:menuitem>
-                            <p:menuitem value="Ajouter assurance"  icon="ui-icon-search" outcome="addInsurances" >
-                                <f:param name="i" value="1"/>
-                            </p:menuitem>
-                            <p:menuitem value="Changer droits"  icon="ui-icon-star"  outcome="changePermission">
-                                <f:param name="i" value="2"/>
-                            </p:menuitem>
-                            
-                        </p:tabMenu>
-                    </h:form> 
+            <h:form>
+                <p:commandButton id="dynaButton" value="Menu" type="button" icon="ui-icon-extlink" />
+                <p:tieredMenu overlay="true" trigger="dynaButton" my="left top" at="left bottom" style="width:200px">
+                <p:submenu label="Ajouter">
+                    <p:menuitem value="Forfait réparation" icon="ui-icon-disk" outcome="addPackages"/>
+                    <p:menuitem value="Forfait assurance"  icon="ui-icon-arrowrefresh-1-w" outcome="addInsurances" />
+                </p:submenu>
+                <p:submenu label="Permission">
+                    <p:menuitem value="Changer droits"   ajax="false" icon="ui-icon-close" outcome="changePermission"/>
+                </p:submenu>
+                <p:submenu label="Consultation">
+                    <p:menuitem value="Répareurs" outcome="getAllrepairers"/>
+                </p:submenu> 
+                </p:tieredMenu>
+            </h:form>
         </ui:composition>
     </body>
 </html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <br/><br/>
+                <p:dataTable value="#{adminChangePermission.allUsers}" var="users">
+                    <f:facet name="header">
+                        <p:outputLabel value="Test" />
+                        <p:column>
+                            
+                        </p:column>
+                    </f:facet>
+                
+                </p:dataTable>
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+</html>
+

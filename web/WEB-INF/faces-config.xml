@@ -12,7 +12,7 @@
     <navigation-rule>
         <from-view-id>/admin/admin.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>addPackage</from-outcome>
+            <from-outcome>addPackages</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
@@ -22,12 +22,16 @@
         <navigation-case>
             <from-outcome>changePermission</from-outcome>
             <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>getAllrepairers</from-outcome>
+            <to-view-id>/admin/Adminrepairer.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/admin/adminAddPackage.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>addPackage</from-outcome>
+            <from-outcome>addPackages</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
@@ -37,6 +41,10 @@
         <navigation-case>
             <from-outcome>changePermission</from-outcome>
             <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>getAllrepairers</from-outcome>
+            <to-view-id>/admin/Adminrepairer.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -119,7 +127,7 @@
     <navigation-rule>
         <from-view-id>/admin/AdminaddInsurance.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>addPackage</from-outcome>
+            <from-outcome>addPackages</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
@@ -129,6 +137,10 @@
         <navigation-case>
             <from-outcome>changePermission</from-outcome>
             <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>getAllrepairers</from-outcome>
+            <to-view-id>/admin/Adminrepairer.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -138,12 +150,16 @@
             <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>addPackage</from-outcome>
+            <from-outcome>addPackages</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>changePermission</from-outcome>
             <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>getAllrepairers</from-outcome>
+            <to-view-id>/admin/Adminrepairer.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
@@ -165,6 +181,7 @@
             <to-view-id>/connection/lostPWD.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+
     </navigation-rule>   
 
     <navigation-rule>
@@ -183,4 +200,26 @@
         </navigation-case>
     </navigation-rule>   
     
+
+    
+    <navigation-rule>
+        <from-view-id>/admin/Adminrepairer.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addPackages</from-outcome>
+            <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addInsurances</from-outcome>
+            <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>changePermission</from-outcome>
+            <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>getAllrepairers</from-outcome>
+            <to-view-id>/admin/Adminrepairer.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>

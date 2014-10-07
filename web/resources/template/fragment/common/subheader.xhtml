@@ -23,13 +23,6 @@
                         
                         <h:form class="navbar-form navbar-right">
                                                    
-<!--                        <c:if test="${authManager.logged}">
-                            <c:choose>-->
-                                <!--<c:when test="${authManager.logged}">-->
-
-                                <!--</c:when>-->
-                                
-                                <!--<c:otherwise>-->
                                   <div class="form-group">
                                 <p:inputText placeholder="Email" value="#{userParameters.email}"/>
                             </div>
@@ -39,11 +32,6 @@
                             <!--<button class="btn btn-success" type="submit" >Sign in</button>-->
                             <p:commandButton value="Sign in" action="#{authManager.login()}" update="@form" />
                             
-<!--                                </c:otherwise>
-                            </c:choose>
-                        </c:if>-->
-
-                        <!--</c:if>-->
                         </h:form>
                    
                     </div><!--/.nav-collapse -->

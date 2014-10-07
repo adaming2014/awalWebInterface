@@ -6,7 +6,12 @@
         <ui:define name="content">
             <c:choose>
                 <c:when test="#{not authManager.auth}" >
-                    <ui:include src="../resources/template/fragment/form/userForm.xhtml" />
+                    <div class="panel panel-primary" style="margin: 1em;">
+                        <div class="panel-heading">Create account</div>
+                        <div class="panel-body">
+                            <ui:include src="../resources/template/fragment/form/signinForm.xhtml" />
+                        </div>
+                    </div>
                 </c:when>
                 <c:otherwise>
                     Already logged!

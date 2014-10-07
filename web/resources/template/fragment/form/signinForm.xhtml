@@ -8,9 +8,9 @@
             <h:form>
                 <p:messages globalOnly="true" />
 
-                <p:panelGrid columns="3">
+                <h:panelGrid columns="3">
                     <ui:include src="field/fieldsUser.xhtml" />
-                </p:panelGrid>
+                </h:panelGrid>
 
                 <p:commandButton value="Signin" action="#{userManager.signin}" update="@form" />
                 <p:commandButton value="Reset" update="@form" process="@this" >

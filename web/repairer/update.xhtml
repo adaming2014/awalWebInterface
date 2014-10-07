@@ -5,7 +5,7 @@
     <ui:composition template="../resources/template/layout/commonLayout.xhtml">
         <ui:define name="content">
             <c:choose>
-                <c:when test="#{true or authManager.auth and authManager.repairer}" >
+                <c:when test="#{authManager.auth and authManager.repairer}" >
                     <ui:include src="../resources/template/fragment/form/repairerUpdateForm.xhtml" />
                 </c:when>
                 <c:otherwise>

@@ -23,6 +23,11 @@
     <url-mapping id="firmList"> 
         <pattern value="/firm/list" /> 
         <view-id value="/faces/firm/list.xhtml" />
-    </url-mapping> 
+    </url-mapping>
+     
+    <url-mapping id="authSignin"> 
+        <pattern value="/auth/signin" /> 
+        <view-id value="/faces/auth/signin.xhtml" />
+    </url-mapping>
 
 </pretty-config>

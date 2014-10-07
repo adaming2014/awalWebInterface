@@ -8,7 +8,16 @@
         <ui:composition template="../resources/template/layout/commonLayout.xhtml">
             <ui:define name="title">Client</ui:define>
             <ui:define name="header">
-                <ui:include src="../resources/template/fragment/common/subheaderdisconnect.xhtml" />
+                <div>
+                    <div>
+                        <ui:include src="../resources/template/fragment/common/subheaderdisconnect.xhtml" />
+                        <br/><br/><br/>
+                    </div>
+                    <div>
+                        <ui:include src="../resources/template/fragment/common/menuheader.xhtml"/> 
+                    </div>
+                </div>
+
             </ui:define>
             <ui:define name="content">
                 <ui:include src="../resources/template/fragment/form/clientForm.xhtml" />

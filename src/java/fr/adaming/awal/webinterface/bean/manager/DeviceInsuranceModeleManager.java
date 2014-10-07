@@ -7,6 +7,7 @@ package fr.adaming.awal.webinterface.bean.manager;
 
 import fr.adaming.awal.controller.interfaces.IDeviceController;
 import fr.adaming.awal.controller.interfaces.IDeviceinsurancemodelController;
+import fr.adaming.awal.entity.Device;
 import fr.adaming.awal.entity.Deviceinsurancemodel;
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +26,7 @@ public class DeviceInsuranceModeleManager implements Serializable{
 
     ApplicationContext springContext;
     private int iddevice;
+    private Device device;
     /**
      * Creates a new instance of DeviceInsuranceModeleManager
      */
@@ -45,5 +47,14 @@ public class DeviceInsuranceModeleManager implements Serializable{
     public String setIddevice(int iddevice) {
         this.iddevice = iddevice;
         return "addInsurance";
+    }
+
+    public Device getDevice() {
+        IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
+        return deviceController.getById(iddevice);
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
     }
 }

@@ -6,6 +6,7 @@
 package fr.adaming.awal.webinterface.bean.manager;
 
 import fr.adaming.awal.controller.interfaces.IDeviceInsuranceController;
+import fr.adaming.awal.entity.Device;
 import fr.adaming.awal.entity.Deviceinsurance;
 import java.io.Serializable;
 import java.util.Date;
@@ -26,12 +27,15 @@ public class DeviceInsuranceManager implements Serializable{
     ApplicationContext springContext;
     private Deviceinsurance deviceinsurance;
     private Date beginDate;
+    private Device device;
+    private String description;
     /**
      * Creates a new instance of deviceInsuranceManager
      */
     public DeviceInsuranceManager() {
         springContext = new ClassPathXmlApplicationContext("spring-config.xml");
         deviceinsurance = new Deviceinsurance();
+        device = new Device();
     }
     
     public List<Deviceinsurance> getAll(){
@@ -40,7 +44,13 @@ public class DeviceInsuranceManager implements Serializable{
     }
     
     public String add(){
-        return null;
+        IDeviceInsuranceController deviceInsuranceController = (IDeviceInsuranceController) springContext.getBean("deviceInsuranceController");
+        deviceinsurance.setBeginDate(beginDate);
+        deviceinsurance.setDescription(description);
+        if(!deviceInsuranceController.create(deviceinsurance)){
+            return null;
+        }
+        return "addDeviceInsurance";
     }
 
     public Deviceinsurance getDeviceinsurance() {
@@ -57,6 +67,22 @@ public class DeviceInsuranceManager implements Serializable{
 
     public void setBeginDate(Date beginDate) {
         this.beginDate = beginDate;
+    }
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
 }

@@ -40,6 +40,11 @@ public class DeviceInsuranceModeleManager implements Serializable{
         return controller.getDeviceInsuranceModelsByModel(deviceController.getById(iddevice).getModele());
     }
     
+    public Deviceinsurancemodel getById(int id){
+        IDeviceinsurancemodelController controller = (IDeviceinsurancemodelController) springContext.getBean("deviceInsuranceModelController");
+        return controller.getById(id);
+    }
+    
     public int getIddevice() {
         return iddevice;
     }

@@ -5,6 +5,7 @@
  */
 package fr.adaming.awal.webinterface.bean.manager;
 
+import fr.adaming.awal.controller.interfaces.IClientController;
 import fr.adaming.awal.controller.interfaces.IDeviceRepairController;
 import fr.adaming.awal.controller.interfaces.IRepairerController;
 import fr.adaming.awal.entity.Device;
@@ -48,6 +49,7 @@ public class DeviceRepairManager implements Serializable {
         Repairer repairer = null;
         IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
         IRepairerController repairerController = (IRepairerController) springContext.getBean("repairerController");
+        IClientController clientController = (IClientController) springContext.getBean("clientController");
         for (Devicerepair devicerepair : deviceController.getAll()) {
             if ((devicerepair.getDevice().getIdDevice().equals(device.getIdDevice())) && (devicerepair.getModelpackage().equals(modelPackage))) {
                 return "addDeviceRepair";
@@ -56,7 +58,7 @@ public class DeviceRepairManager implements Serializable {
         for (Repairer repairer1 : repairerController.getAll()) {
 
             if (repairer1.getAvailable().equals(RepairerUtil.AVAILABLE)) {
-                if (repairer1.getFirm().getAddress().getPostcode().equals(authManager.getClient().getAddress().getPostcode())) {
+                if (repairer1.getFirm().getAddress().getPostcode().equals(clientController.getById(authManager.getClientId()).getAddress().getPostcode())) {
                     repairer = repairer1;
 
                 }
@@ -77,9 +79,10 @@ public class DeviceRepairManager implements Serializable {
 
     public List<Devicerepair> getDevicesRepairByClient() {
         FacesContext context = FacesContext.getCurrentInstance();
+        IClientController clientController = (IClientController) springContext.getBean("clientController");
         AuthManager authManager = context.getApplication().evaluateExpressionGet(context, "#{authManager}", AuthManager.class);
         IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
-        return deviceController.getDevicesRepairByClient(authManager.getClient());
+        return deviceController.getDevicesRepairByClient(clientController.getById(authManager.getClientId()));
     }
 
     public Modelpackage getModelPackage() {

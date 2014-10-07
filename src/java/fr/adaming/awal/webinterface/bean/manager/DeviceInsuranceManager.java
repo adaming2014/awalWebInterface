@@ -21,7 +21,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @ManagedBean
 @SessionScoped
-public class deviceInsuranceManager implements Serializable{
+public class DeviceInsuranceManager implements Serializable{
 
     ApplicationContext springContext;
     private Deviceinsurance deviceinsurance;
@@ -29,7 +29,7 @@ public class deviceInsuranceManager implements Serializable{
     /**
      * Creates a new instance of deviceInsuranceManager
      */
-    public deviceInsuranceManager() {
+    public DeviceInsuranceManager() {
         springContext = new ClassPathXmlApplicationContext("spring-config.xml");
         deviceinsurance = new Deviceinsurance();
     }

@@ -5,10 +5,9 @@
  */
 package fr.adaming.awal.webinterface.bean.manager;
 
-import fr.adaming.awal.controller.ClientController;
+import fr.adaming.awal.controller.interfaces.IClientController;
 import fr.adaming.awal.controller.interfaces.IDeviceController;
 import fr.adaming.awal.controller.interfaces.IModelController;
-import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.Device;
 import fr.adaming.awal.entity.Modele;
 import fr.adaming.awal.webinterface.bean.form.DeviceParameters;
@@ -44,9 +43,9 @@ public class DeviceManager implements Serializable {
         DeviceParameters deviceParameters = context.getApplication().evaluateExpressionGet(context, "#{deviceParameters}", DeviceParameters.class);
         AuthManager authManager = context.getApplication().evaluateExpressionGet(context, "#{authManager}", AuthManager.class);
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
-
+        IClientController clientController = (IClientController) springContext.getBean("clientController");
         device.setDescription(deviceParameters.getDescription());
-        device.setClient(authManager.getClient());
+        device.setClient(clientController.getById(authManager.getClientId()));
         if (!deviceController.create(device)) {
             System.out.println("error to create device");
             return null;
@@ -87,8 +86,11 @@ public class DeviceManager implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         AuthManager authManager = context.getApplication().evaluateExpressionGet(context, "#{authManager}", AuthManager.class);
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
-        List<Device> devices = deviceController.getDevicesByClient(authManager.getClient());
-        return devices;
+        IClientController clientController = (IClientController) springContext.getBean("clientController");
+        
+        List<Device> devices = deviceController.getDevicesByClient(clientController.getById(authManager.getClientId()));
+        System.out.println("size : "+devices.size()); 
+       return devices;
     }
 
     public List<Device> getAll() {

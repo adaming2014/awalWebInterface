@@ -31,9 +31,8 @@ public class AuthManager extends GenericManager {
     private static final String PAGE_SIGNIN = "signin";
     private static final String PAGE_PWD = "lostpassword";
     private static final String PAGE_DISCONNECT = "disconnect";
-    private boolean logged = false;
 
-     /**
+    /**
      * Creates a new instance of AuthManager
      */
     public AuthManager() {
@@ -48,24 +47,26 @@ public class AuthManager extends GenericManager {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Internal error", "Internal error"));
             return null;
         }
+
         User userTmp = userController.getByEmail(loginParameters.getEmail());
         if (userTmp == null) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Utilisateur inexistant", "Utilisateur inexistant"));
             return null;
         }
-                       
+
         if (!userTmp.getPassword().equals(loginParameters.getPassword())) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Mauvais mot de passe", "Mauvais mot de passe"));
             return null;
         }
+
         for (Object client : userTmp.getClients()) {
             if (((Client) client).getUser().equals(userTmp)) {
                 // auth client
                 this.setUser((Client) client);
-                logged=true;
                 return PAGE_INDEX;
             }
         }
+
         for (Object repairer : userTmp.getRepairers()) {
             if (((Repairer) repairer).getUser().equals(userTmp)) {
                 // auth repairer
@@ -73,6 +74,7 @@ public class AuthManager extends GenericManager {
                 return PAGE_INDEX;
             }
         }
+
         for (Object reseller : userTmp.getResellers()) {
             if (((Reseller) reseller).getUser().equals(userTmp)) {
                 // auth reseller
@@ -94,24 +96,13 @@ public class AuthManager extends GenericManager {
     }
 
     public String disconnect() {
-        logged=false;
-        return PAGE_DISCONNECT;
-    }
+        setUser(null);
 
-    public String signup() {
-        return PAGE_SIGNIN;
+        return PAGE_DISCONNECT;
     }
 
     public String lostPWD() {
         return PAGE_PWD;
-    }
-
-    public boolean isLogged() {
-        return logged;
-    }
-
-    public void setLogged(boolean logged) {
-        this.logged = logged;
     }
 
     public boolean isAuth() {

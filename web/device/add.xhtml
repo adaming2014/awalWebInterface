@@ -3,7 +3,15 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="../resources/template/layout/commonLayout.xhtml">
         <ui:define name="header">
-            <ui:include src="../resources/template/fragment/common/subheaderdisconnect.xhtml" />
+            <div>
+                <div>
+                    <ui:include src="../resources/template/fragment/common/subheaderdisconnect.xhtml" />
+                    <br/><br/><br/>
+                </div>
+                <div>
+                    <ui:include src="../resources/template/fragment/common/menuclient.xhtml"/> 
+                </div>
+            </div>
         </ui:define>
         <ui:define name="content">
             <ui:include src="../resources/template/fragment/form/deviceForm.xhtml" />

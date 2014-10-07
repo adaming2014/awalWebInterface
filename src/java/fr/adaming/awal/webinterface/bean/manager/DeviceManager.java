@@ -42,11 +42,11 @@ public class DeviceManager implements Serializable {
     public String add() {
         FacesContext context = FacesContext.getCurrentInstance();
         DeviceParameters deviceParameters = context.getApplication().evaluateExpressionGet(context, "#{deviceParameters}", DeviceParameters.class);
+        AuthManager authManager = context.getApplication().evaluateExpressionGet(context, "#{authManager}", AuthManager.class);
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
-        ClientController clientController = (ClientController) springContext.getBean("clientController");
 
         device.setDescription(deviceParameters.getDescription());
-        device.setClient(clientController.getClientByMail("bian.loic@gmail.com"));
+        device.setClient(authManager.getClient());
         if (!deviceController.create(device)) {
             System.out.println("error to create device");
             return null;
@@ -84,11 +84,10 @@ public class DeviceManager implements Serializable {
     }
 
     public List<Device> getDevicesByClient() {
-        ClientController clientController = (ClientController) springContext.getBean("clientController");
+        FacesContext context = FacesContext.getCurrentInstance();
+        AuthManager authManager = context.getApplication().evaluateExpressionGet(context, "#{authManager}", AuthManager.class);
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
-
-        Client client = clientController.getClientByMail("bian.loic@gmail.com");
-        List<Device> devices = deviceController.getDevicesByClient(client);
+        List<Device> devices = deviceController.getDevicesByClient(authManager.getClient());
         return devices;
     }
 
@@ -100,17 +99,17 @@ public class DeviceManager implements Serializable {
     public Device getDevice() {
         return device;
     }
-    
+
     public void setDevice(Device device) {
         this.device = device;
     }
-    
-    public void delete(int id){
+
+    public void delete(int id) {
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
         deviceController.delete(id);
     }
 
-    public Device getById(int id){
+    public Device getById(int id) {
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
         return deviceController.getById(id);
     }

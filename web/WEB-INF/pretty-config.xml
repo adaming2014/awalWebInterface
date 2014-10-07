@@ -11,6 +11,18 @@
     <url-mapping id="firmUpdate"> 
         <pattern value="/firm/update/#{/\\d+/ firmId : firmManager.firmId}" /> 
         <view-id value="/faces/firm/update.xhtml" />
+        <action onPostback="false">#{firmManager.reset}</action>
+    </url-mapping>
+    
+    <url-mapping id="firmDelete"> 
+        <pattern value="/firm/delete/#{/\\d+/ firmId : firmManager.firmId}" /> 
+        <view-id value="/faces/firm/delete.xhtml" />
+        <action onPostback="false">#{firmManager.reset}</action>
+    </url-mapping>
+    
+    <url-mapping id="firmList"> 
+        <pattern value="/firm/list" /> 
+        <view-id value="/faces/firm/list.xhtml" />
     </url-mapping> 
 
 </pretty-config>

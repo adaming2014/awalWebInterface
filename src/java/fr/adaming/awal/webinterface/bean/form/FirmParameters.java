@@ -8,6 +8,7 @@ package fr.adaming.awal.webinterface.bean.form;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -17,10 +18,11 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class FirmParameters {
 
+    private int id;
     private String name;
     private String phone;
-    private String logo;
-    private String theme;
+    private UploadedFile logo;
+    private UploadedFile theme;
 
     @ManagedProperty("#{addressParameters}")
     private AddressParameters address;
@@ -29,6 +31,14 @@ public class FirmParameters {
      * Creates a new instance of FirmParameters
      */
     public FirmParameters() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -47,19 +57,19 @@ public class FirmParameters {
         this.phone = phone;
     }
 
-    public String getLogo() {
+    public UploadedFile getLogo() {
         return logo;
     }
 
-    public void setLogo(String logo) {
+    public void setLogo(UploadedFile logo) {
         this.logo = logo;
     }
 
-    public String getTheme() {
+    public UploadedFile getTheme() {
         return theme;
     }
 
-    public void setTheme(String theme) {
+    public void setTheme(UploadedFile theme) {
         this.theme = theme;
     }
 

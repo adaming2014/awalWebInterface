@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <body>
+        <ui:composition>
+            <h:form>
+                <p:messages globalOnly="true"></p:messages>
+
+                <h:panelGrid columns="2" columnClasses="logo,detail">
+                    <p:graphicImage library="images" name="logo/#{firmParameters.id}/logo.png"/> 
+
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Name :" />
+                            <h:outputText value="#{firmParameters.name}" style="font-weight: bold"/>
+
+                            <h:outputText value="Phone :" />
+                            <h:outputText value="#{firmParameters.phone}" style="font-weight: bold"/>
+
+                            <c:if test="#{firmParameters.address != null}" >
+                                <h:outputText value="City :" />
+                                <h:outputText value="#{firmParameters.address.city}" style="font-weight: bold"/>
+
+                                <h:outputText value="Street :" />
+                                <h:outputText value="#{firmParameters.address.street}" style="font-weight: bold"/>
+
+                                <h:outputText value="Postcode :" />
+                                <h:outputText value="#{firmParameters.address.postcode}" style="font-weight: bold"/>
+                            </c:if>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+
+                <p:commandButton value="Delete" action="#{firmManager.delete}" update="@form" />
+                <p:button value="Cancel" outcome="pretty:firmList" />
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

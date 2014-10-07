@@ -2,19 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <body>
         <ui:composition>
-            #{firmManager.reset()}
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <p:messages globalOnly="true"></p:messages>
+                
+                <c:if test="#{request.method.equals('GET')}" >
+                    #{firmManager.reset()}
+                </c:if>
 
                 <p:panelGrid columns="3">
                     <ui:include src="field/fieldsFirm.xhtml" />
                 </p:panelGrid>
 
-                <p:commandButton value="Update" action="#{firmManager.update}" update="@form" />
+                <p:commandButton value="Update" action="#{firmManager.update}" ajax="false" >
+                    <f:param name="id" value="#{param.id}" />
+                </p:commandButton>
                 <p:commandButton value="Reset" action="#{firmManager.reset}" process="@this" update="@form">
+                    <f:param name="id" value="#{param.id}" />
                     <p:resetInput target="@form" />
                 </p:commandButton>
             </h:form>

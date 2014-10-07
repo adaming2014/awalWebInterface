@@ -11,6 +11,7 @@ import fr.adaming.awal.entity.Firm;
 import fr.adaming.awal.webinterface.bean.form.AddressParameters;
 import fr.adaming.awal.webinterface.bean.form.FirmParameters;
 import fr.adaming.awal.webinterface.util.FacesMessageUtil;
+import fr.adaming.awal.webinterface.util.FileUtil;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.faces.bean.ManagedBean;
@@ -26,17 +27,23 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class FirmManager extends GenericManager {
 
-    private static final String PAGE_INDEX_REDIRECT = "index_redirect";
+    private static final String INIT_PARAM_PATH_IMAGE = "path_image";
+    private static final String INIT_PARAM_PATH_CSS = "path_css";
+
+    private static final String PAGE_FIRM_LIST_REDIRECT = "firm_list_redirect";
 
     @ManagedProperty("#{authManager}")
     private AuthManager authManager;
 
-    private int firmId;
+    private final String image_path;
+    private final String css_path;
 
     /**
      * Creates a new instance of SigninManager
      */
     public FirmManager() {
+        image_path = FacesContext.getCurrentInstance().getExternalContext().getRealPath(FacesContext.getCurrentInstance().getExternalContext().getInitParameter(INIT_PARAM_PATH_IMAGE));
+        css_path = FacesContext.getCurrentInstance().getExternalContext().getRealPath(FacesContext.getCurrentInstance().getExternalContext().getInitParameter(INIT_PARAM_PATH_CSS));
     }
 
     public String add() {
@@ -54,15 +61,23 @@ public class FirmManager extends GenericManager {
         firm.setName(parameters.getName());
         firm.setAddress(address);
         firm.setPhone(parameters.getPhone());
-        firm.setLogoPath(parameters.getLogo());
-        firm.setCssPath(parameters.getTheme());
+        firm.setLogoPath(parameters.getLogo().getFileName());
+        firm.setCssPath(parameters.getTheme().getFileName());
 
         if (!controller.create(firm)) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
             return null;
         }
 
-        return PAGE_INDEX_REDIRECT;
+        if (parameters.getLogo().getSize() > 0) {
+            FileUtil.saveFile(firm.getId(), image_path, parameters.getLogo(), "logo.png");
+        }
+
+        if (parameters.getTheme().getSize() > 0) {
+            FileUtil.saveFile(firm.getId(), css_path, parameters.getTheme(), "theme.css");
+        }
+
+        return PAGE_FIRM_LIST_REDIRECT;
     }
 
     public void update() {
@@ -71,6 +86,20 @@ public class FirmManager extends GenericManager {
         AddressParameters parametersAddress = parameters.getAddress();
 
         IFirmController controller = (IFirmController) springContext.getBean("firmController");
+
+        String firmIdParam = context.getExternalContext().getRequestParameterMap().get("id");
+        if (firmIdParam == null) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
+            return;
+        }
+
+        int firmId;
+        try {
+            firmId = Integer.parseInt(firmIdParam);
+        } catch (NumberFormatException ex) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
+            return;
+        }
 
         Firm firm = controller.getById(firmId);
         if (firm == null) {
@@ -91,8 +120,8 @@ public class FirmManager extends GenericManager {
         firm.setAddress(firmAddress);
         firm.setName(parameters.getName());
         firm.setPhone(parameters.getPhone());
-        firm.setCssPath(parameters.getTheme());
-        firm.setLogoPath(parameters.getLogo());
+        firm.setCssPath(parameters.getTheme().getFileName());
+        firm.setLogoPath(parameters.getLogo().getFileName());
 
         // Persist
         if (!controller.update(firm)) {
@@ -109,15 +138,29 @@ public class FirmManager extends GenericManager {
 
         IFirmController controller = (IFirmController) springContext.getBean("firmController");
 
+        String firmIdParam = context.getExternalContext().getRequestParameterMap().get("id");
+        System.out.println("PARAM : " + firmIdParam);
+        if (firmIdParam == null) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
+            return;
+        }
+
+        int firmId;
+        try {
+            firmId = Integer.parseInt(firmIdParam);
+        } catch (NumberFormatException ex) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
+            return;
+        }
+
         Firm firm = controller.getById(firmId);
         if (firm == null) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_FIRM_NOT_FOUND);
             return;
         }
 
+        parameters.setId(firm.getId());
         parameters.setName(firm.getName());
-        parameters.setLogo(firm.getLogoPath());
-        parameters.setTheme(firm.getCssPath());
         parameters.setPhone(firm.getPhone());
 
         Address firmAddress = firm.getAddress();
@@ -127,6 +170,10 @@ public class FirmManager extends GenericManager {
             parameters.getAddress().setStreet(firmAddress.getStreet());
             parameters.getAddress().setPostcode(firmAddress.getPostcode());
         }
+    }
+
+    public void delete() {
+//        System.out.println(String.valueOf(firmId));
     }
 
     public List<Firm> getAll(String firmName) {
@@ -149,14 +196,6 @@ public class FirmManager extends GenericManager {
 
     public void setAuthManager(AuthManager authManager) {
         this.authManager = authManager;
-    }
-
-    public int getFirmId() {
-        return firmId;
-    }
-
-    public void setFirmId(int firmId) {
-        this.firmId = firmId;
     }
 
 }

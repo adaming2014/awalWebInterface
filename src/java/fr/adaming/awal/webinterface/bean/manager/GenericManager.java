@@ -20,7 +20,7 @@ public class GenericManager implements Serializable {
     protected ApplicationContext springContext;
 
     @PostConstruct
-    private void init() {
+    protected void init() {
         springContext = new ClassPathXmlApplicationContext("spring-config.xml");
     }
 

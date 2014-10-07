@@ -15,11 +15,11 @@
             <p:message id="firmPhoneMessage" for="firmPhone" />
 
             <p:outputLabel id="firmLogoLabel" for="firmLogo" value="Logo :" />
-            <p:inputText id="firmLogo" value="#{firmParameters.logo}" />
+            <p:fileUpload id="firmLogo" value="#{firmParameters.logo}" mode="simple" />
             <p:message id="firmLogoMessage" for="firmLogo" />
 
             <p:outputLabel id="firmThemeLabel" for="firmTheme" value="Theme :" />
-            <p:inputText id="firmTheme" value="#{firmParameters.theme}" />
+            <p:fileUpload id="firmTheme" value="#{firmParameters.theme}" mode="simple" />
             <p:message id="firmThemeMessage" for="firmTheme" />
         </ui:composition>
     </body>

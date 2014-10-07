@@ -127,6 +127,11 @@
             <to-view-id>/device/pdf/pdf.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>disconnect</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule>        
 
     <navigation-rule>

@@ -2,7 +2,7 @@
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
-
+    <!--FIRM-->
     <url-mapping id="firmAdd">
         <pattern value="/firm/add" />
         <view-id value="/faces/firm/add.xhtml" />
@@ -25,11 +25,13 @@
         <view-id value="/faces/firm/list.xhtml" />
     </url-mapping>
 
+    <!--AUTHENTIFICATION-->
     <url-mapping id="authSignin">
         <pattern value="/auth/signin" />
         <view-id value="/faces/auth/signin.xhtml" />
     </url-mapping>
 
+    <!--ACCOUNT-->
     <url-mapping id="accountUpdate">
         <pattern value="/account/update" />
         <view-id value="#{router.getAccountUpdatePage}" />

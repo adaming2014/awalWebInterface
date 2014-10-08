@@ -17,7 +17,17 @@
                         </button>
 
                         <h:link outcome="welcome">
-                            <p:graphicImage library="images/logo/" name="bgLogo.png" />
+                            <c:choose>
+                                <c:when test="#{authManager.repairer}" >
+                                    <h:outputStylesheet library="images/logo/" name="#{authManager.userRepairer.firm.id}/logo.css" />
+                                </c:when>
+                                <c:when test="#{authManager.reseller}" >
+                                    <h:outputStylesheet library="images/logo/" name="#{authManager.userReseller.firm.id}/logo.css" />
+                                </c:when>
+                                <c:otherwise>
+                                    <p:graphicImage library="images/logo/" name="bgLogo.png" />
+                                </c:otherwise>
+                            </c:choose>
                         </h:link>
                         <a href="/awalWebInterface/faces/index.xhtml" class="navbar-brand">SAV</a>
 

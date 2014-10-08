@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <body>
         <ui:composition>
             <h:outputStylesheet library="css" name="common.css" />
+            <c:if test="#{authManager.repairer}" >
+                <h:outputStylesheet library="css" name="#{authManager.userRepairer.firm.id}/theme.css" />
+            </c:if>
+            <c:if test="#{authManager.reseller}" >
+                <h:outputStylesheet library="css" name="#{authManager.userReseller.firm.id}/theme.css" />
+            </c:if>
         </ui:composition>
     </body>
 </html>

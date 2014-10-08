@@ -42,6 +42,13 @@
                 </f:facet>
                 <h:outputText value="#{deviceInsurance.deviceinsurancemodel.duration} month"/>
             </p:column> 
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Insurance"/>
+                </f:facet>
+                <p:commandButton value="pdf"/>
+            </p:column> 
         </p:dataTable>
     </h:body>
 </html>

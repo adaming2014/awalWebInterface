@@ -12,14 +12,12 @@ import fr.adaming.awal.entity.Device;
 import fr.adaming.awal.entity.Modele;
 import fr.adaming.awal.webinterface.bean.form.DeviceParameters;
 import fr.adaming.awal.webinterface.bean.form.ModelParameters;
+import fr.adaming.awal.webinterface.util.FacesMessageUtil;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -27,37 +25,37 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @ManagedBean
 @SessionScoped
-public class DeviceManager implements Serializable {
+public class DeviceManager extends GenericManager implements Serializable {
 
-    ApplicationContext springContext;
     private Device device;
 
-    @PostConstruct
-    public void init() {
-        springContext = new ClassPathXmlApplicationContext("spring-config.xml");
+    public DeviceManager() {
         device = new Device();
     }
 
     public String add() {
         FacesContext context = FacesContext.getCurrentInstance();
-        DeviceParameters deviceParameters = context.getApplication().evaluateExpressionGet(context, "#{deviceParameters}", DeviceParameters.class);
-        AuthManager authManager = context.getApplication().evaluateExpressionGet(context, "#{authManager}", AuthManager.class);
+        DeviceParameters deviceParameters = getManagedBean(context, "deviceParameters", DeviceParameters.class);
+        AuthManager authManager = getManagedBean(context, "authManager", AuthManager.class);
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
         IClientController clientController = (IClientController) springContext.getBean("clientController");
         device.setDescription(deviceParameters.getDescription());
         device.setClient(clientController.getById(authManager.getClientId()));
         if (!deviceController.create(device)) {
-            System.out.println("error to create device");
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DEVICE_NOT_CREATE);
             return null;
+        }else{
+            context.addMessage(null, FacesMessageUtil.INFO_DEVICE_CREATE);
         }
+        System.out.println("add size : " + deviceController.getAll().size());
         return "add";
     }
 
     public String addother() {
         FacesContext context = FacesContext.getCurrentInstance();
-        DeviceParameters deviceParameters = context.getApplication().evaluateExpressionGet(context, "#{deviceParameters}", DeviceParameters.class);
+        DeviceParameters deviceParameters = getManagedBean(context, "deviceParameters", DeviceParameters.class);
+        ModelParameters modelParameters = getManagedBean(context, "modelParameters", ModelParameters.class);
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
-        ModelParameters modelParameters = context.getApplication().evaluateExpressionGet(context, "#{modelParameters}", ModelParameters.class);
         IModelController modelController = (IModelController) springContext.getBean("modelController");
 
         Modele modele = new Modele();
@@ -69,14 +67,14 @@ public class DeviceManager implements Serializable {
                 modele.setWeigth(Double.parseDouble(modelParameters.getWeigth()));
                 modele.setType(modelParameters.getType());
                 if (!modelController.create(modele)) {
-                    System.out.println("error to create modele");
+                    context.addMessage(null, FacesMessageUtil.MESSAGE_MODEL_NOT_CREATE);
                     return null;
                 }
             }
         }
         device.setDescription(deviceParameters.getDescription());
         if (!deviceController.create(device)) {
-            System.out.println("error to create device");
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DEVICE_NOT_CREATE);
             return null;
         }
         return "addother";
@@ -84,18 +82,29 @@ public class DeviceManager implements Serializable {
 
     public List<Device> getDevicesByClient() {
         FacesContext context = FacesContext.getCurrentInstance();
-        AuthManager authManager = context.getApplication().evaluateExpressionGet(context, "#{authManager}", AuthManager.class);
+        AuthManager authManager = getManagedBean(context, "authManager", AuthManager.class);
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
         IClientController clientController = (IClientController) springContext.getBean("clientController");
-        
         List<Device> devices = deviceController.getDevicesByClient(clientController.getById(authManager.getClientId()));
-        System.out.println("size : "+devices.size()); 
-       return devices;
+        deviceController.getDevicesByClient(clientController.getById(authManager.getClientId()));
+        return devices;
     }
 
     public List<Device> getAll() {
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
         return deviceController.getAll();
+    }
+
+    public void delete(int id) {
+        IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
+        if (!deviceController.delete(id)) {
+            System.out.println("error to delete device");
+        }
+    }
+
+    public Device getById(int id) {
+        IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
+        return deviceController.getById(id);
     }
 
     public Device getDevice() {
@@ -104,15 +113,5 @@ public class DeviceManager implements Serializable {
 
     public void setDevice(Device device) {
         this.device = device;
-    }
-
-    public void delete(int id) {
-        IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
-        deviceController.delete(id);
-    }
-
-    public Device getById(int id) {
-        IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
-        return deviceController.getById(id);
     }
 }

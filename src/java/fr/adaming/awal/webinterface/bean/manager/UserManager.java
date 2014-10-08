@@ -26,11 +26,17 @@ public class UserManager extends GenericManager {
     private static final String PAGE_INDEX_REDIRECT = "index_redirect";
 
     @ManagedProperty("#{authManager}")
-    AuthManager authManager;
+    private AuthManager authManager;
+
+    @ManagedProperty("#{clientManager}")
+    private ClientManager clientManager;
+
+    @ManagedProperty("#{repairerManager}")
+    private RepairerManager repairerManager;
 
     public String signin() {
         FacesContext context = FacesContext.getCurrentInstance();
-        UserParameters signinParameters = context.getApplication().evaluateExpressionGet(context, "#{userParameters}", UserParameters.class);
+        UserParameters signinParameters = getManagedBean(context, "#{userParameters}", UserParameters.class);
 
         IClientController clientController = (IClientController) springContext.getBean("clientController");
 
@@ -53,6 +59,18 @@ public class UserManager extends GenericManager {
         return PAGE_INDEX_REDIRECT;
     }
 
+    public void reset() {
+        if (authManager.isClient()) {
+            clientManager.resetFields();
+            return;
+        }
+
+        if (authManager.isRepairer()) {
+            repairerManager.resetFields();
+            return;
+        }
+    }
+
     public AuthManager getAuthManager() {
         return authManager;
     }
@@ -60,4 +78,21 @@ public class UserManager extends GenericManager {
     public void setAuthManager(AuthManager authManager) {
         this.authManager = authManager;
     }
+
+    public ClientManager getClientManager() {
+        return clientManager;
+    }
+
+    public void setClientManager(ClientManager clientManager) {
+        this.clientManager = clientManager;
+    }
+
+    public RepairerManager getRepairerManager() {
+        return repairerManager;
+    }
+
+    public void setRepairerManager(RepairerManager repairerManager) {
+        this.repairerManager = repairerManager;
+    }
+
 }

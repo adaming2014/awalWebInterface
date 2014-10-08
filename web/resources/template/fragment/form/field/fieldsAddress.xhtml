@@ -5,15 +5,15 @@
     <body>
         <ui:composition>
             <p:outputLabel id="addressCityLabel" for="addressCity" value="City :" />
-            <p:inputText id="addressCity" value="#{addressParameters.city}" required="true"  />
+            <p:inputText id="addressCity" value="#{addressParameters.city}" placeholder="Enter city" required="true"  />
             <p:message id="addressCityMessage" for="addressCity" />
 
             <p:outputLabel id="addressStreetLabel" for="addressStreet" value="Street :" />
-            <p:inputText id="addressStreet" value="#{addressParameters.street}" required="true" />
+            <p:inputText id="addressStreet" value="#{addressParameters.street}" placeholder="Enter street" required="true" />
             <p:message id="addressStreetMessage" for="addressStreet" />
 
             <p:outputLabel id="addressPostcodeLabel" for="addressPostcode" value="Postcode :" />
-            <p:inputText id="addressPostcode" value="#{addressParameters.postcode}" required="true" />
+            <p:inputText id="addressPostcode" value="#{addressParameters.postcode}" placeholder="Enter Postcode" required="true" />
             <p:message id="addressPostcodeMessage" for="addressPostcode" />
         </ui:composition>
     </body>

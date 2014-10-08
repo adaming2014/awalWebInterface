@@ -1,6 +1,6 @@
 package fr.adaming.awal.webinterface.converter;
 
-import fr.adaming.awal.controller.interfaces.IRepairerController;
+import fr.adaming.awal.controller.interfaces.IFirmController;
 import fr.adaming.awal.entity.Firm;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -26,7 +26,7 @@ public class FirmConverter implements Converter {
     public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
         if (value != null && !value.trim().isEmpty()) {
             try {
-                IRepairerController controller = (IRepairerController) springContext.getBean("repairerController");
+                IFirmController controller = (IFirmController) springContext.getBean("firmController");
                 if (controller == null) {
                     return null;
                 }

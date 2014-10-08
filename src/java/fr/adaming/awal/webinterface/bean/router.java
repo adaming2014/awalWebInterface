@@ -30,7 +30,11 @@ public class router implements Serializable {
         if (authManager.isRepairer()) {
             return "repairer/update.xhtml";
         }
-        
+
+        if (authManager.isClient()) {
+            return "client/update.xhtml";
+        }
+
         return null;
     }
 

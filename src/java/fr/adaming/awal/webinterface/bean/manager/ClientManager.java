@@ -5,25 +5,27 @@
  */
 package fr.adaming.awal.webinterface.bean.manager;
 
+import fr.adaming.awal.controller.interfaces.IClientController;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author INTI0221
  */
-@ManagedBean(name = "clientManager1")
-@RequestScoped
-public class ClientManager {
-
-    /**
-     * Creates a new instance of ClientManager
-     */
-    public ClientManager() {
-    }
+@ManagedBean
+@SessionScoped
+public class ClientManager extends GenericManager {
 
     public void update() {
-        throw new RuntimeException("Not supported yet");
     }
 
+    public void resetFields() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        IClientController controller = (IClientController) springContext.getBean("clientController");
+
+        System.out.println(controller);
+    }
 }

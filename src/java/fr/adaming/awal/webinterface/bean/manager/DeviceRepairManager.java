@@ -6,14 +6,19 @@
 package fr.adaming.awal.webinterface.bean.manager;
 
 import fr.adaming.awal.controller.interfaces.IClientController;
+import fr.adaming.awal.controller.interfaces.IDeviceInsuranceController;
 import fr.adaming.awal.controller.interfaces.IDeviceRepairController;
 import fr.adaming.awal.controller.interfaces.IRepairerController;
+import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.Device;
+import fr.adaming.awal.entity.Deviceinsurance;
 import fr.adaming.awal.entity.Devicerepair;
 import fr.adaming.awal.entity.Modelpackage;
 import fr.adaming.awal.entity.Repairer;
 import fr.adaming.awal.util.RepairerUtil;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -44,12 +49,14 @@ public class DeviceRepairManager implements Serializable {
     }
 
     public String add() {
+
         FacesContext context = FacesContext.getCurrentInstance();
         AuthManager authManager = context.getApplication().evaluateExpressionGet(context, "#{authManager}", AuthManager.class);
         Repairer repairer = null;
         IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
         IRepairerController repairerController = (IRepairerController) springContext.getBean("repairerController");
         IClientController clientController = (IClientController) springContext.getBean("clientController");
+
         for (Devicerepair devicerepair : deviceController.getAll()) {
             if ((devicerepair.getDevice().getIdDevice().equals(device.getIdDevice())) && (devicerepair.getModelpackage().equals(modelPackage))) {
                 return "addDeviceRepair";
@@ -64,17 +71,44 @@ public class DeviceRepairManager implements Serializable {
                 }
             }
         }
+        if(deviceAsInsurance(device,clientController.getById(authManager.getClientId()))==true){
+            deviceRepair.setPrice(0);
+        }else{
+            deviceRepair.setPrice(Integer.valueOf(modelPackage.getPrice()));
+        }
+        
         deviceRepair.setRepairer(repairer);
         deviceRepair.setDevice(device);
         deviceRepair.setState("CREATE");
         deviceRepair.setModelpackage(modelPackage);
         deviceRepair.setDateCreation(new Date());
-        deviceRepair.setPrice(Integer.valueOf(modelPackage.getPrice()));
+
+
         if (!deviceController.create(deviceRepair)) {
             return null;
         }
 
         return "addDeviceRepair";
+    }
+
+    public boolean deviceAsInsurance(Device device1, Client client) {
+        boolean insurance = false;
+        IDeviceInsuranceController deviceInsuranceController = (IDeviceInsuranceController) springContext.getBean("deviceInsuranceController");
+        for (Deviceinsurance deviceinsurance : deviceInsuranceController.getDevicesInsuranceByClient(client)) {
+            if (deviceinsurance.getDevice().equals(device1)) {
+                Calendar calLastTime = Calendar.getInstance(); 
+                calLastTime.setTime(deviceinsurance.getBeginDate());               
+                int duration = deviceinsurance.getDeviceinsurancemodel().getDuration();
+                calLastTime.add(Calendar.MONTH, duration);
+                System.out.println(" calendar add duration : "+(calLastTime.get(Calendar.MONTH)+1)+"-"+calLastTime.get(Calendar.DATE)+"-"+calLastTime.get(Calendar.YEAR));
+                Calendar calTime = Calendar.getInstance(); 
+                if (calTime.compareTo(calLastTime)<=0) {
+                    insurance = true;
+                }
+            }
+        }
+        System.out.println("insurance : "+insurance);
+        return insurance;
     }
 
     public List<Devicerepair> getDevicesRepairByClient() {

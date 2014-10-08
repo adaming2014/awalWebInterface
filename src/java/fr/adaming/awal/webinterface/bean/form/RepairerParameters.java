@@ -7,6 +7,7 @@ package fr.adaming.awal.webinterface.bean.form;
 
 import fr.adaming.awal.entity.Firm;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 /**
@@ -19,6 +20,9 @@ public class RepairerParameters {
 
     private Firm firm;
     private String available;
+
+    @ManagedProperty("#{userParameters}")
+    private UserParameters userParameters;
 
     /**
      * Creates a new instance of RepairerParameters
@@ -41,4 +45,13 @@ public class RepairerParameters {
     public void setFirm(Firm firm) {
         this.firm = firm;
     }
+
+    public UserParameters getUserParameters() {
+        return userParameters;
+    }
+
+    public void setUserParameters(UserParameters userParameters) {
+        this.userParameters = userParameters;
+    }
+
 }

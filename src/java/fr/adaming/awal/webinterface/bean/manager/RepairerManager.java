@@ -6,7 +6,6 @@
 package fr.adaming.awal.webinterface.bean.manager;
 
 import fr.adaming.awal.controller.interfaces.IRepairerController;
-import fr.adaming.awal.entity.Firm;
 import fr.adaming.awal.entity.Repairer;
 import fr.adaming.awal.entity.User;
 import fr.adaming.awal.webinterface.bean.form.RepairerParameters;
@@ -30,44 +29,54 @@ public class RepairerManager extends GenericManager {
     @ManagedProperty("#{authManager}")
     private AuthManager authManager;
 
-    public String update() {
+    public void update() {
         FacesContext context = FacesContext.getCurrentInstance();
-        RepairerParameters parameters = context.getApplication().evaluateExpressionGet(context, "#{repairerParameters}", RepairerParameters.class);
+        RepairerParameters repairerParameters = getManagedBean(context, "repairerParameters", RepairerParameters.class);
+        UserParameters userParameters = repairerParameters.getUserParameters();
 
         IRepairerController controller = (IRepairerController) springContext.getBean("repairerController");
 
         Repairer repairer = controller.getById(authManager.getRepairerId());
+        if (repairer == null) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
+            return;
+        }
 
-        String oldAvailable = repairer.getAvailable();
-        Firm oldFirm = repairer.getFirm();
+        User user = repairer.getUser();
 
-        repairer.setAvailable(parameters.getAvailable());
-        repairer.setFirm(parameters.getFirm());
+        user.setFirstname(userParameters.getFirstname());
+        user.setLastname(userParameters.getLastname());
+        user.setMail(userParameters.getEmail());
+        user.setPassword(userParameters.getPassword());
+        user.setPhone(userParameters.getPhone());
+
+        repairer.setAvailable(repairerParameters.getAvailable());
+        repairer.setFirm(repairerParameters.getFirm());
+        repairer.setUser(user);
+
+        System.out.println("FIRM : " + repairerParameters.getFirm());
 
         if (!controller.update(repairer)) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
-
-            repairer.setAvailable(oldAvailable);
-            repairer.setFirm(oldFirm);
-
-            return null;
+            return;
         }
 
-        return PAGE_INDEX_REDIRECT;
+        context.addMessage(null, FacesMessageUtil.INFO_USER_UPDATED);
     }
 
     public void resetFields() {
         FacesContext context = FacesContext.getCurrentInstance();
-        RepairerParameters repairerParameters = context.getApplication().evaluateExpressionGet(context, "#{repairerParameters}", RepairerParameters.class);
-        UserParameters userParameters = context.getApplication().evaluateExpressionGet(context, "#{userParameters}", UserParameters.class);
-        if (repairerParameters == null || userParameters == null) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_BEAN_NOT_FOUND);
-            return;
-        }
+        RepairerParameters repairerParameters = getManagedBean(context, "repairerParameters", RepairerParameters.class);
+        UserParameters userParameters = repairerParameters.getUserParameters();
 
         IRepairerController controller = (IRepairerController) springContext.getBean("repairerController");
 
         Repairer repairer = controller.getById(authManager.getRepairerId());
+        if (repairer == null) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
+            return;
+        }
+
         User user = repairer.getUser();
 
         userParameters.setEmail(user.getMail());

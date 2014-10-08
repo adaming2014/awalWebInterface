@@ -39,30 +39,34 @@
                 </f:facet>
                 <h:outputText value="#{device.description}"/>
             </p:column>  
-            
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Delete"/>
-                </f:facet>
 
-                <p:commandButton action="#{deviceManager.delete(device.idDevice)}" value="Delete" ajax="false"/>
-            </p:column>  
-            
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="add Package"/>
                 </f:facet>
 
-                <p:commandButton action="#{modelPackageManager.setIddevice(device.idDevice)}" value="Package" ajax="false"/>
+                <h:commandLink action="#{modelPackageManager.setIddevice(device.idDevice)}">
+                    <p:graphicImage library="images/logo" name="package.jpg" width="60"/>
+                </h:commandLink>
             </p:column>  
 
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="add Insurance"/>
                 </f:facet>
-                <p:commandButton action="#{deviceInsuranceModeleManager.setIddevice(device.idDevice)}" value="Insurance" ajax="false"/>
+                <h:commandLink action="#{deviceInsuranceModeleManager.setIddevice(device.idDevice)}">
+                    <p:graphicImage library="images/logo" name="insurance-icon.png" width="48"/>
+                </h:commandLink>
             </p:column>  
 
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value=""/>
+                </f:facet>
+                <h:commandLink action="#{deviceManager.delete(device.idDevice)}">
+                    <p:graphicImage library="images/logo" name="trash-empty-icon.png" width="48"/>
+                </h:commandLink>
+            </p:column>  
         </p:dataTable>
     </h:body>
 </html>

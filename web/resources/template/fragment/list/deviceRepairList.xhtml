@@ -4,8 +4,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:body>
-        <p:dataTable value="#{deviceRepairManager.devicesRepairByClient}" var="deviceRepair"> 
-
+        <p:dataTable value="#{deviceRepairManager.devicesRepairByClient}" var="deviceRepair" style="text-align: center;"> 
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Device"/>
@@ -74,7 +73,9 @@
                 <f:facet name="header">
                     <h:outputText value="Shipment"/>
                 </f:facet>
-                <p:commandButton action="#{pDFDeviceRepair.setIdDeviceRepair(deviceRepair.idDeviceRepair)}" value="pdf" ajax="false"/>
+                <h:commandLink action="#{pDFDeviceRepair.setIdDeviceRepair(deviceRepair.idDeviceRepair)}">
+                    <p:graphicImage library="images/logo" name="pdficone.png" width="24"/>
+                </h:commandLink>
             </p:column>  
             
         </p:dataTable>

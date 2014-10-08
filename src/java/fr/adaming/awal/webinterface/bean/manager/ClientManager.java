@@ -30,6 +30,44 @@ public class ClientManager extends GenericManager {
     private AuthManager authManager;
 
     public void update() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        ClientParameters clientParameters = getManagedBean(context, "clientParameters", ClientParameters.class);
+        UserParameters userParameters = clientParameters.getUser();
+        AddressParameters addressParameters = clientParameters.getAddress();
+
+        IClientController controller = (IClientController) springContext.getBean("clientController");
+
+        Client client = controller.getById(authManager.getClientId());
+        if (client == null) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
+            return;
+        }
+
+        User user = client.getUser();
+        Address address = client.getAddress();
+        if (address == null) {
+            address = new Address();
+        }
+
+        address.setCity(addressParameters.getCity());
+        address.setStreet(addressParameters.getStreet());
+        address.setPostcode(addressParameters.getPostcode());
+
+        user.setFirstname(userParameters.getFirstname());
+        user.setLastname(userParameters.getLastname());
+        user.setMail(userParameters.getEmail());
+        user.setPhone(userParameters.getPhone());
+
+        client.setAddress(address);
+        client.setUser(user);
+        client.setNumbercard(clientParameters.getNumbercard());
+
+        if (!controller.update(client)) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
+            return;
+        }
+
+        context.addMessage(null, FacesMessageUtil.INFO_USER_UPDATED);
     }
 
     public void resetFields() {
@@ -41,6 +79,7 @@ public class ClientManager extends GenericManager {
         IClientController controller = (IClientController) springContext.getBean("clientController");
 
         Client client = controller.getById(authManager.getClientId());
+        System.out.println(authManager.getClientId() + ", " + client);
         if (client == null) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);
             return;

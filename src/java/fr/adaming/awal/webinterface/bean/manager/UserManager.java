@@ -6,6 +6,7 @@
 package fr.adaming.awal.webinterface.bean.manager;
 
 import fr.adaming.awal.controller.interfaces.IClientController;
+import fr.adaming.awal.entity.Address;
 import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.User;
 import fr.adaming.awal.webinterface.bean.form.UserParameters;
@@ -36,7 +37,7 @@ public class UserManager extends GenericManager {
 
     public String signin() {
         FacesContext context = FacesContext.getCurrentInstance();
-        UserParameters signinParameters = getManagedBean(context, "#{userParameters}", UserParameters.class);
+        UserParameters signinParameters = getManagedBean(context, "userParameters", UserParameters.class);
 
         IClientController clientController = (IClientController) springContext.getBean("clientController");
 
@@ -48,6 +49,7 @@ public class UserManager extends GenericManager {
 
         Client client = new Client();
         client.setUser(user);
+        client.setAddress(new Address());
 
         if (!clientController.create(client)) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_DATABASE_ERROR);

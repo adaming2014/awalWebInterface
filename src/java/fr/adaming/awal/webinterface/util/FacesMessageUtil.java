@@ -20,4 +20,5 @@ public class FacesMessageUtil {
     public static final FacesMessage MESSAGE_FIRM_NOT_FOUND = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Firm : Firm not found", "Firm : Incorrect value of firm id");
     
     public static final FacesMessage INFO_FIRM_UPDATED = new FacesMessage(FacesMessage.SEVERITY_INFO, "Firm updated !", "The firm has been correctly updated.");
+    public static final FacesMessage INFO_USER_UPDATED = new FacesMessage(FacesMessage.SEVERITY_INFO, "User updated !", "The user has been correctly updated.");
 }

@@ -15,6 +15,13 @@
 
             <p:column>
                 <f:facet name="header">
+                    <h:outputText value="Device Description"/>
+                </f:facet>
+                <h:outputText value="#{deviceInsurance.device.description}"/>
+            </p:column>  
+
+            <p:column>
+                <f:facet name="header">
                     <h:outputText value="Modele"/>
                 </f:facet>
                 <h:outputText value="#{deviceInsurance.deviceinsurancemodel.modele.name}"/>
@@ -47,7 +54,9 @@
                 <f:facet name="header">
                     <h:outputText value="Insurance"/>
                 </f:facet>
-                <p:commandButton value="pdf"/>
+                <h:commandLink>
+                    <p:graphicImage library="images/logo" name="pdficone.png" width="24"/>
+                </h:commandLink>
             </p:column> 
         </p:dataTable>
     </h:body>

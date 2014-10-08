@@ -6,7 +6,12 @@
         <ui:define name="content">
             <c:choose>
                 <c:when test="#{authManager.auth and authManager.client}" >
-                    <ui:include src="../resources/template/fragment/form/clientUpdateForm.xhtml" />
+                    <div class="panel panel-primary" style="margin: 1em;">
+                        <div class="panel-heading">Update client</div>
+                        <div class="panel-body">
+                            <ui:include src="../resources/template/fragment/form/clientUpdateForm.xhtml" />
+                        </div>
+                    </div>
                 </c:when>
                 <c:otherwise>
                     You are not logged!

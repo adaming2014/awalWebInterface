@@ -6,10 +6,10 @@
     <body>
         <ui:composition>
             <h:outputStylesheet library="css" name="common.css" />
-            <c:if test="#{authManager.repairer}" >
+            <c:if test="#{authManager.repairer and not empty authManager.userRepairer.firm}" >
                 <h:outputStylesheet library="css" name="#{authManager.userRepairer.firm.id}/theme.css" />
             </c:if>
-            <c:if test="#{authManager.reseller}" >
+            <c:if test="#{authManager.reseller and not empty authManager.userReseller.firm}" >
                 <h:outputStylesheet library="css" name="#{authManager.userReseller.firm.id}/theme.css" />
             </c:if>
         </ui:composition>

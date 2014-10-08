@@ -15,7 +15,9 @@
                 </p:panelGrid>
 
                 <p:commandButton value="Update" action="#{clientManager.update}" update="@form" />
-                <p:commandButton value="Reset" action="#{clientManager.resetFields}" update="@form" />
+                <p:commandButton value="Reset" action="#{clientManager.resetFields}" process="@this" update="@form" >
+                    <p:resetInput target="@form" />
+                </p:commandButton>
             </h:form>
         </ui:composition>
     </body>

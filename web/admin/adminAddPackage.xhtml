@@ -6,10 +6,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" >
     <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
         <ui:define name="content">
+           
             <h:body onload="initialiseAddPackage()">
+                 <div class="panel panel-primary" style="margin: 1em;">
+                <div class="panel-heading">Ajouter un forfait réparation</div>
+                <div class="panel-body">
                 <h:form class="form-group" id="form" >
                 
-                <p:panel header="Ajouter un forfait réparation" class="panel"> 
+                <p:panel header="Forfait de réparation" class="panel"> 
                     <h:panelGrid columns="2" columnClasses="label, value" class="panel-title" id="panelforfait">
                         
                         <h:outputText value = "Nom : *" style="color: #000"/>
@@ -56,7 +60,10 @@
                </p:panel> 
                     
             </h:form>
+                </div> 
+                 </div>
             </h:body>
+           
         </ui:define>
     </ui:composition>
     

@@ -15,6 +15,7 @@ import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.Repairer;
 import fr.adaming.awal.entity.Reseller;
 import fr.adaming.awal.entity.User;
+import fr.adaming.awal.util.RepairerUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +95,7 @@ public class AdminChangePermission implements Serializable{
             repairer.setUser(userTmp);
             userControlller.delete(u);
             userControlller.create(userTmp);
+            repairer.setAvailable(RepairerUtil.NOT_AVAILABLE);
             repairerController.create(repairer);
             
         }

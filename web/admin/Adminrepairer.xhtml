@@ -7,13 +7,21 @@
     <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
         <ui:define name="content">
             <br/><br/>
+             <div class="panel panel-primary" style="margin: 1em;">
+                <div class="panel-heading">Les réparateurs</div>
+                <div class="panel-body">
             <h:form>
                 <br/><br/>
+                
                 <center><h3>Liste des réparateurs</h3></center>
                 <legend></legend>
                  <h:commandLink>
                     <h:graphicImage library="images/logo"  name="pdficone.png"/>
                     <p:dataExporter target="listrepairer"  type="pdf" fileName="listes"  />
+                </h:commandLink>
+                <h:commandLink>
+                    <h:graphicImage library="images/logo"  name="logoexcelle.png" />
+                    <p:dataExporter target="listrepairer"  type="csv" fileName="listes"  />
                 </h:commandLink>
                 <p:dataTable value="#{adminRepairer.allRepairers}" var="repairer" id="listrepairer">
                    
@@ -44,6 +52,8 @@
                
                 
             </h:form>
+                </div>
+             </div>
             <br/><br/><br/><br/>
         </ui:define>
     </ui:composition>

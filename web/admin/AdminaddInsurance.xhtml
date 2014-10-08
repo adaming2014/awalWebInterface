@@ -6,9 +6,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
         <ui:define name="content">
+            
             <h:body onload="initialiseAddInsurance()">
+                <div class="panel panel-primary" style="margin: 1em;">
+                <div class="panel-heading">Ajouter un forfait d'assurance</div>
+                <div class="panel-body">
             <h:form class="form-group" id="forminsurance">
-                <p:panel header="Ajouter un forfait d'assurance" class="panel"> 
+                <p:panel header="Forfait d'assurance" class="panel"> 
                     <h:panelGrid columns="2" columnClasses="label, value" class="panel-title" id="panelinsurance">
                         
                         <h:outputText value = "Nom : *" style="color: #000"/>
@@ -50,6 +54,8 @@
                     </h:panelGrid>
                 </p:panel>
             </h:form>
+                </div>
+            </div>
             </h:body>
         </ui:define>
     </ui:composition>

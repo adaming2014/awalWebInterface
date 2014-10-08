@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
+        <ui:define name="content">
+            <br/><br/>
+             <div class="panel panel-primary" style="margin: 1em;">
+                <div class="panel-heading">Les Clients</div>
+                <div class="panel-body">
+            <h:form>
+                <br/><br/>
+                
+                <center><h3>Liste des clients</h3></center>
+                <legend></legend>
+                 <h:commandLink>
+                    <h:graphicImage library="images/logo"  name="pdficone.png"/>
+                    <p:dataExporter target="listclient"  type="pdf" fileName="listes"  />
+                </h:commandLink>
+                <h:commandLink>
+                    <h:graphicImage library="images/logo"  name="logoexcelle.png" />
+                    <p:dataExporter target="listclient"  type="csv" fileName="listes"  />
+                </h:commandLink>
+                <p:dataTable value="#{adminClients.allClients}" var="client" id="listclient">
+                   
+                    
+                        <p:column headerText="nom">
+                            <h:outputText value="#{client.user.lastname}" />
+                        </p:column>
+                        <p:column headerText="prénom">
+                            <h:outputText value="#{client.user.firstname}" />
+                        </p:column>
+                        <p:column headerText="mail">
+                            <h:outputText value="#{client.user.mail}" />
+                        </p:column>
+                         <p:column headerText="Téléphone">
+                             <h:outputText value="#{client.user.phone}" />
+                        </p:column>
+                        <p:column headerText="Adresse">
+                            <h:outputText value="#{client.address.street} , #{client.address.city}" />
+                        </p:column>
+                        
+
+
+                   
+                
+                </p:dataTable>
+               
+                
+            </h:form>
+                </div>
+             </div>
+            <br/><br/><br/><br/>
+        </ui:define>
+    </ui:composition>
+</html>
+

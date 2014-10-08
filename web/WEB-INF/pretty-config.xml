@@ -21,7 +21,7 @@
     </url-mapping>
 
     <url-mapping id="firmList">
-        <pattern value="/firm/list" />
+        <pattern value="/firm/" />
         <view-id value="/faces/firm/list.xhtml" />
     </url-mapping>
 
@@ -35,5 +35,6 @@
     <url-mapping id="accountUpdate">
         <pattern value="/account/update" />
         <view-id value="#{router.getAccountUpdatePage}" />
+        <action onPostback="false">#{userManager.reset}</action>
     </url-mapping>
 </pretty-config>

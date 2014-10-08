@@ -16,7 +16,7 @@
     <context-param>
         <description>Location to store uploaded file</description>
         <param-name>path_css</param-name>
-        <param-value>resources/css/firm/</param-value>
+        <param-value>resources/css/</param-value>
     </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>

@@ -8,11 +8,11 @@
             <h:form>
                 <p:messages globalOnly="true" />
 
-                <p:panelGrid columns="3">
+                <h:panelGrid columns="3">
                     <ui:include src="field/fieldsUser.xhtml" />
                     <ui:include src="field/fieldsClient.xhtml" />
                     <ui:include src="field/fieldsAddress.xhtml" />
-                </p:panelGrid>
+                </h:panelGrid>
 
                 <p:commandButton value="Update" action="#{clientManager.update}" update="@form" />
                 <p:commandButton value="Reset" action="#{clientManager.resetFields}" process="@this" update="@form" >

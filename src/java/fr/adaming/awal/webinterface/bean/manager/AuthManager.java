@@ -28,6 +28,7 @@ public class AuthManager extends GenericManager {
 
     private IUser user;
     private static final String PAGE_INDEX = "index";
+    private static final String PAGE_SIGNIN = "signup";
     private static final String PAGE_CLIENT = "client";
     private static final String PAGE_ADMIN = "admin";
     private static final String PAGE_DISCONNECT = "disconnect";
@@ -99,6 +100,11 @@ public class AuthManager extends GenericManager {
         setUser(null);
 
         return PAGE_DISCONNECT;
+    }
+    
+    public String signup() {
+
+        return PAGE_SIGNIN;
     }
 
     public boolean isAuth() {

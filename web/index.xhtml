@@ -4,7 +4,10 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="resources/template/layout/commonLayout.xhtml">
         <ui:define name="title">Bienvenue sur le site Alpha</ui:define>
-        
+        <ui:define name="content">
+            <ui:include src="resources/template/fragment/welcomePage/welcomePage.xhtml" />
+        </ui:define>
+
     </ui:composition>
 </html>
 

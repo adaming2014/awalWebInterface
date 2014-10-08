@@ -298,7 +298,7 @@
             <redirect />
         </navigation-case>
         <navigation-case>
-            <from-outcome>welcome</from-outcome>
+            <from-outcome>signin</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
             <redirect />
         </navigation-case>
@@ -307,6 +307,20 @@
             <to-view-id>/index.xhtml</to-view-id>
             <redirect />
         </navigation-case>
-    </navigation-rule>
-
+        <navigation-case>
+            <from-outcome>signup</from-outcome>
+            <to-view-id>/auth/signin.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>package</from-outcome>
+            <to-view-id>/services/servicesPack.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>warranty</from-outcome>
+            <to-view-id>/services/servicesWarr.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule> 
 </faces-config>

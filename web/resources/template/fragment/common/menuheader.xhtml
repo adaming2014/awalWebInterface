@@ -12,20 +12,26 @@
         <ui:composition>
                     <h:form>
 
-                        <p:tabMenu activeIndex="#{param.i}">
-                            <p:menuitem value="Accueil"  icon="ui-icon-star" outcome="welcome">
-                                <f:param value="0" name="i"/>
-                            </p:menuitem>
-                            <p:menuitem value="Services"  icon="ui-icon-search">
-                                <f:param value="1" name="i"/>
-                            </p:menuitem>
-                            <p:menuitem value="Promos"  icon="ui-icon-document">
-                                <f:param value="2" name="i"/>
-                            </p:menuitem>
-                            <p:menuitem value="Connexion"  icon="ui-icon-document" outcome="connect">
-                                <f:param value="3" name="i"/>
-                            </p:menuitem>
-                        </p:tabMenu>
+                        <p:menubar>          
+                            <p:menuitem value="Accueil"  icon="ui-icon-star" outcome="welcome"/>
+                           
+                            <p:submenu label="Services" icon="ui-icon-pencil">
+                                <p:menuitem value="Forfaits" url="/faces/services/servicesPack.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                                <p:menuitem value="Garanties" url="/faces/services/servicesWarr.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                            </p:submenu>
+                               
+                            <p:menuitem value="Promos"  icon="ui-icon-document"/>
+                            
+                            <p:submenu label="Compte" icon="ui-icon-pencil">
+                                <p:menuitem value="Connexion" url="/faces/auth/login.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                                <p:menuitem value="Inscription" url="/faces/auth/signin.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                            </p:submenu>
+                            
+                            <p:submenu label="Contact" icon="ui-icon-pencil">
+                                <p:menuitem value="Informations Alpha" url="/faces/contact/infoAlpha.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                                <p:menuitem value="Service client" url="/faces/contact/servClient.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                            </p:submenu>
+                        </p:menubar>
                     </h:form> 
         </ui:composition>
     </body>

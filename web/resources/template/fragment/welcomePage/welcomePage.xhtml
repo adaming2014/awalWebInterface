@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <head>
+        <title>Bienvenue sur le site Alpha</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <ui:composition>
+                    
+        <div>Bienvenue sur le site Alpha !!!</div>
+                                  
+        <h:link outcome="warranty">
+            <p:graphicImage library="images" name="pub_extension_garantie.png"/>
+        </h:link>
+        
+         <h:link outcome="package">
+            <p:graphicImage library="images" name="pub_reparation.png"/>
+        </h:link>
+        </ui:composition>
+    </h:body>
+</html>

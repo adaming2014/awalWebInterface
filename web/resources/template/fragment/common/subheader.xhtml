@@ -19,13 +19,13 @@
                         <h:link outcome="welcome">
                             <c:choose>
                                 <c:when test="#{authManager.repairer}" >
-                                    <h:outputStylesheet library="images/logo/" name="#{authManager.userRepairer.firm.id}/logo.css" />
+                                    <p:graphicImage library="images" name="logo/#{authManager.userRepairer.firm.id}/logo.png" />
                                 </c:when>
                                 <c:when test="#{authManager.reseller}" >
-                                    <h:outputStylesheet library="images/logo/" name="#{authManager.userReseller.firm.id}/logo.css" />
+                                    <p:graphicImage library="images" name="logo/#{authManager.userReseller.firm.id}/logo.png" />
                                 </c:when>
                                 <c:otherwise>
-                                    <p:graphicImage library="images/logo/" name="bgLogo.png" />
+                                    <p:graphicImage library="images" name="logo/bgLogo.png" />
                                 </c:otherwise>
                             </c:choose>
                         </h:link>

@@ -19,6 +19,10 @@ public class ClientParameters {
 
     @ManagedProperty("#{addressParameters}")
     private AddressParameters address;
+
+    @ManagedProperty("#{userParameters}")
+    private UserParameters user;
+
     private String numbercard;
 
     /**
@@ -41,6 +45,14 @@ public class ClientParameters {
 
     public void setNumbercard(String numbercard) {
         this.numbercard = numbercard;
+    }
+
+    public UserParameters getUser() {
+        return user;
+    }
+
+    public void setUser(UserParameters user) {
+        this.user = user;
     }
 
 }

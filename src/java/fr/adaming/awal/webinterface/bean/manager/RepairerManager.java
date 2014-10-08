@@ -28,7 +28,7 @@ public class RepairerManager extends GenericManager {
     private static final String PAGE_INDEX_REDIRECT = "index_redirect";
 
     @ManagedProperty("#{authManager}")
-    AuthManager authManager;
+    private AuthManager authManager;
 
     public String update() {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -78,4 +78,13 @@ public class RepairerManager extends GenericManager {
         repairerParameters.setAvailable(repairer.getAvailable());
         repairerParameters.setFirm(repairer.getFirm());
     }
+
+    public AuthManager getAuthManager() {
+        return authManager;
+    }
+
+    public void setAuthManager(AuthManager authManager) {
+        this.authManager = authManager;
+    }
+
 }

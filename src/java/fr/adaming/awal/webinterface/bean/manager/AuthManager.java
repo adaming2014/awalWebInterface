@@ -145,19 +145,19 @@ public class AuthManager extends GenericManager {
         return ((Client) user).getId();
     }
 
-    public Admin getAdmin() {
+    public Admin getUserAdmin() {
         return (Admin) user;
     }
 
-    public Reseller getReseller() {
+    public Reseller getUserReseller() {
         return (Reseller) user;
     }
 
-    public Repairer getRepairer() {
+    public Repairer getUserRepairer() {
         return (Repairer) user;
     }
 
-    public Client getClient() {
+    public Client getUserClient() {
         return (Client) user;
     }
 }

@@ -38,6 +38,14 @@ public class router implements Serializable {
         return null;
     }
 
+    public String getHomePage() {
+        if (authManager.isClient()) {
+            return "client/client.xhtml";
+        }
+
+        return "index.xhtml";
+    }
+
     public AuthManager getAuthManager() {
         return authManager;
     }

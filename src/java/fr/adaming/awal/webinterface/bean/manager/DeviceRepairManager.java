@@ -39,7 +39,8 @@ public class DeviceRepairManager implements Serializable {
     private Modelpackage modelPackage;
     private Devicerepair deviceRepair;
     private Device device;
-
+    private static final String NAVIGATION_HOME_CLIENT = "pretty:home";
+    
     /**
      * Creates a new instance of DeviceRepairManager
      */
@@ -59,7 +60,7 @@ public class DeviceRepairManager implements Serializable {
 
         for (Devicerepair devicerepair : deviceController.getAll()) {
             if ((devicerepair.getDevice().getIdDevice().equals(device.getIdDevice())) && (devicerepair.getModelpackage().equals(modelPackage))) {
-                return "addDeviceRepair";
+                return NAVIGATION_HOME_CLIENT;
             }
         }
         for (Repairer repairer1 : repairerController.getAll()) {
@@ -88,7 +89,7 @@ public class DeviceRepairManager implements Serializable {
             return null;
         }
 
-        return "addDeviceRepair";
+        return NAVIGATION_HOME_CLIENT;
     }
 
     public boolean deviceAsInsurance(Device device1, Client client) {

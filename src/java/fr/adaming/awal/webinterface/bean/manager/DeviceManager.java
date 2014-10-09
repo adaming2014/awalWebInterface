@@ -28,7 +28,7 @@ import javax.faces.context.FacesContext;
 public class DeviceManager extends GenericManager implements Serializable {
 
     private Device device;
-
+    private static final String NAVIGATION_HOME_CLIENT = "pretty:home";
     public DeviceManager() {
         device = new Device();
     }
@@ -48,7 +48,7 @@ public class DeviceManager extends GenericManager implements Serializable {
             context.addMessage(null, FacesMessageUtil.INFO_DEVICE_CREATE);
         }
         System.out.println("add size : " + deviceController.getAll().size());
-        return "add";
+        return NAVIGATION_HOME_CLIENT;
     }
 
     public String addother() {
@@ -77,7 +77,7 @@ public class DeviceManager extends GenericManager implements Serializable {
             context.addMessage(null, FacesMessageUtil.MESSAGE_DEVICE_NOT_CREATE);
             return null;
         }
-        return "addother";
+        return NAVIGATION_HOME_CLIENT;
     }
 
     public List<Device> getDevicesByClient() {

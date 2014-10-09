@@ -32,6 +32,8 @@ public class DeviceInsuranceManager implements Serializable {
     private Device device;
     private String description;
 
+    private static final String NAVIGATION_HOME_CLIENT = "pretty:home";
+    
     /**
      * Creates a new instance of deviceInsuranceManager
      */
@@ -56,7 +58,7 @@ public class DeviceInsuranceManager implements Serializable {
         if (!deviceInsuranceController.create(deviceinsurance)) {
             return null;
         }
-        return "addDeviceInsurance";
+        return NAVIGATION_HOME_CLIENT;
     }
 
     public Deviceinsurance getDeviceinsurance() {

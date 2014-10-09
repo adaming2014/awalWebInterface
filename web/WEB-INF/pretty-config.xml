@@ -37,4 +37,10 @@
         <view-id value="#{router.getAccountUpdatePage}" />
         <action onPostback="false">#{userManager.reset}</action>
     </url-mapping>
+    
+    <!--NAVIGATION-->
+    <url-mapping id="home">
+        <pattern value="/" />
+        <view-id value="#{router.getHomePage}" />
+    </url-mapping>
 </pretty-config>

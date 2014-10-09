@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:composition template="../../resources/template/layout/commonLayout.xhtml">
+        <ui:define name="content">
+            <c:choose>
+                <c:when test="#{authManager.auth and authManager.client}" >
+                    <div class="panel panel-primary" style="margin: 1em;">
+                        <div class="panel-heading">Insurance</div>
+                        <div class="panel-body">
+                            <h:form>
+                                <ui:include src="../../resources/template/fragment/list/insuranceDeviceList.xhtml" />    
+                            </h:form>
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    You are not logged!
+                </c:otherwise>
+            </c:choose>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

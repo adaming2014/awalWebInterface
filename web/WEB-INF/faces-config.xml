@@ -323,5 +323,15 @@
             <to-view-id>/client/update.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>insuranceClient</from-outcome>
+            <to-view-id>/client/insurance/insuranceList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>packageClient</from-outcome>
+            <to-view-id>/client/deviceRepair/deviceRepairList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule> 
 </faces-config>

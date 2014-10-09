@@ -323,5 +323,10 @@
             <to-view-id>/services/servicesWarr.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>updateClient</from-outcome>
+            <to-view-id>/client/update.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule> 
 </faces-config>

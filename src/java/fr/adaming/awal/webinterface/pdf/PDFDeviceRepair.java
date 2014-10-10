@@ -31,7 +31,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @author INTI0217
  */
-@ManagedBean
+@ManagedBean(name = "pDFDeviceRepair")
 @SessionScoped
 public class PDFDeviceRepair implements Serializable {
 

@@ -86,7 +86,7 @@ public class DeviceManager extends GenericManager implements Serializable {
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
         IClientController clientController = (IClientController) springContext.getBean("clientController");
         List<Device> devices = deviceController.getDevicesByClient(clientController.getById(authManager.getClientId()));
-        deviceController.getDevicesByClient(clientController.getById(authManager.getClientId()));
+//        deviceController.getDevicesByClient(clientController.getById(authManager.getClientId()));
         return devices;
     }
 

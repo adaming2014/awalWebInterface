@@ -72,6 +72,14 @@ public class DeviceRepairManager implements Serializable {
                 }
             }
         }
+        if(repairer == null){
+            for (Repairer repairer2 : repairerController.getAll()) {
+                if (repairer2.getAvailable().equals(RepairerUtil.AVAILABLE)) {
+                    repairer = repairer2;
+                }
+            }
+        }
+        
         if(deviceAsInsurance(device,clientController.getById(authManager.getClientId()))==true){
             deviceRepair.setPrice(0);
         }else{

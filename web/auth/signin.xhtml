@@ -6,7 +6,7 @@
         <ui:define name="content">
             <c:choose>
                 <c:when test="#{not authManager.auth}" >
-                    <div class="panel panel-primary" style="margin: 1em;">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">Create account</div>
                         <div class="panel-body">
                             <ui:include src="../resources/template/fragment/form/signinForm.xhtml" />

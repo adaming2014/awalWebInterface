@@ -19,10 +19,10 @@
                         <h:link outcome="welcome">
                             <c:choose>
                                 <c:when test="#{authManager.auth and authManager.user.firm != null and not empty authManager.user.firm.logoPath}">
-                                    <p:graphicImage library="images" name="logo/#{authManager.user.firm.id}/logo.png" alt="firm logo" />
+                                    <p:graphicImage library="images" name="logo/#{authManager.user.firm.id}/logo.png" alt="firm logo" height="50px" />
                                 </c:when>
                                 <c:otherwise>
-                                    <p:graphicImage library="images" name="logo/bgLogo.png" alt="Adaming logo" />
+                                    <p:graphicImage library="images" name="logo/bgLogo.png" alt="Adaming logo" height="50px" />
                                 </c:otherwise>
                             </c:choose>
                         </h:link>

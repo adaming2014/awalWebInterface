@@ -17,7 +17,7 @@ html, body {
 }
 
 body {
-    padding-top: 60px;
+    padding-top: 50px;
 }
 
 header {
@@ -29,6 +29,7 @@ header {
 
 #content {
     min-height: calc(100% - 145px);
+    padding: 1em;
 }
 
 footer {

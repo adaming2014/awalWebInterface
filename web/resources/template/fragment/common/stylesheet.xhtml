@@ -6,7 +6,7 @@
     <body>
         <ui:composition>
             <h:outputStylesheet library="css" name="common.css" />
-            <c:if test="#{authManager.auth and not empty authManager.user.firm}" >
+            <c:if test="#{authManager.auth and authManager.user.firm != null and not empty authManager.user.firm.cssPath}" >
                 <h:outputStylesheet library="css" name="#{authManager.user.firm.id}/theme.css" />
             </c:if>
         </ui:composition>

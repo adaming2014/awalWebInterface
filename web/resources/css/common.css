@@ -8,19 +8,31 @@ and open the template in the editor.
     Author     : INTI0221
 */
 
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
 body {
-    background-color: white;
+    padding-top: 60px;
 }
 
-.page {
-    height: 100%;
+header {
 }
 
-.content {
-    height: 100%;
+#menu > form > div {
+    height: 45px;
+}
+
+#content {
+    min-height: calc(100% - 145px);
 }
 
 footer {
+    height: 100px;
     padding: 2em;
     color:#f3f3f3;
     background-color: #262d33;

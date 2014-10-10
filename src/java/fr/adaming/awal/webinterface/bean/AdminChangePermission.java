@@ -15,9 +15,10 @@ import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.Repairer;
 import fr.adaming.awal.entity.Reseller;
 import fr.adaming.awal.entity.User;
+import fr.adaming.awal.entity.interfaces.IUser;
 import fr.adaming.awal.util.RepairerUtil;
 import java.io.Serializable;
-import java.util.ArrayList;
+
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -76,48 +77,70 @@ public class AdminChangePermission implements Serializable {
     }
 
     public void changePermission() {
-
+        IUser iuser = userControlller.getUserTypeByUserId(u.getIdUser());
         if (droitChoisi.equals("Administrateur")) {
             Admin admin = new Admin();
-            User userTmp = userControlller.getById(u.getIdUser());
 
-            admin.setUser(userTmp);
-            userControlller.delete(u);
-            userControlller.create(userTmp);
+            if (iuser instanceof Client) {
+                clientController.delete((Client) iuser);
+            }
+            if (iuser instanceof Repairer) {
+                repairerController.delete((Repairer) iuser);
+            }
+            if (iuser instanceof Reseller) {
+                resellerController.delete((Reseller) iuser);
+            }
+
+            admin.setUser(iuser.getUser());
             adminController.create(admin);
-            //adminController.update(admin);
+
 
         }
         if (droitChoisi.equals("Réparateur")) {
             Repairer repairer = new Repairer();
-            User userTmp = userControlller.getById(u.getIdUser());
-
-            repairer.setUser(userTmp);
-            userControlller.delete(u);
-            userControlller.create(userTmp);
+            if (iuser instanceof Client) {
+                clientController.delete((Client) iuser);
+            }
+            if (iuser instanceof Admin) {
+                adminController.delete((Admin) iuser);
+            }
+            if (iuser instanceof Reseller) {
+                resellerController.delete((Reseller) iuser);
+            }
+            repairer.setUser(iuser.getUser());
             repairer.setAvailable(RepairerUtil.NOT_AVAILABLE);
             repairerController.create(repairer);
 
         }
         if (droitChoisi.equals("Revendeur")) {
             Reseller reseller = new Reseller();
-            User userTmp = userControlller.getById(u.getIdUser());
-
-            reseller.setUser(userTmp);
-            userControlller.delete(u);
-            userControlller.create(userTmp);
+            if (iuser instanceof Client) {
+                clientController.delete((Client) iuser);
+            }
+            if (iuser instanceof Admin) {
+                adminController.delete((Admin) iuser);
+            }
+            if (iuser instanceof Repairer) {
+                repairerController.delete((Repairer) iuser);
+            }
+            reseller.setUser(iuser.getUser());
             resellerController.create(reseller);
         }
         if (droitChoisi.equals("Client")) {
+
             Client client = new Client();
-            User userTmp = userControlller.getById(u.getIdUser());
-            
-            client.setUser(userTmp);
-            userControlller.delete(userTmp);
-//            userControlller.create(userTmp);
-//            clientController.create(client);
+            if (iuser instanceof Reseller) {
+                resellerController.delete((Reseller) iuser);
+            }
+            if (iuser instanceof Admin) {
+                adminController.delete((Admin) iuser);
+            }
+            if (iuser instanceof Repairer) {
+                repairerController.delete((Repairer) iuser);
+            }
+            client.setUser(iuser.getUser());
+            clientController.create(client);
+
         }
-
     }
-
 }

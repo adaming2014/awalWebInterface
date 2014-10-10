@@ -30,7 +30,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @ManagedBean
 @SessionScoped
-public class AdminChangePermission implements Serializable{
+public class AdminChangePermission implements Serializable {
+
     private ApplicationContext context;
     private UserController userControlller;
     private AdminController adminController;
@@ -44,8 +45,7 @@ public class AdminChangePermission implements Serializable{
      * Creates a new instance of AdminChangePermission
      */
     public AdminChangePermission() {
-        
-        
+
         u = new User();
         context = new ClassPathXmlApplicationContext("spring-config.xml");
         userControlller = (UserController) context.getBean("userController");
@@ -55,12 +55,9 @@ public class AdminChangePermission implements Serializable{
         clientController = (ClientController) context.getBean("clientController");
     }
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userControlller.getAll();
     }
-
-
-  
 
     public User getU() {
         return u;
@@ -77,51 +74,50 @@ public class AdminChangePermission implements Serializable{
     public void setDroitChoisi(String droitChoisi) {
         this.droitChoisi = droitChoisi;
     }
-    public void changePermission(){
-        
-        if(droitChoisi.equals("Administrateur")){
+
+    public void changePermission() {
+
+        if (droitChoisi.equals("Administrateur")) {
             Admin admin = new Admin();
             User userTmp = userControlller.getById(u.getIdUser());
-            userTmp.setIdUser(null);
+
             admin.setUser(userTmp);
             userControlller.delete(u);
             userControlller.create(userTmp);
             adminController.create(admin);
             //adminController.update(admin);
-            
+
         }
-        if(droitChoisi.equals("Réparateur")){
+        if (droitChoisi.equals("Réparateur")) {
             Repairer repairer = new Repairer();
             User userTmp = userControlller.getById(u.getIdUser());
-            userTmp.setIdUser(null);
+
             repairer.setUser(userTmp);
             userControlller.delete(u);
             userControlller.create(userTmp);
             repairer.setAvailable(RepairerUtil.NOT_AVAILABLE);
             repairerController.create(repairer);
-            
+
         }
-        if(droitChoisi.equals("Revendeur")){
+        if (droitChoisi.equals("Revendeur")) {
             Reseller reseller = new Reseller();
             User userTmp = userControlller.getById(u.getIdUser());
-            userTmp.setIdUser(null);
+
             reseller.setUser(userTmp);
             userControlller.delete(u);
             userControlller.create(userTmp);
             resellerController.create(reseller);
         }
-         if(droitChoisi.equals("Client")){
-             Client client = new Client();
-             User userTmp = userControlller.getById(u.getIdUser());
-             userTmp.setIdUser(null);
-             client.setUser(userTmp);
-            userControlller.delete(u);
-            userControlller.create(userTmp);
-            clientController.create(client);
-         }
-        
-        
+        if (droitChoisi.equals("Client")) {
+            Client client = new Client();
+            User userTmp = userControlller.getById(u.getIdUser());
+            
+            client.setUser(userTmp);
+            userControlller.delete(userTmp);
+//            userControlller.create(userTmp);
+//            clientController.create(client);
+        }
+
     }
-    
-    
+
 }

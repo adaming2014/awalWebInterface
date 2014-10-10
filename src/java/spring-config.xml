@@ -58,6 +58,18 @@
         <property name="dao">
             <bean class="fr.adaming.awal.dao.UserDao"/>
         </property>
+        <property name="clientDao">
+            <bean class="fr.adaming.awal.dao.ClientDao" />
+        </property>
+        <property name="repairerDao">
+            <bean class="fr.adaming.awal.dao.RepairerDao" />
+        </property>
+        <property name="resellerDao">
+            <bean class="fr.adaming.awal.dao.ResellerDao" />
+        </property>
+        <property name="adminDao">
+            <bean class="fr.adaming.awal.dao.AdminDao" />
+        </property>
     </bean>
     <bean id="addressController" class="fr.adaming.awal.controller.AddressController" lazy-init="true">
         <property name="dao">

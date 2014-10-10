@@ -6,11 +6,8 @@
     <body>
         <ui:composition>
             <h:outputStylesheet library="css" name="common.css" />
-            <c:if test="#{authManager.repairer and not empty authManager.userRepairer.firm}" >
-                <h:outputStylesheet library="css" name="#{authManager.userRepairer.firm.id}/theme.css" />
-            </c:if>
-            <c:if test="#{authManager.reseller and not empty authManager.userReseller.firm}" >
-                <h:outputStylesheet library="css" name="#{authManager.userReseller.firm.id}/theme.css" />
+            <c:if test="#{authManager.auth and not empty authManager.user.firm}" >
+                <h:outputStylesheet library="css" name="#{authManager.user.firm.id}/theme.css" />
             </c:if>
         </ui:composition>
     </body>

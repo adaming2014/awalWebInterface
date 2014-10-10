@@ -18,14 +18,11 @@
 
                         <h:link outcome="welcome">
                             <c:choose>
-                                <c:when test="#{authManager.repairer and not empty authManager.userRepairer.firm}" >
-                                    <p:graphicImage library="images" name="logo/#{authManager.userRepairer.firm.id}/logo.png" />
-                                </c:when>
-                                <c:when test="#{authManager.reseller and not empty authManager.userReseller.firm}" >
-                                    <p:graphicImage library="images" name="logo/#{authManager.userReseller.firm.id}/logo.png" />
+                                <c:when test="#{authManager.auth and not empty authManager.user.firm}">
+                                    <p:graphicImage library="images" name="logo/#{authManager.user.firm.id}/logo.png" alt="firm logo" />
                                 </c:when>
                                 <c:otherwise>
-                                    <p:graphicImage library="images" name="logo/bgLogo.png" />
+                                    <p:graphicImage library="images" name="logo/bgLogo.png" alt="Adaming logo" />
                                 </c:otherwise>
                             </c:choose>
                         </h:link>

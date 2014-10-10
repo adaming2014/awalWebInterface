@@ -4,60 +4,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       lang="en"
       >
-
+    
     <h:head>
-        <script type="text/javascript">
-            
-        function initialiseAddPackage(){
-               document.getElementById('form:nouvel').style.visibility = 'hidden';
-               document.getElementById('form:liste').style.visibility = 'hidden';
-               
-        }  
-        function initialiseAddInsurance(){
-            document.getElementById('forminsurance:nouvelinsurance').style.visibility = 'hidden';
-            document.getElementById('forminsurance:listeinsurance').style.visibility = 'hidden';
-        }
-            
-        function azerty(){
-          
-           
-           if(document.getElementById('form:radiopack:1').checked){
-             //alert("liste coché");
-             
-               document.getElementById('form:nouvel').style.visibility = 'hidden';
-
-               document.getElementById('form:liste').style.visibility = 'visible';
-           }
-           if(document.getElementById("form:radiopack:0").checked){
-               //alert("ajout coché");
-               document.getElementById('form:liste').style.visibility = 'hidden';
-
-               document.getElementById('form:nouvel').style.visibility = 'visible';
-
-           }
-       }
-       function azerty2(){
-           //alert("azerty");
-           
-           if(document.getElementById('forminsurance:radio:1').checked){
-             
-               
-               document.getElementById('forminsurance:nouvelinsurance').style.visibility = 'hidden';
-
-               document.getElementById('forminsurance:listeinsurance').style.visibility = 'visible';
-           }
-           if(document.getElementById("forminsurance:radio:0").checked){
-               //alert("ajout coché");
-               document.getElementById('forminsurance:listeinsurance').style.visibility = 'hidden';
-
-               document.getElementById('forminsurance:nouvelinsurance').style.visibility = 'visible';
-
-           }
-           }
-           
+        <h:outputScript library="js/admin" name="adminRadioButton.js" />
 
         
-        </script>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

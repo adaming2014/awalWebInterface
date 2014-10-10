@@ -14,6 +14,14 @@
     <navigation-rule>
         <from-view-id>/admin/admin.xhtml</from-view-id>
         <navigation-case>
+            <from-outcome>satisticReparation</from-outcome>
+            <to-view-id>/admin/adminStatisticDevice.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addOneUser</from-outcome>
+            <to-view-id>/admin/adminaddmodel.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>addPackages</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
@@ -36,6 +44,14 @@
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/admin/adminAddPackage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>satisticReparation</from-outcome>
+            <to-view-id>/admin/adminStatisticDevice.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addOneUser</from-outcome>
+            <to-view-id>/admin/adminaddmodel.xhtml</to-view-id>
+        </navigation-case>
         <navigation-case>
             <from-outcome>addPackages</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
@@ -60,6 +76,14 @@
     <navigation-rule>
         <from-view-id>/admin/AdminaddInsurance.xhtml</from-view-id>
         <navigation-case>
+            <from-outcome>satisticReparation</from-outcome>
+            <to-view-id>/admin/adminStatisticDevice</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addOneUser</from-outcome>
+            <to-view-id>/admin/adminaddmodel.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>addPackages</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
@@ -82,6 +106,14 @@
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/admin/AdminChangePermission.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>satisticReparation</from-outcome>
+            <to-view-id>/admin/adminStatisticDevice.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addOneUser</from-outcome>
+            <to-view-id>/admin/adminaddmodel.xhtml</to-view-id>
+        </navigation-case>
         <navigation-case>
             <from-outcome>addInsurances</from-outcome>
             <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
@@ -106,6 +138,14 @@
     <navigation-rule>
         <from-view-id>/admin/Adminrepairer.xhtml</from-view-id>
         <navigation-case>
+            <from-outcome>satisticReparation</from-outcome>
+            <to-view-id>/admin/adminStatisticDevice.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addOneUser</from-outcome>
+            <to-view-id>/admin/adminaddmodel.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>addPackages</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
@@ -129,6 +169,14 @@
     <navigation-rule>
         <from-view-id>/admin/AdminClients.xhtml</from-view-id>
         <navigation-case>
+            <from-outcome>satisticReparation</from-outcome>
+            <to-view-id>/admin/adminStatisticDevice.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addOneUser</from-outcome>
+            <to-view-id>/admin/adminaddmodel.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>addPackages</from-outcome>
             <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
         </navigation-case>
@@ -149,7 +197,74 @@
             <to-view-id>/admin/AdminClients.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
+    <navigation-rule>
+        <from-view-id>/admin/adminaddmodel.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>satisticReparation</from-outcome>
+            <to-view-id>/admin/adminStatisticDevice.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addOneUser</from-outcome>
+            <to-view-id>/admin/adminaddmodel.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addPackages</from-outcome>
+            <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>changePermission</from-outcome>
+            <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addInsurances</from-outcome>
+            <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>getAllrepairers</from-outcome>
+            <to-view-id>/admin/Adminrepairer.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>getAllclients</from-outcome>
+            <to-view-id>/admin/AdminClients.xhtml</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/adminStatisticDevice.xhtml</from-view-id>
+   <navigation-case>
+            <from-outcome>satisticReparation</from-outcome>
+            <to-view-id>/admin/adminStatisticDevice.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addOneUser</from-outcome>
+            <to-view-id>/admin/adminaddmodel.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addPackages</from-outcome>
+            <to-view-id>/admin/adminAddPackage.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>changePermission</from-outcome>
+            <to-view-id>/admin/AdminChangePermission.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addInsurances</from-outcome>
+            <to-view-id>/admin/AdminaddInsurance.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>getAllrepairers</from-outcome>
+            <to-view-id>/admin/Adminrepairer.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>getAllclients</from-outcome>
+            <to-view-id>/admin/AdminClients.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addOneUser</from-outcome>
+            <to-view-id>/admin/adminaddmodel.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
     <!--AUTHENTIFICATION-->
     <navigation-rule>
         <from-view-id>/auth/signin.xhtml</from-view-id>

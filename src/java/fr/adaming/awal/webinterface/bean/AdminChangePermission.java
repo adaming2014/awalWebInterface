@@ -82,6 +82,7 @@ public class AdminChangePermission implements Serializable{
         if(droitChoisi.equals("Administrateur")){
             Admin admin = new Admin();
             User userTmp = userControlller.getById(u.getIdUser());
+            userTmp.setIdUser(null);
             admin.setUser(userTmp);
             userControlller.delete(u);
             userControlller.create(userTmp);
@@ -92,6 +93,7 @@ public class AdminChangePermission implements Serializable{
         if(droitChoisi.equals("Réparateur")){
             Repairer repairer = new Repairer();
             User userTmp = userControlller.getById(u.getIdUser());
+            userTmp.setIdUser(null);
             repairer.setUser(userTmp);
             userControlller.delete(u);
             userControlller.create(userTmp);
@@ -102,6 +104,7 @@ public class AdminChangePermission implements Serializable{
         if(droitChoisi.equals("Revendeur")){
             Reseller reseller = new Reseller();
             User userTmp = userControlller.getById(u.getIdUser());
+            userTmp.setIdUser(null);
             reseller.setUser(userTmp);
             userControlller.delete(u);
             userControlller.create(userTmp);
@@ -110,6 +113,7 @@ public class AdminChangePermission implements Serializable{
          if(droitChoisi.equals("Client")){
              Client client = new Client();
              User userTmp = userControlller.getById(u.getIdUser());
+             userTmp.setIdUser(null);
              client.setUser(userTmp);
             userControlller.delete(u);
             userControlller.create(userTmp);

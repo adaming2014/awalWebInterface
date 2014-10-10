@@ -13,14 +13,18 @@
                 <p:submenu label="Ajouter">
                     <p:menuitem value="Forfait réparation" icon="ui-icon-disk" outcome="addPackages"/>
                     <p:menuitem value="Forfait assurance"  icon="ui-icon-arrowrefresh-1-w" outcome="addInsurances" />
+                    <p:menuitem value="Modèle" icon="ui-icon-image" outcome="addOneUser"/>
                 </p:submenu>
                 <p:submenu label="Permission">
                     <p:menuitem value="Changer droits"   ajax="false" icon="ui-icon-close" outcome="changePermission"/>
                 </p:submenu>
                 <p:submenu label="Consultation">
-                    <p:menuitem value="Répareurs" outcome="getAllrepairers"/>
-                    <p:menuitem value="Clients" outcome="getAllclients"/>
-                </p:submenu> 
+                    <p:menuitem value="Répareurs" outcome="getAllrepairers" icon="ui-icon-wrench"/>
+                    <p:menuitem value="Clients" outcome="getAllclients" icon="ui-icon-person"/>
+                </p:submenu>
+                    <p:submenu label="Statistic">
+                        <p:menuitem value="Réparation" outcome="satisticReparation" icon="ui-icon-wrench"/>
+                    </p:submenu>
                 </p:tieredMenu>
             </h:form>
         </ui:composition>

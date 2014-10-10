@@ -69,6 +69,9 @@ public class AdminPackageInsurance implements Serializable{
         deviceinsurancemodel.setModele(modelController.getById(modele.getIdModele()));
         deviceInsuranceModelController.create(deviceinsurancemodel);
     }
+    public void createNewModel(){
+        modelController.create(modele);
+    }
     
     
 }

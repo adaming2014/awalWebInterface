@@ -14,7 +14,7 @@
                 <h:panelGrid columns="2" style="margin-bottom: 100px" cellpadding="5" columnClasses="label, value">
                     <p:outputLabel for="utilisateurs" value="Utilisateurs :   " style="color: #000"/>
                     <p:selectOneListbox id="utilisateurs" value="#{adminChangePermission.u.idUser}">
-                        <f:selectItems var="usersVar" value="#{adminChangePermission.allUsers}" itemLabel="#{usersVar.lastname}" itemValue="#{usersVar.idUser}" />
+                        <f:selectItems var="usersVar" value="#{adminChangePermission.allUsers}" itemLabel="#{usersVar.lastname}  #{usersVar.firstname}" itemValue="#{usersVar.idUser}" />
                     </p:selectOneListbox>
                        
                 

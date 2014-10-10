@@ -21,6 +21,7 @@ public class FacesMessageUtil {
     public static final FacesMessage MESSAGE_DEVICE_NOT_CREATE = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Device : Device not create", "Device : Incorrect value of Device id");
     public static final FacesMessage MESSAGE_MODEL_NOT_CREATE = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Model : Device not model", "Model : Incorrect value of Model id");
     public static final FacesMessage MESSAGE_DEVICE_REPAIR_ALREADY_EXIST = new FacesMessage(FacesMessage.SEVERITY_ERROR, "DeviceRepair : DeviceRepair already exist", "DeviceRepair : DeviceRepair already exist");
+    public static final FacesMessage MESSAGE_INVALID_ID = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login : Invalid id", "Login : Invalid id");
 
     public static final FacesMessage INFO_FIRM_UPDATED = new FacesMessage(FacesMessage.SEVERITY_INFO, "Firm updated !", "The firm has been correctly updated.");
     public static final FacesMessage INFO_USER_UPDATED = new FacesMessage(FacesMessage.SEVERITY_INFO, "User updated !", "The user has been correctly updated.");

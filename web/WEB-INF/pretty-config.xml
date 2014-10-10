@@ -30,6 +30,11 @@
         <pattern value="/auth/signin" />
         <view-id value="/faces/auth/signin.xhtml" />
     </url-mapping>
+    
+    <url-mapping id="authLogin">
+        <pattern value="/auth/login" />
+        <view-id value="/faces/auth/login.xhtml" />
+    </url-mapping>
 
     <!--ACCOUNT-->
     <url-mapping id="accountUpdate">

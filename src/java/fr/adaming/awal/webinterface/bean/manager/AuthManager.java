@@ -13,7 +13,7 @@ import fr.adaming.awal.entity.Reseller;
 import fr.adaming.awal.entity.User;
 import fr.adaming.awal.entity.interfaces.IUser;
 import fr.adaming.awal.webinterface.bean.form.UserParameters;
-import javax.faces.application.FacesMessage;
+import fr.adaming.awal.webinterface.util.FacesMessageUtil;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -26,13 +26,11 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class AuthManager extends GenericManager {
 
+    private static final String PAGE_HOME = "pretty:home";
+    private static final String PAGE_SIGNIN = "pretty:authSignin";
+    private static final String PAGE_LOGIN = "pretty:authLogin";
+
     private IUser user;
-    private static final String PAGE_INDEX = "index";
-    private static final String PAGE_SIGNIN = "signup";
-    private static final String PAGE_CLIENT = "pretty:home";
-    private static final String PAGE_RESELLER = "pretty:home";
-    private static final String PAGE_ADMIN = "admin";
-    private static final String PAGE_DISCONNECT = "disconnect";
 
     /**
      * Creates a new instance of AuthManager
@@ -45,67 +43,31 @@ public class AuthManager extends GenericManager {
         UserParameters loginParameters = context.getApplication().evaluateExpressionGet(context, "#{userParameters}", UserParameters.class);
 
         IUserController userController = (IUserController) springContext.getBean("userController");
-        if (userController == null) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Internal error", "Internal error"));
-            return null;
-        }
 
         User userTmp = userController.getByEmail(loginParameters.getEmail());
-        if (userTmp == null) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Utilisateur inexistant", "Utilisateur inexistant"));
-            return null;
+        if (userTmp == null || !userTmp.getPassword().equals(loginParameters.getPassword())) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_INVALID_ID);
+            return PAGE_LOGIN;
         }
 
-        if (!userTmp.getPassword().equals(loginParameters.getPassword())) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Mauvais mot de passe", "Mauvais mot de passe"));
-            return null;
+        IUser iUser = userController.getUserTypeByUserId(userTmp.getId());
+        if (iUser == null) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_INTERNAL_ERROR);
+            return PAGE_LOGIN;
         }
 
-        for (Object client : userTmp.getClients()) {
-            if (((Client) client).getUser().equals(userTmp)) {
-                // auth client
-                this.setUser((Client) client);
-                return PAGE_CLIENT;
-            }
-        }
+        this.setUser(iUser);
 
-        for (Object repairer : userTmp.getRepairers()) {
-            if (((Repairer) repairer).getUser().equals(userTmp)) {
-                // auth repairer
-                this.setUser((Repairer) repairer);
-                return PAGE_INDEX;
-            }
-        }
-
-        for (Object reseller : userTmp.getResellers()) {
-            if (((Reseller) reseller).getUser().equals(userTmp)) {
-                // auth reseller
-                this.setUser((Reseller) reseller);
-                System.out.println("reseller ");
-                return PAGE_RESELLER;
-            }
-        }
-        for (Object admin : userTmp.getAdmins()) {
-            if (((Admin) admin).getUser().equals(userTmp)) {
-                // auth admin
-                this.setUser((Admin) admin);
-                return PAGE_ADMIN;
-            }
-        }
-
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal error", "Fatal error"));
-        return null;
-
+        return PAGE_HOME;
     }
 
     public String disconnect() {
         setUser(null);
 
-        return PAGE_DISCONNECT;
+        return PAGE_HOME;
     }
-    
-    public String signup() {
 
+    public String signin() {
         return PAGE_SIGNIN;
     }
 

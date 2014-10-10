@@ -117,6 +117,14 @@ public class FirmManager extends GenericManager {
             return;
         }
 
+        if (parameters.getLogo().getSize() > 0) {
+            FileUtil.saveFile(firm.getId(), image_path, parameters.getLogo(), "logo.png");
+        }
+
+        if (parameters.getTheme().getSize() > 0) {
+            FileUtil.saveFile(firm.getId(), css_path, parameters.getTheme(), "theme.css");
+        }
+
         context.addMessage(null, FacesMessageUtil.INFO_FIRM_UPDATED);
     }
 

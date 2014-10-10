@@ -30,6 +30,7 @@ public class AuthManager extends GenericManager {
     private static final String PAGE_INDEX = "index";
     private static final String PAGE_SIGNIN = "signup";
     private static final String PAGE_CLIENT = "pretty:home";
+    private static final String PAGE_RESELLER = "pretty:home";
     private static final String PAGE_ADMIN = "admin";
     private static final String PAGE_DISCONNECT = "disconnect";
 
@@ -80,7 +81,8 @@ public class AuthManager extends GenericManager {
             if (((Reseller) reseller).getUser().equals(userTmp)) {
                 // auth reseller
                 this.setUser((Reseller) reseller);
-                return PAGE_INDEX;
+                System.out.println("reseller ");
+                return PAGE_RESELLER;
             }
         }
         for (Object admin : userTmp.getAdmins()) {

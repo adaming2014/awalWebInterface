@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <p:dataTable value="#{resellerManager.clientsByFirm}" var="client" style="text-align: center;" paginator="true" rows="10"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="5,10,15">
+            <p:column sortBy="#{client.user.firstname}" filterBy="#{client.user.firstname}">
+                <f:facet name="header">
+                    <h:outputText value="Firstname"/>
+                </f:facet>
+                <h:outputText value="#{client.user.firstname}"/>
+            </p:column>     
+
+            <p:column sortBy="#{client.user.lastname}" filterBy="#{client.user.lastname}">
+                <f:facet name="header">
+                    <h:outputText value="Lastname"/>
+                </f:facet>
+                <h:outputText value="#{client.user.lastname}"/>
+            </p:column>   
+
+            <p:column sortBy="#{client.user.mail}" filterBy="#{client.user.mail}">
+                <f:facet name="header">
+                    <h:outputText value="Mail"/>
+                </f:facet>
+                <h:outputText value="#{client.user.mail}"/>
+            </p:column>   
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Password"/>
+                </f:facet>
+                <h:outputText value="#{client.user.password}"/>
+            </p:column>   
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Client"/>
+                </f:facet>
+                <h:commandLink action="#{resellerManager.setClient(client)}">
+                    <p:graphicImage library="images/logo" name="client.png" width="60"/>
+                </h:commandLink>
+            </p:column>  
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Info Client"/>
+                </f:facet>
+                <h:commandLink action="#{resellerManager.createPDF(client)}">
+                    <p:graphicImage library="images/logo" name="pdficone.png" width="30"/>
+                </h:commandLink>
+            </p:column>
+
+        </p:dataTable>
+
+    </h:body>
+</html>
+

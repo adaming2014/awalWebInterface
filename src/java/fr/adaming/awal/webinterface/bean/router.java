@@ -43,6 +43,9 @@ public class router implements Serializable {
             return "client/client.xhtml";
         }
 
+        if (authManager.isReseller()) {
+            return "reseller/reseller.xhtml";
+        }
         return "index.xhtml";
     }
 

@@ -231,7 +231,7 @@
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/admin/adminStatisticDevice.xhtml</from-view-id>
-   <navigation-case>
+        <navigation-case>
             <from-outcome>satisticReparation</from-outcome>
             <to-view-id>/admin/adminStatisticDevice.xhtml</to-view-id>
         </navigation-case>
@@ -383,6 +383,14 @@
     </navigation-rule>
     
     <!--REPAIRER-->
+        <navigation-rule>
+        <from-view-id>/reseller/reseller.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addClients</from-outcome>
+            <to-view-id>/reseller/clients/add.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
     <!--RESELLER-->
 
     <!--DEFAULT-->
@@ -416,6 +424,11 @@
         <navigation-case>
             <from-outcome>disconnect</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>reseller</from-outcome>
+            <to-view-id>/reseller/reseller.xhtml</to-view-id>
             <redirect />
         </navigation-case>
         <navigation-case>

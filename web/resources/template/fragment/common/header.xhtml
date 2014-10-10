@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <p:password placeholder="Password" value="#{userParameters.password}"/>
                                     </div>
-                                    <!--<button class="btn btn-success" type="submit" >Sign in</button>-->
+
                                     <p:commandButton value="Login" action="#{authManager.login()}" update="@form" ajax="false"/>
                                     <p:commandButton value="Signin" action="#{authManager.signin()}" update="@form" ajax="false"/>
                                 </h:form>
@@ -48,6 +48,7 @@
                             <c:otherwise>
                                 <h:form class="navbar-form navbar-right">
                                     <div class="form-group">
+                                        <h:outputText value="Hello #{authManager.user.user.firstname}" />
                                         <p:commandButton value="Logout" action="#{authManager.disconnect()}" update="@form" ajax="false" />
                                     </div>          
                                 </h:form>

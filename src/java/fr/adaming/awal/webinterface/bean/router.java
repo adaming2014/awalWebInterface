@@ -43,7 +43,7 @@ public class router implements Serializable {
             return "client/client.xhtml";
         }
 
-        if (authManager.isReseller()) {
+        if (authManager.isRepairer()) {
             return "repairer/listDeviceRepair.xhtml";
         }
 

@@ -7,6 +7,7 @@ package fr.adaming.awal.webinterface.bean.manager;
 
 import fr.adaming.awal.controller.interfaces.IClientController;
 import fr.adaming.awal.controller.interfaces.IDeviceRepairController;
+import fr.adaming.awal.controller.interfaces.IRepairerController;
 import fr.adaming.awal.entity.Device;
 import fr.adaming.awal.entity.Devicerepair;
 import fr.adaming.awal.entity.Modelpackage;
@@ -64,6 +65,12 @@ public class DeviceRepairManager extends GenericManager {
         IClientController clientController = (IClientController) springContext.getBean("clientController");
         IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
         return deviceController.getDevicesRepairByClient(clientController.getById(authManager.getClientId()));
+    }
+
+    public List<Devicerepair> getDevicesRepairByRepairer() {
+        IRepairerController repairerController = (IRepairerController) springContext.getBean("repairerController");
+        IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
+        return deviceController.getDevicesRepairByRepairer(repairerController.getById(authManager.getRepairerId()));
     }
 
     public Modelpackage getModelPackage() {

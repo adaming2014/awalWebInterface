@@ -44,8 +44,13 @@ public class router implements Serializable {
         }
 
         if (authManager.isReseller()) {
+            return "repairer/listDeviceRepair.xhtml";
+        }
+
+        if (authManager.isReseller()) {
             return "reseller/reseller.xhtml";
         }
+
         return "index.xhtml";
     }
 

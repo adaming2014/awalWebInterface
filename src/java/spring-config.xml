@@ -28,6 +28,12 @@
         <property name="dao">
             <bean class="fr.adaming.awal.dao.DeviceRepairDao"/>
         </property>
+        <property name="repairerDao">
+            <bean class="fr.adaming.awal.dao.RepairerDao"/>
+        </property>
+        <property name="deviceInsuranceDao">
+            <bean class="fr.adaming.awal.dao.DeviceinsuranceDao"/>
+        </property>
     </bean>
     <bean id="firmController" class="fr.adaming.awal.controller.FirmController" lazy-init="true">
         <property name="dao">
@@ -64,7 +70,7 @@
             <bean class="fr.adaming.awal.dao.AddressDao"/>
         </property>
     </bean>
-     <bean id="deviceInsuranceModelController" class="fr.adaming.awal.controller.DeviceinsurancemodelController" lazy-init="true">
+    <bean id="deviceInsuranceModelController" class="fr.adaming.awal.controller.DeviceinsurancemodelController" lazy-init="true">
         <property name="dao">
             <bean class="fr.adaming.awal.dao.DeviceInsuranceModeleDao"/>
         </property>

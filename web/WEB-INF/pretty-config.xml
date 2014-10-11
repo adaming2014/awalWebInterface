@@ -26,9 +26,9 @@
     </url-mapping>
 
     <!--AUTHENTIFICATION-->
-    <url-mapping id="authSignin">
-        <pattern value="/auth/signin" />
-        <view-id value="/faces/auth/signin.xhtml" />
+    <url-mapping id="authRegister">
+        <pattern value="/auth/register" />
+        <view-id value="/faces/auth/register.xhtml" />
     </url-mapping>
     
     <url-mapping id="authLogin">

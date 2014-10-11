@@ -27,7 +27,7 @@ import javax.faces.context.FacesContext;
 public class AuthManager extends GenericManager {
 
     private static final String PAGE_HOME = "pretty:home";
-    private static final String PAGE_SIGNIN = "pretty:authSignin";
+    private static final String PAGE_REGISTER = "pretty:authRegister";
     private static final String PAGE_LOGIN = "pretty:authLogin";
 
     private IUser user;
@@ -61,14 +61,14 @@ public class AuthManager extends GenericManager {
         return PAGE_HOME;
     }
 
-    public String disconnect() {
+    public String logout() {
         setUser(null);
 
         return PAGE_HOME;
     }
 
-    public String signin() {
-        return PAGE_SIGNIN;
+    public String register() {
+        return PAGE_REGISTER;
     }
 
     public boolean isAuth() {

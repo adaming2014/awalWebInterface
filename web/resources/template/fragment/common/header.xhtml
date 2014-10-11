@@ -41,15 +41,15 @@
                                         <p:password placeholder="Password" value="#{userParameters.password}"/>
                                     </div>
 
-                                    <p:commandButton value="Login" action="#{authManager.login()}" update="@form" ajax="false"/>
-                                    <p:commandButton value="Signin" action="#{authManager.signin()}" update="@form" ajax="false"/>
+                                    <p:commandButton value="Login" action="#{authManager.login}" update="@form" ajax="false"/>
+                                    <p:commandButton value="Register" action="#{authManager.register}" update="@form" ajax="false"/>
                                 </h:form>
                             </c:when>
                             <c:otherwise>
                                 <h:form class="navbar-form navbar-right">
                                     <div class="form-group">
                                         <h:outputText value="Hello #{authManager.user.user.firstname}" />
-                                        <p:commandButton value="Logout" action="#{authManager.disconnect()}" update="@form" ajax="false" />
+                                        <p:commandButton value="Logout" action="#{authManager.logout}" update="@form" ajax="false" />
                                     </div>          
                                 </h:form>
                             </c:otherwise>

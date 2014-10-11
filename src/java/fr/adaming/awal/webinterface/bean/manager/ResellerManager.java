@@ -7,9 +7,14 @@ package fr.adaming.awal.webinterface.bean.manager;
 
 import fr.adaming.awal.controller.interfaces.IClientController;
 import fr.adaming.awal.controller.interfaces.IDeviceController;
+import fr.adaming.awal.controller.interfaces.IDeviceInsuranceController;
+import fr.adaming.awal.controller.interfaces.IDeviceRepairController;
 import fr.adaming.awal.entity.Address;
 import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.Device;
+import fr.adaming.awal.entity.Deviceinsurance;
+import fr.adaming.awal.entity.Devicerepair;
+import fr.adaming.awal.entity.Modelpackage;
 import fr.adaming.awal.entity.User;
 import fr.adaming.awal.webinterface.bean.form.ClientParameters;
 import fr.adaming.awal.webinterface.bean.form.DeviceParameters;
@@ -31,10 +36,12 @@ import javax.faces.context.FacesContext;
 public class ResellerManager extends GenericManager implements Serializable {
 
     private static final String CREATE_CLIENT_RESELLER = "pretty:home";
-    private static final String GERATE_CLIENT_RESELLER = "manage";
+    private static final String MANAGE_CLIENT_RESELLER = "manage";
     private static final String NAVIGATION_HOME_CLIENT = "homeResellerClient";
+    private static final String MANAGE_DEVICE_REPAIR = "addDeviceRepairReseller";
     private Client client;
     private Device device;
+    private Modelpackage modelPackage;
 
     /**
      * Creates a new instance of ResellerManager
@@ -88,6 +95,16 @@ public class ResellerManager extends GenericManager implements Serializable {
         return devices;
     }
 
+    public List<Devicerepair> getDevicesRepairByClient() {
+        IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
+        return deviceController.getDevicesRepairByClient(client);
+    }
+
+    public List<Deviceinsurance> getDevicesInsuranceByClient() {
+        IDeviceInsuranceController deviceInsuranceController = (IDeviceInsuranceController) springContext.getBean("deviceInsuranceController");
+        return deviceInsuranceController.getDevicesInsuranceByClient(client);
+    }
+
     public String addDeviceToClient() {
         FacesContext context = FacesContext.getCurrentInstance();
         DeviceParameters deviceParameters = getManagedBean(context, "deviceParameters", DeviceParameters.class);
@@ -103,6 +120,24 @@ public class ResellerManager extends GenericManager implements Serializable {
         return NAVIGATION_HOME_CLIENT;
     }
 
+    public String addDeviceRepairToClient() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        IDeviceRepairController deviceRepairController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
+
+        Devicerepair devicerepair = new Devicerepair();
+        devicerepair.setDevice(device);
+        devicerepair.setModelpackage(modelPackage);
+
+        try {
+            deviceRepairController.createDeviceRepair(devicerepair);
+        } catch (IDeviceRepairController.PackageAlreadyPresentException ex) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DEVICE_REPAIR_ALREADY_EXIST);
+            return null;
+        }
+
+        return NAVIGATION_HOME_CLIENT;
+    }
+
     public void createPDF(Client client) {
 
     }
@@ -113,15 +148,24 @@ public class ResellerManager extends GenericManager implements Serializable {
 
     public String setClient(Client client) {
         this.client = client;
-        return GERATE_CLIENT_RESELLER;
+        return MANAGE_CLIENT_RESELLER;
     }
 
     public Device getDevice() {
         return device;
     }
 
-    public void setDevice(Device device) {
+    public String setDevice(Device device) {
         this.device = device;
+        return MANAGE_DEVICE_REPAIR;
+    }
+
+    public Modelpackage getModelPackage() {
+        return modelPackage;
+    }
+
+    public void setModelPackage(Modelpackage modelPackage) {
+        this.modelPackage = modelPackage;
     }
 
 }

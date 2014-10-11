@@ -471,5 +471,10 @@
             <to-view-id>/reseller/clients/device/list.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>addDeviceRepairReseller</from-outcome>
+            <to-view-id>/device/package/add.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule> 
 </faces-config>

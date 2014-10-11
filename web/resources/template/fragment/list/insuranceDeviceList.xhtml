@@ -2,63 +2,125 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:body>
-        <p:dataTable value="#{deviceInsuranceManager.all}" var="deviceInsurance" style="text-align: center;"> 
+        <c:choose>
+            <c:when test="#{authManager.auth and authManager.client}" >
+                <p:dataTable value="#{deviceInsuranceManager.all}" var="deviceInsurance" style="text-align: center;"> 
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Name"/>
-                </f:facet>
-                <h:outputText value="#{deviceInsurance.deviceinsurancemodel.name}"/>
-            </p:column>  
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.deviceinsurancemodel.name}"/>
+                    </p:column>  
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Device Description"/>
-                </f:facet>
-                <h:outputText value="#{deviceInsurance.device.description}"/>
-            </p:column>  
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Device Description"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.device.description}"/>
+                    </p:column>  
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Modele"/>
-                </f:facet>
-                <h:outputText value="#{deviceInsurance.deviceinsurancemodel.modele.name}"/>
-            </p:column>          
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Modele"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.deviceinsurancemodel.modele.name}"/>
+                    </p:column>          
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Price"/>
-                </f:facet>
-                <h:outputText value="#{deviceInsurance.deviceinsurancemodel.price}"/>
-            </p:column>  
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Price"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.deviceinsurancemodel.price}"/>
+                    </p:column>  
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Begin Date"/>
-                </f:facet>
-                <h:outputText value="#{deviceInsurance.beginDate}" >
-                    <f:convertDateTime pattern="d-M-yyyy" />
-                </h:outputText>
-            </p:column>  
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Begin Date"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.beginDate}" >
+                            <f:convertDateTime pattern="d-M-yyyy" />
+                        </h:outputText>
+                    </p:column>  
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Duration"/>
-                </f:facet>
-                <h:outputText value="#{deviceInsurance.deviceinsurancemodel.duration} month"/>
-            </p:column> 
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Duration"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.deviceinsurancemodel.duration} month"/>
+                    </p:column> 
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Insurance"/>
-                </f:facet>
-                <h:commandLink>
-                    <p:graphicImage library="images/logo" name="pdficone.png" width="30"/>
-                </h:commandLink>
-            </p:column> 
-        </p:dataTable>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Insurance"/>
+                        </f:facet>
+                        <h:commandLink>
+                            <p:graphicImage library="images/logo" name="pdficone.png" width="30"/>
+                        </h:commandLink>
+                    </p:column> 
+                </p:dataTable>
+            </c:when>
+            <c:otherwise>
+                <p:dataTable value="#{resellerManager.devicesInsuranceByClient}" var="deviceInsurance" style="text-align: center;"> 
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.deviceinsurancemodel.name}"/>
+                    </p:column>  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Device Description"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.device.description}"/>
+                    </p:column>  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Modele"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.deviceinsurancemodel.modele.name}"/>
+                    </p:column>          
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Price"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.deviceinsurancemodel.price}"/>
+                    </p:column>  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Begin Date"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.beginDate}" >
+                            <f:convertDateTime pattern="d-M-yyyy" />
+                        </h:outputText>
+                    </p:column>  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Duration"/>
+                        </f:facet>
+                        <h:outputText value="#{deviceInsurance.deviceinsurancemodel.duration} month"/>
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Insurance"/>
+                        </f:facet>
+                        <h:commandLink>
+                            <p:graphicImage library="images/logo" name="pdficone.png" width="30"/>
+                        </h:commandLink>
+                    </p:column> 
+                </p:dataTable>
+            </c:otherwise>
+        </c:choose>
     </h:body>
 </html>
 

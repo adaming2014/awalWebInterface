@@ -17,6 +17,22 @@
                         <p:button outcome="add" value="add Product"/>
                     </div>
                 </div>
+                <div class="panel panel-primary" style="margin: 1em;">
+                    <div class="panel-heading">Device Repair List</div>
+                    <div class="panel-body">
+                        <h:form>
+                            <ui:include src="../../../resources/template/fragment/list/deviceRepairListByClient.xhtml" />  
+                        </h:form>
+                    </div>
+                </div>
+                <div class="panel panel-primary" style="margin: 1em;">
+                    <div class="panel-heading">Device Insurance List</div>
+                    <div class="panel-body">
+                        <h:form>
+                            <ui:include src="../../../resources/template/fragment/list/insuranceDeviceList.xhtml" />  
+                        </h:form>
+                    </div>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

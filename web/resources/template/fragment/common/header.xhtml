@@ -29,7 +29,6 @@
                     </div>
 
                     <div class="navbar-collapse collapse">               
-                        ${empty isLogged}
                         <c:choose>
                             <c:when test="${not authManager.auth}">
                                 <h:form class="navbar-form navbar-right">

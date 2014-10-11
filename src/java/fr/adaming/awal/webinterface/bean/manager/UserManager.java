@@ -24,7 +24,7 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class UserManager extends GenericManager {
 
-    private static final String PAGE_INDEX_REDIRECT = "index_redirect";
+    private static final String PAGE_HOME = "pretty:home";
 
     @ManagedProperty("#{authManager}")
     private AuthManager authManager;
@@ -58,7 +58,7 @@ public class UserManager extends GenericManager {
 
         authManager.setUser(client);
 
-        return PAGE_INDEX_REDIRECT;
+        return PAGE_HOME;
     }
 
     public void reset() {

@@ -3,28 +3,35 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       lang="en"
-      >
+
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title><ui:insert name="title" >AWAL SAV</ui:insert></title>
-        <ui:insert name="stylesheetLibrary" >
-            <ui:include src="../fragment/common/stylesheetLibrary.xhtml" />
-        </ui:insert>
-        <ui:insert name="stylesheet" >
-            <ui:include src="../fragment/common/stylesheet.xhtml" />
-        </ui:insert>
+        <f:facet name="first">
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title><ui:insert name="title" >AWAL SAV</ui:insert></title>
+        </f:facet>
     </h:head>
 
     <h:body>
+        <f:facet name="last">
+            <ui:insert name="stylesheetLibrary" >
+                <ui:include src="../fragment/common/stylesheetLibrary.xhtml" />
+            </ui:insert>
+
+            <ui:insert name="stylesheet" >
+                <ui:include src="../fragment/common/stylesheet.xhtml" />
+            </ui:insert>
+        </f:facet>
+
         <header id="header">
             <ui:insert name="header" >
                 <ui:include src="../fragment/common/header.xhtml" />
             </ui:insert>
         </header>
-        
+
         <nav id="menu">
             <ui:insert name="menu" >
                 <ui:include src="../fragment/common/menu.xhtml" />

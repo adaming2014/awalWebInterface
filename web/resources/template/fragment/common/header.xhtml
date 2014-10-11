@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
     <body>
         <ui:composition>
-            <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+            <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
                         <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
@@ -28,11 +28,10 @@
                         </h:link>
                     </div>
 
-                    <div class="navbar-collapse collapse">               
+                    <div class="navbar-collapse collapse">
                         <c:choose>
                             <c:when test="${not authManager.auth}">
                                 <h:form class="navbar-form navbar-right">
-
                                     <div class="form-group">
                                         <p:inputText placeholder="Email" value="#{userParameters.email}"/>
                                     </div>
@@ -55,7 +54,7 @@
                         </c:choose>
                     </div><!--/.nav-collapse -->
                 </div>
-            </div>
+            </nav>
         </ui:composition>
     </body>
 </html>

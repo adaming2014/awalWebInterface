@@ -8,6 +8,10 @@
         <param-name>primefaces.UPLOADER</param-name>
         <param-value>commons</param-value>
     </context-param>
+<!--    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>none</param-value>
+    </context-param>-->
     <context-param>
         <description>Location to store uploaded firm logo</description>
         <param-name>path_image</param-name>

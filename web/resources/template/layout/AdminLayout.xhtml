@@ -2,45 +2,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      lang="en"
-      >
-    
-    <h:head>
-        <h:outputScript library="js/admin" name="adminRadioButton.js" />
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-        
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title><ui:insert name="title" >AWAL SAV</ui:insert></title>
-        <ui:insert name="stylesheetLibrary" >
-            <ui:include src="../fragment/common/stylesheetLibrary.xhtml" />
-        </ui:insert>
-        <ui:insert name="stylesheet" >
-            <ui:include src="../fragment/common/stylesheet.xhtml" />
-        </ui:insert>
+    <h:head>
+        <f:facet name="first">
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title><ui:insert name="title" >AWAL SAV</ui:insert></title>
+        </f:facet>
+
+        <h:outputScript library="js/admin" name="adminRadioButton.js" />
     </h:head>
 
     <h:body>
-        <div id="page">
-            <header id="header">
-                <ui:insert name="header" >
-                    <ui:include src="../fragment/admin/headerAdmin.xhtml" />
-                </ui:insert>
-            </header>
+        <f:facet name="last">
+            <ui:insert name="stylesheetLibrary" >
+                <ui:include src="../fragment/common/stylesheetLibrary.xhtml" />
+            </ui:insert>
 
-            <div id="content">
-                <ui:insert name="content">
-                    <ui:include src="../fragment/common/content.xhtml" />
-                </ui:insert>
-            </div>
+            <ui:insert name="stylesheet" >
+                <ui:include src="../fragment/common/stylesheet.xhtml" />
+            </ui:insert>
+        </f:facet>
 
-            <footer id="footer">
-                <ui:insert name="footer" >
-                    <ui:include src="../fragment/common/footer.xhtml" />
-                </ui:insert>
-            </footer>
+        <header id="header">
+            <ui:insert name="header" >
+                <ui:include src="../fragment/common/header.xhtml" />
+            </ui:insert>
+
+            <ui:insert name="menu" >
+                <ui:include src="../fragment/admin/menu.xhtml" />
+            </ui:insert>
+        </header>
+
+        <div id="content">
+            <ui:insert name="content">
+                <ui:include src="../fragment/common/content.xhtml" />
+            </ui:insert>
         </div>
+
+        <footer id="footer">
+            <ui:insert name="footer" >
+                <ui:include src="../fragment/common/footer.xhtml" />
+            </ui:insert>
+        </footer>
 
         <ui:insert name="jsLibrary" >
             <ui:include src="../fragment/common/jsLibrary.xhtml" />

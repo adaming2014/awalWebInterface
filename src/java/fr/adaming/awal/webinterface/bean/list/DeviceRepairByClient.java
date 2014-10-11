@@ -23,9 +23,9 @@ import javax.faces.bean.RequestScoped;
 public class DeviceRepairByClient extends GenericList {
 
     @ManagedProperty("#{authManager}")
-    AuthManager authManager;
+    private AuthManager authManager;
 
-    List<Devicerepair> devices;
+    private List<Devicerepair> devices;
 
     public List<Devicerepair> getDevicesRepair() {
         return devices;

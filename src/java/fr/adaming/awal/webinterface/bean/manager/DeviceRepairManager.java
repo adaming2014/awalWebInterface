@@ -30,9 +30,9 @@ public class DeviceRepairManager extends GenericManager {
     private Device device;
 
     @ManagedProperty("#{authManager}")
-    AuthManager authManager;
+    private AuthManager authManager;
 
-    IDeviceRepairController deviceRepairController;
+    private IDeviceRepairController deviceRepairController;
 
     @Override
     @PostConstruct

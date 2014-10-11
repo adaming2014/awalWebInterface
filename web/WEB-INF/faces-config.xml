@@ -383,11 +383,21 @@
     </navigation-rule>
     
     <!--REPAIRER-->
-        <navigation-rule>
+    <navigation-rule>
         <from-view-id>/reseller/reseller.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>addClients</from-outcome>
             <to-view-id>/reseller/clients/add.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>manage</from-outcome>
+            <to-view-id>/reseller/clients/device/list.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>add</from-outcome>
+            <to-view-id>/reseller/clients/device/add.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
@@ -427,11 +437,6 @@
             <redirect />
         </navigation-case>
         <navigation-case>
-            <from-outcome>reseller</from-outcome>
-            <to-view-id>/reseller/reseller.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-        <navigation-case>
             <from-outcome>signup</from-outcome>
             <to-view-id>/auth/signin.xhtml</to-view-id>
             <redirect />
@@ -459,6 +464,11 @@
         <navigation-case>
             <from-outcome>packageClient</from-outcome>
             <to-view-id>/client/deviceRepair/deviceRepairList.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>homeResellerClient</from-outcome>
+            <to-view-id>/reseller/clients/device/list.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule> 

@@ -6,10 +6,14 @@
 package fr.adaming.awal.webinterface.bean.manager;
 
 import fr.adaming.awal.controller.interfaces.IClientController;
+import fr.adaming.awal.controller.interfaces.IDeviceController;
 import fr.adaming.awal.entity.Address;
 import fr.adaming.awal.entity.Client;
+import fr.adaming.awal.entity.Device;
 import fr.adaming.awal.entity.User;
 import fr.adaming.awal.webinterface.bean.form.ClientParameters;
+import fr.adaming.awal.webinterface.bean.form.DeviceParameters;
+import fr.adaming.awal.webinterface.util.FacesMessageUtil;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -27,11 +31,16 @@ import javax.faces.context.FacesContext;
 public class ResellerManager extends GenericManager implements Serializable {
 
     private static final String CREATE_CLIENT_RESELLER = "pretty:home";
+    private static final String GERATE_CLIENT_RESELLER = "manage";
+    private static final String NAVIGATION_HOME_CLIENT = "homeResellerClient";
     private Client client;
+    private Device device;
+
     /**
      * Creates a new instance of ResellerManager
      */
     public ResellerManager() {
+        device = new Device();
     }
 
     public String createClient() {
@@ -59,7 +68,7 @@ public class ResellerManager extends GenericManager implements Serializable {
         client.setAddress(address);
         client.setUser(user);
         client.setFirm(authManager.getUserReseller().getFirm());
-        
+
         clientController.create(client);
 
         return CREATE_CLIENT_RESELLER;
@@ -73,16 +82,46 @@ public class ResellerManager extends GenericManager implements Serializable {
         return clientController.getClientsByFirm(authManager.getUserReseller().getFirm());
     }
 
-    public void createPDF(Client client){
-    
+    public List<Device> getDevicesByClient() {
+        IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
+        List<Device> devices = deviceController.getDevicesByClient(client);
+        return devices;
     }
+
+    public String addDeviceToClient() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        DeviceParameters deviceParameters = getManagedBean(context, "deviceParameters", DeviceParameters.class);
+        IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
+        device.setDescription(deviceParameters.getDescription());
+        device.setClient(client);
+        if (!deviceController.create(device)) {
+            context.addMessage(null, FacesMessageUtil.MESSAGE_DEVICE_NOT_CREATE);
+            return null;
+        } else {
+            context.addMessage(null, FacesMessageUtil.INFO_DEVICE_CREATE);
+        }
+        return NAVIGATION_HOME_CLIENT;
+    }
+
+    public void createPDF(Client client) {
+
+    }
+
     public Client getClient() {
         return client;
     }
 
     public String setClient(Client client) {
         this.client = client;
-        return "client";
+        return GERATE_CLIENT_RESELLER;
+    }
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
     }
 
 }

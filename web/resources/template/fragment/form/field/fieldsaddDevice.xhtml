@@ -13,11 +13,11 @@
                         <p:outputLabel for="modele" value="Modele : "/>
 
                         <p:selectOneMenu id="modele" value="#{deviceManager.device.modele}" converter="modeleConverter">
-                            <f:selectItems var="modele" value="#{modelManager.all}" itemLabel="name:#{modele.name} -- brand:#{modele.brand} -- type:#{modele.type} -- dimension:#{modele.dimension}" itemValue="#{modele}" /> 
+                            <f:selectItems var="modele" value="#{modelManager.all}" itemLabel="#{modele.brand}, #{modele.name}" itemValue="#{modele}" /> 
                         </p:selectOneMenu>
 
                         <p:outputLabel for="description" value="Description : "/>
-                        <p:inputText id="description" value="#{deviceParameters.description}" label="Description :" required="true" placeholder="Enter description"/> 
+                        <p:inputText id="description" value="#{deviceParameters.description}" label="Description :" placeholder="Enter description"/> 
 
                         <p:commandButton style="margin: 20px" action="#{deviceManager.add}" value="Add device" ajax="false"/>
                     </h:panelGrid>            
@@ -48,22 +48,22 @@
                     </h:panelGrid>            
                 </h:form>
             </c:when>
-            <c:otherwise>
+            <c:when test="#{authManager.auth and authManager.reseller}" >
                 <h:form>
                     <h:panelGrid style="margin: 20px" columns="2" id="matchGrid" cellpadding="5">
                         <p:outputLabel for="modele" value="Modele : "/>
 
                         <p:selectOneMenu id="modele" value="#{resellerManager.device.modele}" converter="modeleConverter">
-                            <f:selectItems var="modele" value="#{modelManager.all}" itemLabel="name:#{modele.name} -- brand:#{modele.brand} -- type:#{modele.type} -- dimension:#{modele.dimension}" itemValue="#{modele}" /> 
+                            <f:selectItems var="modele" value="#{modelManager.all}" itemLabel="#{modele.brand}, #{modele.name}" itemValue="#{modele}" /> 
                         </p:selectOneMenu>
 
                         <p:outputLabel for="description" value="Description : "/>
-                        <p:inputText id="description" value="#{deviceParameters.description}" label="Description :" required="true" placeholder="Enter description"/> 
+                        <p:inputText id="description" value="#{deviceParameters.description}" label="Description :" placeholder="Enter description"/> 
 
                         <p:commandButton style="margin: 20px" action="#{resellerManager.addDeviceToClient()}" value="Add device" ajax="false"/>
                     </h:panelGrid>            
                 </h:form>
-            </c:otherwise>
+            </c:when>
         </c:choose>
     </h:body>
 </html>

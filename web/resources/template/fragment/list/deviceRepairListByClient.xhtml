@@ -7,7 +7,7 @@
     <h:body>
         <c:choose>
             <c:when test="#{authManager.auth and authManager.client}" >
-                <p:dataTable value="#{deviceRepairManager.devicesRepairByClient}" var="deviceRepair" style="text-align: center;"> 
+                <p:dataTable value="#{deviceRepairByClient.devicesRepair}" var="deviceRepair" style="text-align: center;"> 
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Device"/>

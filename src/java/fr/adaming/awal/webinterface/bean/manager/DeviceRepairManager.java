@@ -5,14 +5,12 @@
  */
 package fr.adaming.awal.webinterface.bean.manager;
 
-import fr.adaming.awal.controller.interfaces.IClientController;
 import fr.adaming.awal.controller.interfaces.IDeviceRepairController;
-import fr.adaming.awal.controller.interfaces.IRepairerController;
 import fr.adaming.awal.entity.Device;
 import fr.adaming.awal.entity.Devicerepair;
 import fr.adaming.awal.entity.Modelpackage;
 import fr.adaming.awal.webinterface.util.FacesMessageUtil;
-import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -29,23 +27,23 @@ public class DeviceRepairManager extends GenericManager {
     private static final String NAVIGATION_HOME_CLIENT = "pretty:home";
 
     private Modelpackage modelPackage;
-    private Devicerepair deviceRepair;
     private Device device;
 
     @ManagedProperty("#{authManager}")
     AuthManager authManager;
 
-    /**
-     * Creates a new instance of DeviceRepairManager
-     */
-    public DeviceRepairManager() {
-        deviceRepair = new Devicerepair();
+    IDeviceRepairController deviceRepairController;
+
+    @Override
+    @PostConstruct
+    protected void init() {
+        super.init();
+
+        deviceRepairController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
     }
 
     public String add() {
         FacesContext context = FacesContext.getCurrentInstance();
-
-        IDeviceRepairController deviceRepairController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
 
         Devicerepair devicerepair = new Devicerepair();
         devicerepair.setDevice(device);
@@ -61,16 +59,16 @@ public class DeviceRepairManager extends GenericManager {
         return NAVIGATION_HOME_CLIENT;
     }
 
-    public List<Devicerepair> getDevicesRepairByClient() {
-        IClientController clientController = (IClientController) springContext.getBean("clientController");
-        IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
-        return deviceController.getDevicesRepairByClient(clientController.getById(authManager.getClientId()));
+    public void setRepairingState(final Devicerepair devicerepair) {
+        deviceRepairController.setRepairingState(devicerepair);
     }
 
-    public List<Devicerepair> getDevicesRepairByRepairer() {
-        IRepairerController repairerController = (IRepairerController) springContext.getBean("repairerController");
-        IDeviceRepairController deviceController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
-        return deviceController.getDevicesRepairByRepairer(repairerController.getById(authManager.getRepairerId()));
+    public void setRepairedState(final Devicerepair devicerepair) {
+        deviceRepairController.setRepairedState(devicerepair);
+    }
+
+    public void setClosedState(final Devicerepair devicerepair) {
+        deviceRepairController.setClosedState(devicerepair);
     }
 
     public Modelpackage getModelPackage() {
@@ -79,14 +77,6 @@ public class DeviceRepairManager extends GenericManager {
 
     public void setModelPackage(Modelpackage modelPackage) {
         this.modelPackage = modelPackage;
-    }
-
-    public Devicerepair getDeviceRepair() {
-        return deviceRepair;
-    }
-
-    public void setDeviceRepair(Devicerepair deviceRepair) {
-        this.deviceRepair = deviceRepair;
     }
 
     public Device getDevice() {

@@ -4,88 +4,78 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:body>
-        <p:dataTable value="#{deviceRepairManager.devicesRepairByRepairer}" var="deviceRepair" style="text-align: center;"> 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Device"/>
-                </f:facet>
-                <h:outputText value="#{deviceRepair.modelpackage.modele.name}"/>
-            </p:column>  
+        <h:form>
+            <p:dataTable value="#{deviceRepairByRepairer.devicesRepair}" var="deviceRepair" style="text-align: center;"> 
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Device"/>
+                    </f:facet>
+                    <h:outputText value="#{deviceRepair.modelpackage.modele.name}"/>
+                </p:column>  
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Device Description"/>
-                </f:facet>
-                <h:outputText value="#{deviceRepair.device.description}"/>
-            </p:column>  
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Device Description"/>
+                    </f:facet>
+                    <h:outputText value="#{deviceRepair.device.description}"/>
+                </p:column>  
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Modelpackage"/>
-                </f:facet>
-                <h:outputText value="#{deviceRepair.modelpackage.name}"/>
-            </p:column>          
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Modelpackage"/>
+                    </f:facet>
+                    <h:outputText value="#{deviceRepair.modelpackage.name}"/>
+                </p:column>          
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Price"/>
-                </f:facet>
-                <h:outputText value="#{deviceRepair.price}"/>
-            </p:column>  
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Price"/>
+                    </f:facet>
+                    <h:outputText value="#{deviceRepair.price}"/>
+                </p:column> 
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="State"/>
-                </f:facet>
-                <h:outputText value="#{deviceRepair.state}" />
-            </p:column>  
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Creation Date"/>
+                    </f:facet>
+                    <h:outputText value="#{deviceRepair.dateCreation}" >
+                        <f:convertDateTime pattern="d-M-yyyy" />
+                    </h:outputText>
+                </p:column>  
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Creation Date"/>
-                </f:facet>
-                <h:outputText value="#{deviceRepair.dateCreation}" >
-                    <f:convertDateTime pattern="d-M-yyyy" />
-                </h:outputText>
-            </p:column>  
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="In Repair Date"/>
+                    </f:facet>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="In Repair Date"/>
-                </f:facet>
-                <h:outputText value="#{deviceRepair.dateInRepair}" >
-                    <f:convertDateTime pattern="d-M-yyyy" />
-                </h:outputText>
-            </p:column>  
+                    <p:commandButton value="Up" action="#{deviceRepairManager.setRepairingState(deviceRepair)}" rendered="#{deviceRepair.inCreateState}" process="@this" update="@form" />
+                    <h:outputText value="#{deviceRepair.dateInRepair}" rendered="#{not deviceRepair.inCreateState}" >
+                        <f:convertDateTime pattern="d-M-yyyy" />
+                    </h:outputText>
+                </p:column>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Repair Date"/>
-                </f:facet>
-                <h:outputText value="#{deviceRepair.dateRepair}" >
-                    <f:convertDateTime pattern="d-M-yyyy" />
-                </h:outputText>
-            </p:column>  
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Repair Date"/>
+                    </f:facet>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Closed Date"/>
-                </f:facet>
-                <h:outputText value="#{deviceRepair.dateClosed}" >
-                    <f:convertDateTime pattern="d-M-yyyy" />
-                </h:outputText>
-            </p:column> 
+                    <p:commandButton value="Up" action="#{deviceRepairManager.setRepairedState(deviceRepair)}" rendered="#{deviceRepair.inRepairingState}" process="@this" update="@form" />
+                    <h:outputText value="#{deviceRepair.dateRepair}" rendered="#{not deviceRepair.inRepairingState}" >
+                        <f:convertDateTime pattern="d-M-yyyy" />
+                    </h:outputText>
+                </p:column>  
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Shipment"/>
-                </f:facet>
-                <h:commandLink action="#{pDFDeviceRepair.createPDF(deviceRepair)}">
-                    <p:graphicImage library="images/logo" name="pdficone.png" width="30"/>
-                </h:commandLink>
-            </p:column>  
-
-        </p:dataTable>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Closed Date"/>
+                    </f:facet>
+                    <p:commandButton value="Up" action="#{deviceRepairManager.setClosedState(deviceRepair)}" rendered="#{deviceRepair.inRepairedState}" process="@this" update="@form" />
+                    <h:outputText value="#{deviceRepair.dateClosed}" rendered="#{not deviceRepair.inRepairedState}" >
+                        <f:convertDateTime pattern="d-M-yyyy" />
+                    </h:outputText>
+                </p:column> 
+            </p:dataTable>
+        </h:form>
     </h:body>
 </html>
 

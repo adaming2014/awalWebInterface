@@ -29,6 +29,7 @@ public class DeviceManager extends GenericManager implements Serializable {
 
     private Device device;
     private static final String NAVIGATION_HOME_CLIENT = "pretty:home";
+
     public DeviceManager() {
         device = new Device();
     }
@@ -44,7 +45,7 @@ public class DeviceManager extends GenericManager implements Serializable {
         if (!deviceController.create(device)) {
             context.addMessage(null, FacesMessageUtil.MESSAGE_DEVICE_NOT_CREATE);
             return null;
-        }else{
+        } else {
             context.addMessage(null, FacesMessageUtil.INFO_DEVICE_CREATE);
         }
         System.out.println("add size : " + deviceController.getAll().size());
@@ -55,28 +56,25 @@ public class DeviceManager extends GenericManager implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         DeviceParameters deviceParameters = getManagedBean(context, "deviceParameters", DeviceParameters.class);
         ModelParameters modelParameters = getManagedBean(context, "modelParameters", ModelParameters.class);
+        AuthManager authManager = getManagedBean(context, "authManager", AuthManager.class);
+        IClientController clientController = (IClientController) springContext.getBean("clientController");
         IDeviceController deviceController = (IDeviceController) springContext.getBean("deviceController");
         IModelController modelController = (IModelController) springContext.getBean("modelController");
 
         Modele modele = new Modele();
-        for (Modele modele1 : modelController.getAll()) {
-            if (!modelParameters.getName().equals(modele1.getName())) {
-                modele.setName(modelParameters.getName());
-                modele.setBrand(modelParameters.getBrand());
-                modele.setDimension(modelParameters.getDimension());
-                modele.setWeigth(Double.parseDouble(modelParameters.getWeigth()));
-                modele.setType(modelParameters.getType());
-                if (!modelController.create(modele)) {
-                    context.addMessage(null, FacesMessageUtil.MESSAGE_MODEL_NOT_CREATE);
-                    return null;
-                }
-            }
-        }
+        modele.setName(modelParameters.getName());
+        modele.setBrand(modelParameters.getBrand());
+        modele.setDimension(modelParameters.getDimension());
+        modele.setWeigth(Double.parseDouble(modelParameters.getWeigth()));
+        modele.setType(modelParameters.getType());
+        modelController.create(modele);
+
+        Device device = new Device();
+        device.setModele(modele);
         device.setDescription(deviceParameters.getDescription());
-        if (!deviceController.create(device)) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_DEVICE_NOT_CREATE);
-            return null;
-        }
+        device.setClient(clientController.getById(authManager.getClientId()));
+        deviceController.create(device);
+
         return NAVIGATION_HOME_CLIENT;
     }
 

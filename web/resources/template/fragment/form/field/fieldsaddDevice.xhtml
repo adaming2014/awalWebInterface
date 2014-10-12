@@ -22,31 +22,7 @@
                         <p:commandButton style="margin: 20px" action="#{deviceManager.add}" value="Add device" ajax="false"/>
                     </h:panelGrid>            
                 </h:form>
-
-                <h:form>
-                    <h:panelGrid style="margin: 20px" columns="2" id="matchGrid" cellpadding="5">
-
-                        <p:outputLabel for="name" value="Name : "/>
-                        <p:inputText id="name" value="#{modelParameters.name}" label="Name :" required="true" placeholder="Enter name"/> 
-
-                        <p:outputLabel for="brand" value="Brand : "/>
-                        <p:inputText id="brand" value="#{modelParameters.brand}" label="Brand :" required="true" placeholder="Enter brand"/> 
-
-                        <p:outputLabel for="type" value="Type : "/>
-                        <p:inputText id="type" value="#{modelParameters.type}" label="Type :" required="true" placeholder="Enter type"/> 
-
-                        <p:outputLabel for="dimension" value="Dimension : "/>
-                        <p:inputText id="dimension" value="#{modelParameters.dimension}" label="Dimension :" required="true" placeholder="L*L*H"/> 
-
-                        <p:outputLabel for="weigth" value="Weigth : "/>
-                        <p:inputText id="weigth" value="#{modelParameters.weigth}" label="Weigth :" required="true"/> 
-
-                        <p:outputLabel for="description" value="Description : "/>
-                        <p:inputText id="description" value="#{deviceParameters.description}" label="Description :" required="true" placeholder="Enter description"/> 
-
-                        <p:commandButton style="margin: 20px" action="#{deviceManager.addother()}" value="Add other device" ajax="false"/>
-                    </h:panelGrid>            
-                </h:form>
+                <p:button outcome="addotherDevice" value="add other device"/>
             </c:when>
             <c:when test="#{authManager.auth and authManager.reseller}" >
                 <h:form>

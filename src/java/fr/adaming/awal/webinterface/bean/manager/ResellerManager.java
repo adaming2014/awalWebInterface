@@ -127,24 +127,6 @@ public class ResellerManager extends GenericManager implements Serializable {
         return NAVIGATION_HOME_CLIENT;
     }
 
-    public String addDeviceRepairToClient() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        IDeviceRepairController deviceRepairController = (IDeviceRepairController) springContext.getBean("deviceRepairController");
-
-        Devicerepair devicerepair = new Devicerepair();
-        devicerepair.setDevice(device);
-        devicerepair.setModelpackage(modelPackage);
-
-        try {
-            deviceRepairController.createDeviceRepair(devicerepair);
-        } catch (IDeviceRepairController.PackageAlreadyPresentException ex) {
-            context.addMessage(null, FacesMessageUtil.MESSAGE_DEVICE_REPAIR_ALREADY_EXIST);
-            return null;
-        }
-
-        return NAVIGATION_HOME_CLIENT;
-    }
-
     public Client getClient() {
         return client;
     }

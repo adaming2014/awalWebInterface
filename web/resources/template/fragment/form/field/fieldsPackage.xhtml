@@ -7,44 +7,22 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <body>
         <ui:composition>
-            <c:choose>
-                <c:when test="#{authManager.auth and authManager.client}" >
-                    <h:form>
-                        <h:panelGrid style="margin: 20px" columns="2" id="matchGrid" cellpadding="5">
-                            <p:outputLabel for="device" value="Device : "/>
-                            <p:selectOneMenu id="device" value="#{deviceRepairManager.device}" converter="deviceConverter">
-                                <f:selectItem itemLabel="#{modelPackageManager.device.description} -- #{modelPackageManager.device.modele.type} -- #{modelPackageManager.device.modele.weigth} -- #{modelPackageManager.device.modele.dimension}" itemValue="#{modelPackageManager.device}" /> 
-                            </p:selectOneMenu>
+            <h:form>
+                <h:panelGrid style="margin: 20px" columns="2" id="matchGrid" cellpadding="5">
+                    <p:outputLabel for="device" value="Device : "/>
+                    <p:selectOneMenu id="device" value="#{deviceRepairManager.device}" converter="deviceConverter">
+                        <f:selectItem itemLabel="#{modelPackageManager.device.description} -- #{modelPackageManager.device.modele.type} -- #{modelPackageManager.device.modele.weigth} -- #{modelPackageManager.device.modele.dimension}" itemValue="#{modelPackageManager.device}" /> 
+                    </p:selectOneMenu>
 
 
-                            <p:outputLabel for="package" value="Package : "/>
-                            <p:selectOneMenu id="package" value="#{deviceRepairManager.modelPackage}" converter="modelPackageConverter">
-                                <f:selectItems var="package" value="#{modelPackageManager.packagesByDevice}" itemLabel="name:#{package.name}  --  price:#{package.price}" itemValue="#{package}" /> 
-                            </p:selectOneMenu>
+                    <p:outputLabel for="package" value="Package : "/>
+                    <p:selectOneMenu id="package" value="#{deviceRepairManager.modelPackage}" converter="modelPackageConverter">
+                        <f:selectItems var="package" value="#{modelPackageManager.packagesByDevice}" itemLabel="name:#{package.name}  --  price:#{package.price}" itemValue="#{package}" /> 
+                    </p:selectOneMenu>
 
-                            <p:commandButton action="#{deviceRepairManager.add()}" value="add Package"/>
-                        </h:panelGrid>            
-                    </h:form>
-                </c:when>
-                <c:otherwise>
-                    <h:form>
-                        <h:panelGrid style="margin: 20px" columns="2" id="matchGrid" cellpadding="5">
-                            <p:outputLabel for="device" value="Device : "/>
-                            <p:selectOneMenu id="device" value="#{resellerManager.device}" converter="deviceConverter">
-                                <f:selectItem itemLabel="#{modelPackageManager.device.description} -- #{modelPackageManager.device.modele.type} -- #{modelPackageManager.device.modele.weigth} -- #{modelPackageManager.device.modele.dimension}" itemValue="#{modelPackageManager.device}" /> 
-                            </p:selectOneMenu>
-
-
-                            <p:outputLabel for="package" value="Package : "/>
-                            <p:selectOneMenu id="package" value="#{resellerManager.modelPackage}" converter="modelPackageConverter">
-                                <f:selectItems var="package" value="#{modelPackageManager.packagesByDevice}" itemLabel="name:#{package.name}  --  price:#{package.price}" itemValue="#{package}" /> 
-                            </p:selectOneMenu>
-
-                            <p:commandButton action="#{resellerManager.addDeviceRepairToClient()}" value="add Package"/>
-                        </h:panelGrid>            
-                    </h:form>
-                </c:otherwise>
-            </c:choose>
+                    <p:commandButton action="#{deviceRepairManager.add()}" value="add Package"/>
+                </h:panelGrid>            
+            </h:form>
         </ui:composition>
     </body>
 </html>

@@ -380,6 +380,11 @@
             <to-view-id>/device/pdf/pdf.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>addotherDevice</from-outcome>
+            <to-view-id>/device/other/addother.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule>
     
     <!--REPAIRER-->
@@ -472,9 +477,20 @@
             <redirect />
         </navigation-case>
         <navigation-case>
-            <from-outcome>addDeviceRepairReseller</from-outcome>
+            <from-outcome>addPackage</from-outcome>
             <to-view-id>/device/package/add.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>addInsurance</from-outcome>
+            <to-view-id>/device/insurance/add.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addotherDevice</from-outcome>
+            <to-view-id>/device/other/addother.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule> 
+
 </faces-config>

@@ -5,16 +5,21 @@
  */
 package fr.adaming.awal.webinterface.pdf;
 
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import fr.adaming.awal.entity.Client;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +35,7 @@ public class GeneratePDFClient {
     /**
      * @param args
      */
-    public static Document createPDF(String file, String title, Client client) {
+    public static Document createPDF(String file, String title, Client client) throws IOException {
 
         Document document = null;
 
@@ -40,7 +45,7 @@ public class GeneratePDFClient {
             document.open();
 
             addMetaData(document);
-
+//            addlogoHeader(document, client);
             addTitlePage(document, title);
             addInfoAddress(document, client);
             document.close();
@@ -58,6 +63,13 @@ public class GeneratePDFClient {
         document.addSubject("Generate PDF report");
         document.addAuthor("Awal");
         document.addCreator("Awal");
+    }
+
+    private static void addlogoHeader(Document document, Client client) throws DocumentException, IOException {
+
+            Image image1 = Image.getInstance("client.png");
+            document.add(image1);
+           
     }
 
     private static void addTitlePage(Document document, String title) throws DocumentException {

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <body>
         <ui:composition>
-                <p:messages id="messages" showDetail="true" autoUpdate="true" />
-                <ui:include src="field/fieldsPackage.xhtml"/>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" globalOnly="true" />
+
+            <ui:include src="field/fieldsPackage.xhtml"/>
         </ui:composition>
     </body>
 </html>

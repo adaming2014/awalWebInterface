@@ -3,21 +3,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <body>
         <ui:composition>
             <h:form>
-                <h:panelGrid style="margin: 20px" columns="2" id="matchGrid" cellpadding="5">
+                <h:panelGrid id="matchGrid" columns="2" cellpadding="5">
                     <p:outputLabel for="device" value="Device : "/>
                     <p:selectOneMenu id="device" value="#{deviceRepairManager.device}" converter="deviceConverter">
-                        <f:selectItem itemLabel="#{modelPackageManager.device.description} -- #{modelPackageManager.device.modele.type} -- #{modelPackageManager.device.modele.weigth} -- #{modelPackageManager.device.modele.dimension}" itemValue="#{modelPackageManager.device}" /> 
+                        <f:selectItem itemLabel="#{modelPackageManager.device.modele.brand} #{modelPackageManager.device.modele.name} (#{modelPackageManager.device.description})" itemValue="#{modelPackageManager.device}" /> 
                     </p:selectOneMenu>
 
 
                     <p:outputLabel for="package" value="Package : "/>
                     <p:selectOneMenu id="package" value="#{deviceRepairManager.modelPackage}" converter="modelPackageConverter">
-                        <f:selectItems var="package" value="#{modelPackageManager.packagesByDevice}" itemLabel="name:#{package.name}  --  price:#{package.price}" itemValue="#{package}" /> 
+                        <f:selectItems var="package" value="#{modelPackageManager.packagesByDevice}" itemLabel="#{package.name},  Price : #{package.price}€" itemValue="#{package}" /> 
                     </p:selectOneMenu>
 
                     <p:commandButton action="#{deviceRepairManager.add()}" value="add Package"/>

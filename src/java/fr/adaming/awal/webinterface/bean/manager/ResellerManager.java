@@ -5,10 +5,12 @@
  */
 package fr.adaming.awal.webinterface.bean.manager;
 
+import fr.adaming.awal.controller.interfaces.IAddressController;
 import fr.adaming.awal.controller.interfaces.IClientController;
 import fr.adaming.awal.controller.interfaces.IDeviceController;
 import fr.adaming.awal.controller.interfaces.IDeviceInsuranceController;
 import fr.adaming.awal.controller.interfaces.IDeviceRepairController;
+import fr.adaming.awal.controller.interfaces.IUserController;
 import fr.adaming.awal.entity.Address;
 import fr.adaming.awal.entity.Client;
 import fr.adaming.awal.entity.Device;
@@ -59,17 +61,22 @@ public class ResellerManager extends GenericManager implements Serializable {
         ClientParameters clientParameters = getManagedBean(context, "clientParameters", ClientParameters.class);
 
         IClientController clientController = (IClientController) springContext.getBean("clientController");
-
+        IAddressController addressController = (IAddressController) springContext.getBean("addressController");
+        IUserController userController = (IUserController) springContext.getBean("userController");
+        
+        
         Address address = new Address();
         address.setCity(clientParameters.getAddress().getCity());
         address.setStreet(clientParameters.getAddress().getStreet());
         address.setPostcode(clientParameters.getAddress().getPostcode());
+        addressController.create(address);
 
         User user = new User();
         user.setFirstname(clientParameters.getUser().getFirstname());
         user.setLastname(clientParameters.getUser().getLastname());
         user.setMail(clientParameters.getUser().getEmail());
         user.setPassword(password);
+        userController.create(user);
 
         Client client = new Client();
         client.setAddress(address);

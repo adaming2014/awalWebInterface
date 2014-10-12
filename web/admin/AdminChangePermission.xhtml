@@ -3,39 +3,42 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
-        <ui:define name="content">
-            <br/>
-            <div class="panel panel-primary">
-                <div class="panel-heading">Permission</div>
-                <div class="panel-body">
-            <h:form>
-                <p:panel header="Modification de permission" >
-                <h:panelGrid columns="2" style="margin-bottom: 100px" cellpadding="5" columnClasses="label, value">
-                    <p:outputLabel for="utilisateurs" value="Utilisateurs :   " style="color: #000"/>
-                    <p:selectOneListbox id="utilisateurs" value="#{adminChangePermission.u.idUser}">
-                        <f:selectItems var="usersVar" value="#{adminChangePermission.allUsers}" itemLabel="#{usersVar.lastname}  #{usersVar.firstname}" itemValue="#{usersVar.idUser}" />
-                    </p:selectOneListbox>
-                       
-                
-                </h:panelGrid>
-                    <h:panelGrid columns="2" style="margin-bottom: 100px" cellpadding="5" columnClasses="label, value">
-                    <p:outputLabel for="droits" value="Droits à attribuer :    " style="color: #000"/>
-                    <p:selectOneRadio id="droits" value="#{adminChangePermission.droitChoisi}" >
-                   
-                    
-                        <f:selectItem itemLabel="Administrateur" itemValue="Administrateur" /><br/>
-                        <f:selectItem itemLabel="Revendeur" itemValue="Revendeur" />
-                        <f:selectItem itemLabel="Client" itemValue="Client" />
-                        <f:selectItem itemLabel="Réparateur" itemValue="Réparateur" />
-                </p:selectOneRadio>
-                <p:commandButton value="Execute" action="#{adminChangePermission.changePermission()}" />
-                </h:panelGrid>
-                </p:panel>
-            </h:form>
+    <h:body>
+        <ui:composition template="../resources/template/layout/AdminLayout.xhtml">
+            <ui:define name="content">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Permission</div>
+                    <div class="panel-body">
+                        <h:form>
+                            <p:dataTable value="#{userList.users}" var="user" >
+                                <p:column headerText="First Name">
+                                    <h:outputText value="#{user.user.firstname}" />
+                                </p:column>
+
+                                <p:column headerText="Last Name">
+                                    <h:outputText value="#{user.user.lastname}" />
+                                </p:column>
+
+                                <p:column headerText="Email">
+                                    <h:outputText value="#{user.user.mail}" />
+                                </p:column>
+
+                                <p:column headerText="Account type">
+                                    <p:selectOneMenu>
+                                        <p:ajax listener="#{adminChangePermission.changePermission}" />
+                                        <f:param name="user" value="#{user.user.id}" />
+
+                                        <f:selectItem itemLabel="Admin" itemValue="Admin" />
+                                        <f:selectItem itemLabel="Reseller" itemValue="Reseller" />
+                                        <f:selectItem itemLabel="Client" itemValue="Client" />
+                                        <f:selectItem itemLabel="Repairer" itemValue="Repairer" />
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
                 </div>
-            </div>
-        </ui:define>
-    </ui:composition>
-    
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>

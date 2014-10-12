@@ -18,10 +18,11 @@ import fr.adaming.awal.entity.User;
 import fr.adaming.awal.entity.interfaces.IUser;
 import fr.adaming.awal.util.RepairerUtil;
 import java.io.Serializable;
-
-import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -33,22 +34,23 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @SessionScoped
 public class AdminChangePermission implements Serializable {
 
-    private ApplicationContext context;
-    private UserController userControlller;
-    private AdminController adminController;
-    private RepairerController repairerController;
-    private ResellerController resellerController;
-    private ClientController clientController;
-    private User u;
-    private String droitChoisi = "";
+    public static final String TYPE_ADMIN = "Admin";
+    public static final String TYPE_CLIENT = "Client";
+    public static final String TYPE_RESELLER = "Reseller";
+    public static final String TYPE_REPAIRER = "Repairer";
+
+    private final UserController userControlller;
+    private final AdminController adminController;
+    private final RepairerController repairerController;
+    private final ResellerController resellerController;
+    private final ClientController clientController;
 
     /**
      * Creates a new instance of AdminChangePermission
      */
     public AdminChangePermission() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 
-        u = new User();
-        context = new ClassPathXmlApplicationContext("spring-config.xml");
         userControlller = (UserController) context.getBean("userController");
         adminController = (AdminController) context.getBean("adminController");
         repairerController = (RepairerController) context.getBean("repairerController");
@@ -56,29 +58,15 @@ public class AdminChangePermission implements Serializable {
         clientController = (ClientController) context.getBean("clientController");
     }
 
-    public List<User> getAllUsers() {
-        return userControlller.getAll();
-    }
+    public void changePermission(AjaxBehaviorEvent event) {
+        String droitChoisi = (String) ((UIInput) event.getSource()).getValue();
+        IUser iuser = userControlller.getUserTypeByUserId(Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("user")));
+        if (iuser == null) {
+            System.out.println("NO USER FOUND FOR ID : " + FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("user"));
+            return;
+        }
 
-    public User getU() {
-        return u;
-    }
-
-    public void setU(User u) {
-        this.u = u;
-    }
-
-    public String getDroitChoisi() {
-        return droitChoisi;
-    }
-
-    public void setDroitChoisi(String droitChoisi) {
-        this.droitChoisi = droitChoisi;
-    }
-
-    public void changePermission() {
-        IUser iuser = userControlller.getUserTypeByUserId(u.getIdUser());
-        if (droitChoisi.equals("Administrateur")) {
+        if (TYPE_ADMIN.equals(droitChoisi)) {
             Admin admin = new Admin();
 
             if (iuser instanceof Client) {
@@ -93,11 +81,11 @@ public class AdminChangePermission implements Serializable {
 
             admin.setUser(iuser.getUser());
             adminController.create(admin);
-
-
         }
-        if (droitChoisi.equals("Réparateur")) {
+
+        if (TYPE_REPAIRER.equals(droitChoisi)) {
             Repairer repairer = new Repairer();
+
             if (iuser instanceof Client) {
                 clientController.delete((Client) iuser);
             }
@@ -107,13 +95,15 @@ public class AdminChangePermission implements Serializable {
             if (iuser instanceof Reseller) {
                 resellerController.delete((Reseller) iuser);
             }
+
             repairer.setUser(iuser.getUser());
             repairer.setAvailable(RepairerUtil.NOT_AVAILABLE);
             repairerController.create(repairer);
-
         }
-        if (droitChoisi.equals("Revendeur")) {
+
+        if (TYPE_RESELLER.equals(droitChoisi)) {
             Reseller reseller = new Reseller();
+
             if (iuser instanceof Client) {
                 clientController.delete((Client) iuser);
             }
@@ -123,12 +113,14 @@ public class AdminChangePermission implements Serializable {
             if (iuser instanceof Repairer) {
                 repairerController.delete((Repairer) iuser);
             }
+
             reseller.setUser(iuser.getUser());
             resellerController.create(reseller);
         }
-        if (droitChoisi.equals("Client")) {
 
+        if (TYPE_CLIENT.equals(droitChoisi)) {
             Client client = new Client();
+
             if (iuser instanceof Reseller) {
                 resellerController.delete((Reseller) iuser);
             }
@@ -138,9 +130,9 @@ public class AdminChangePermission implements Serializable {
             if (iuser instanceof Repairer) {
                 repairerController.delete((Repairer) iuser);
             }
+
             client.setUser(iuser.getUser());
             clientController.create(client);
-
         }
     }
 }

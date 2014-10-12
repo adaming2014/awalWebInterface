@@ -340,6 +340,7 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
+    
     <navigation-rule>
         <from-view-id>/device/package/add.xhtml</from-view-id>
         <navigation-case>
@@ -348,6 +349,7 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
+    
     <navigation-rule>
         <from-view-id>/device/insurance/add.xhtml</from-view-id>
         <navigation-case>

@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="../../resources/template/layout/commonLayout.xhtml">
         <ui:define name="content">
-            <ui:include src="../../resources/template/fragment/form/insuranceForm.xhtml" />
+            <c:choose>
+                <c:when test="#{authManager.auth and authManager.client}" >
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Buy insurance</div>
+                        <div class="panel-body">
+                            <ui:include src="../../resources/template/fragment/form/insuranceForm.xhtml" />
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    You are not logged!
+                </c:otherwise>
+            </c:choose>
         </ui:define>
     </ui:composition>
 </html>

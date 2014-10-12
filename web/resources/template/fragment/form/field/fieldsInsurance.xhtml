@@ -7,15 +7,15 @@
     <body>
         <ui:composition>
             <h:form>
-                <h:panelGrid style="margin: 20px" columns="2" id="matchGrid" cellpadding="5">
+                <h:panelGrid columns="2" id="matchGrid" cellpadding="5">
                     <p:outputLabel for="device" value="Device : "/>
                     <p:selectOneMenu id="device" value="#{deviceInsuranceManager.deviceinsurance.device}" converter="deviceConverter">
-                        <f:selectItem itemLabel="#{deviceInsuranceModeleManager.device.modele.name} -- #{deviceInsuranceModeleManager.device.modele.type} -- #{deviceInsuranceModeleManager.device.modele.weigth} -- #{deviceInsuranceModeleManager.device.modele.dimension}" itemValue="#{deviceInsuranceModeleManager.device}" /> 
+                        <f:selectItem itemLabel="#{deviceInsuranceModeleManager.device.modele.brand} #{deviceInsuranceModeleManager.device.modele.name} (#{deviceInsuranceModeleManager.device.description})" itemValue="#{deviceInsuranceModeleManager.device}" /> 
                     </p:selectOneMenu>
 
                     <p:outputLabel for="insurance" value="Insurance : "/>
                     <p:selectOneMenu id="insurance" value="#{deviceInsuranceManager.deviceinsurance.deviceinsurancemodel}" converter="deviceInsuranceModeleManagerConverter">
-                        <f:selectItems var="insurance" value="#{deviceInsuranceModeleManager.deviceInsuranceModelsByModel}" itemLabel="name:#{insurance.name}  --  duration:#{insurance.duration}  --  price:#{insurance.price}" itemValue="#{insurance}" /> 
+                        <f:selectItems var="insurance" value="#{deviceInsuranceModeleManager.deviceInsuranceModelsByModel}" itemLabel="#{insurance.name},  #{insurance.duration} Months,  Price : #{insurance.price}€" itemValue="#{insurance}" /> 
                     </p:selectOneMenu>
 
                     <p:outputLabel for="begindate" value="Begin Date : "/>

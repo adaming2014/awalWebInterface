@@ -57,7 +57,7 @@
                         <f:facet name="header">
                             <h:outputText value="Insurance"/>
                         </f:facet>
-                        <h:commandLink>
+                        <h:commandLink action="#{pDFDeviceInsurance.createPDF(deviceInsurance)}">
                             <p:graphicImage library="images/logo" name="pdficone.png" width="30"/>
                         </h:commandLink>
                     </p:column> 

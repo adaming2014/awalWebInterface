@@ -138,10 +138,6 @@ public class ResellerManager extends GenericManager implements Serializable {
         return NAVIGATION_HOME_CLIENT;
     }
 
-    public void createPDF(Client client) {
-
-    }
-
     public Client getClient() {
         return client;
     }

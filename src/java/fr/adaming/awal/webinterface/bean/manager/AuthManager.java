@@ -14,15 +14,15 @@ import fr.adaming.awal.entity.User;
 import fr.adaming.awal.entity.interfaces.IUser;
 import fr.adaming.awal.webinterface.bean.form.UserParameters;
 import fr.adaming.awal.webinterface.util.FacesMessageUtil;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
 /**
  *
  * @author INTI0221
  */
-@ManagedBean
+@Named
 @SessionScoped
 public class AuthManager extends GenericManager {
 

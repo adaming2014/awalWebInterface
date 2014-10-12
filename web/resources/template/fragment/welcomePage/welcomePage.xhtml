@@ -5,16 +5,36 @@
       xmlns:p="http://primefaces.org/ui">
     <body>
         <ui:composition>
-                    
-        <div>Bienvenue sur le site Alpha !!!</div>
-                                  
-        <h:link outcome="warranty">
-            <p:graphicImage library="images" name="pub_extension_garantie.png"/>
-        </h:link>
-        
-         <h:link outcome="package">
-            <p:graphicImage library="images" name="pub_reparation.png"/>
-        </h:link>
+
+            <div>Bienvenue sur le site Alpha !!!</div>
+            <div data-ride="carousel" class="carousel slide" id="carousel-example-generic">
+                <ol class="carousel-indicators">
+                    <li class="" data-slide-to="0" data-target="#carousel-example-generic"></li>
+                    <li data-slide-to="1" data-target="#carousel-example-generic" class=""></li>
+                    <li data-slide-to="2" data-target="#carousel-example-generic" class="active"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item">
+                        <p:graphicImage library="images" name="pub_extension_garantie.png"/>
+                    </div>
+                    <div class="item active left">
+                        <p:graphicImage library="images" name="pub_reparation.png"/>
+                    </div>
+                </div>
+                <a data-slide="prev" role="button" href="#carousel-example-generic" class="left carousel-control">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a data-slide="next" role="button" href="#carousel-example-generic" class="right carousel-control">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>                      
+<!--            <h:link outcome="warranty">
+                <p:graphicImage library="images" name="pub_extension_garantie.png"/>
+            </h:link>
+
+            <h:link outcome="package">
+                <p:graphicImage library="images" name="pub_reparation.png"/>
+            </h:link>-->
         </ui:composition>
     </body>
 </html>

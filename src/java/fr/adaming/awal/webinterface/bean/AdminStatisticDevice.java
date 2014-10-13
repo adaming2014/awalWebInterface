@@ -8,13 +8,8 @@ package fr.adaming.awal.webinterface.bean;
 import fr.adaming.awal.controller.DeviceRepairController;
 import fr.adaming.awal.entity.Devicerepair;
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.model.chart.Axis;
@@ -66,12 +61,11 @@ public class AdminStatisticDevice implements Serializable {
         LocalDate local2012 = LocalDate.parse("2012-01-01");
         LocalDate local2011 = LocalDate.parse("2011-01-01");
 
-        
         //System.out.println("date : "+date2014);
         for (Devicerepair devicerepair : getAllDeviceReparation()) {
-            
+
             LocalDate creationDate = ((java.sql.Date) devicerepair.getDateCreation()).toLocalDate();
-        
+
             if (creationDate.getYear() == local2014.getYear()) {
                 nbrdeviceInyear2014++;
             }
@@ -84,15 +78,14 @@ public class AdminStatisticDevice implements Serializable {
             if (creationDate.getYear() == local2011.getYear()) {
                 nbrdeviceInyear2011++;
             }
-            
-            
+
         }
 
         System.out.println("Nombre de réparations" + nbrdeviceInyear2014);
-        nbreDeviceLine.set("2014", nbrdeviceInyear2014);
-        nbreDeviceLine.set("2013", nbrdeviceInyear2013);
-        nbreDeviceLine.set("2012", nbrdeviceInyear2012);
         nbreDeviceLine.set("2011", nbrdeviceInyear2011);
+        nbreDeviceLine.set("2012", nbrdeviceInyear2012);
+        nbreDeviceLine.set("2013", nbrdeviceInyear2013);
+        nbreDeviceLine.set("2014", nbrdeviceInyear2014);
         areaModel.addSeries(nbreDeviceLine);
 
         areaModel.setTitle("Nombre de réparation");
@@ -100,7 +93,7 @@ public class AdminStatisticDevice implements Serializable {
         areaModel.setStacked(true);
         areaModel.setShowPointLabels(true);
         areaModel.setAnimate(true);
-        
+
         Axis xAxis = new CategoryAxis("Annés");
         areaModel.getAxes().put(AxisType.X, xAxis);
         Axis yAxis = areaModel.getAxis(AxisType.Y);

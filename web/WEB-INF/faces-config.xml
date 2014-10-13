@@ -77,7 +77,7 @@
         <from-view-id>/admin/AdminaddInsurance.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>satisticReparation</from-outcome>
-            <to-view-id>/admin/adminStatisticDevice</to-view-id>
+            <to-view-id>/admin/adminStatisticDevice.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>addOneUser</from-outcome>

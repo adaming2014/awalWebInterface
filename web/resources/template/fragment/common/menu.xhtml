@@ -18,8 +18,8 @@
                     <p:menuitem value="Promos"  icon="ui-icon-document"/>
 
                     <p:submenu label="Compte" icon="ui-icon-pencil">
-                        <p:menuitem value="Connexion" url="/faces/auth/login.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
-                        <p:menuitem value="Inscription" url="/faces/auth/signin.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                        <p:menuitem value="Connexion" outcome="pretty:authLogin" icon="ui-icon-arrowreturnthick-1-w" />
+                        <p:menuitem value="Inscription" outcome="pretty:authRegister" icon="ui-icon-arrowreturnthick-1-e" />
                     </p:submenu>
 
                     <p:submenu label="Contact" icon="ui-icon-pencil">
